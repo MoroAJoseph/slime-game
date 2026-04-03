@@ -1,19 +1,19 @@
-# Godot 4+ specific
+# Godot
 .godot/
 .import/
 export_presets.cfg
 
-# Mono/C# specific (if you ever use it)
+# Mono/C#
 .mono/
 bin/
 obj/
 *.csproj
 *.sln
 
-# System clutter
+# System
 .DS_Store
 Thumbs.db
 
-# Blender meta
+# Blender
 *.blend1
 

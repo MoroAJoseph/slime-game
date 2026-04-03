@@ -3,7 +3,7 @@ class_name GunPartVisualData
 extends WeaponPartVisualData
 
 enum GunType { RIFLE, SMG, PISTOL, SNIPER, SHOTGUN }
-enum GunPartSocket { FRAME, STOCK, MAG, BARREL, MUZZLE, UNDER_BARREL, REAR_SIGHT, FRONT_SIGHT}
+enum GunPartSocket { FRAME, STOCK, MAG, BARREL, MUZZLE, UNDER_BARREL, REAR_SIGHT, FRONT_SIGHT, BULLET_SPAWN }
 
 @export var type: GunType: 
 	set(v): 

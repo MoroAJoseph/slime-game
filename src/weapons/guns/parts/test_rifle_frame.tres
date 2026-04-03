@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GunPartVisualData" format=3 uid="uid://cg6ddgs88r8jf"]
 
-[ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/base/visual/gun_part_visual_data.gd" id="1_dbej3"]
+[ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/guns/gun_part_visual_data.gd" id="1_dbej3"]
 [ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://weapons/base/visual/weapon_part_socket_data.gd" id="2_kuyul"]
 
 [sub_resource type="Resource" id="Resource_0hvji"]

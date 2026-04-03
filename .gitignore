@@ -13,3 +13,7 @@ obj/
 # System clutter
 .DS_Store
 Thumbs.db
+
+# Blender meta
+*.blend1
+

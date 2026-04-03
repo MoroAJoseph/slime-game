@@ -1,7 +1,7 @@
 class_name Gun
 extends Node
 
-@export var data: GunData
+@export var data: GunCombatData
 @export var _bullet_projectile_scene: PackedScene
 @export var _bullet_projectile_spawn_node: Marker3D 
 
@@ -22,7 +22,7 @@ func _ready() -> void:
 # Local
 # ===
 
-func set_data(value: GunData) -> void:
+func set_data(value: GunCombatData) -> void:
 	data = value
 	current_ammo = data.mag_capacity
 	_publish_ammo()

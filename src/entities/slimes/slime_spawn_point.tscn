@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bb04srrhd30i"]
+
+[ext_resource type="Script" uid="uid://4mg80ub5ejg2" path="res://entities/slimes/slime_spawn_point.gd" id="1_qdx7j"]
+
+[node name="SlimeSpawnPoint" type="Marker3D" unique_id=1266817554]
+script = ExtResource("1_qdx7j")
+metadata/_custom_type_script = "uid://connexmvsgr0y"

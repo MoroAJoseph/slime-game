@@ -1,0 +1,15 @@
+# Godot 4+ specific
+.godot/
+.import/
+export_presets.cfg
+
+# Mono/C# specific (if you ever use it)
+.mono/
+bin/
+obj/
+*.csproj
+*.sln
+
+# System clutter
+.DS_Store
+Thumbs.db

@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="GunPartVisualData" format=3 uid="uid://cg6ddgs88r8jf"]
+
+[ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/base/visual/gun_part_visual_data.gd" id="1_dbej3"]
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://weapons/base/visual/weapon_part_socket_data.gd" id="2_kuyul"]
+
+[sub_resource type="Resource" id="Resource_0hvji"]
+script = ExtResource("2_kuyul")
+position = Vector3(0, 0.345, 0.375)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[sub_resource type="Resource" id="Resource_foe3o"]
+script = ExtResource("2_kuyul")
+position = Vector3(0, 0.175, -1.23)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[sub_resource type="Resource" id="Resource_dbej3"]
+script = ExtResource("2_kuyul")
+position = Vector3(0, 0.44, -0.27)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[resource]
+script = ExtResource("1_dbej3")
+sockets = Dictionary[int, ExtResource("2_kuyul")]({
+1: SubResource("Resource_0hvji"),
+3: SubResource("Resource_foe3o"),
+6: SubResource("Resource_dbej3")
+})
+mesh_file_path = "uid://bfciw8ix2in0v"
+metadata/_custom_type_script = "uid://c1aht68om0gag"

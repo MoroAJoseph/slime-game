@@ -1,0 +1,282 @@
+{
+	"categories": [
+		{
+			"uuid": "05ff706e-8bbf-4043-96b3-53b6e810fd20",
+			"title": "Core",
+			"color": "73ff56"
+		},
+		{
+			"uuid": "0718bd89-ba2e-4403-a3d9-d014e3b5f8ba",
+			"title": "Entity",
+			"color": "d7832a"
+		},
+		{
+			"uuid": "6ff8ff78-2c81-4b77-8eca-874a0773df41",
+			"title": "World & Environment",
+			"color": "13d5f5"
+		},
+		{
+			"uuid": "cea5071f-00d4-401d-9e82-cb62c01ba31a",
+			"title": "Content & Data",
+			"color": "fe2960"
+		},
+		{
+			"uuid": "a525dfd3-4c67-4c18-9618-22fe557680a9",
+			"title": "QOL",
+			"color": "d424d5"
+		},
+		{
+			"uuid": "0574c1bf-c72e-444b-b0d3-f39c8bc60125",
+			"title": "Misc",
+			"color": "3e26c6"
+		},
+		{
+			"uuid": "d983ad7a-e8aa-4014-9ed1-4ea0cf3aa7d9",
+			"title": "UI",
+			"color": "121ed2"
+		},
+		{
+			"uuid": "a4a9e763-73ef-4600-9be3-0f4dc981ffb0",
+			"title": "Levels",
+			"color": "e2f22b"
+		},
+		{
+			"uuid": "0b15e929-1d92-403d-bfb8-8b0a6d9a2a33",
+			"title": "Components",
+			"color": "d23b13"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "f092c72e-0884-455a-b5c7-fd9e3ff6807e",
+			"title": "Todo",
+			"tasks": [
+				"be8b844d-6a08-4b59-83d1-5fa800208e19",
+				"184bff85-1d82-4b2a-b4e7-5449be5d9ae9",
+				"886d6330-8575-455c-9586-52643f74d2ac",
+				"e4b01748-aac7-4e8b-904c-fdb8473cc469",
+				"eb4e2463-9f61-473d-bc65-4753bfb4902a",
+				"9c3a0b77-7388-40c8-8ef0-92289ea5a904",
+				"e1f44886-8a8a-4586-86ca-61768e3fe704",
+				"61ae5ce3-7b35-47eb-92f5-d82d98d2711e",
+				"d77fab11-3386-4798-be3b-b284db970373",
+				"607dccdd-27dd-444d-9073-5fddbb42d88b",
+				"83d8a525-e45d-4846-8abf-79f882727f70",
+				"e174873b-6779-43dd-aa55-b20f7a89bf9f",
+				"0936f24c-b143-46fa-b2c5-ff97b4976e96",
+				"07bca75a-bee6-4a2b-b1cb-a01bda19ed64",
+				"21980e5d-8888-44d3-9e3e-3813b19d156b",
+				"2b18ca69-92cb-42ef-b84c-cbf9c515674c",
+				"26ebe590-bf12-4617-8ae7-d59649ed470c",
+				"fd9c736e-7a05-4be2-82fd-a91722365029",
+				"9c5b39a9-6bb5-449d-8092-cc0af8232f21"
+			]
+		},
+		{
+			"uuid": "ddee47c8-a782-4ebc-b39d-3ee8f41fd7e1",
+			"title": "Doing",
+			"tasks": [
+				"cb9f48a3-45f1-49c2-906f-ade45b262fce",
+				"e89b2da3-9b2b-4f1d-8a7b-7bcbbf353635"
+			]
+		},
+		{
+			"uuid": "30f9cfbe-ff98-4166-b33e-8876252f99f1",
+			"title": "Done",
+			"tasks": [
+				"a4feaf71-f15b-4e8c-831a-aeafae61ca3d"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "184bff85-1d82-4b2a-b4e7-5449be5d9ae9",
+			"title": "Save & Load System",
+			"description": "",
+			"category": "05ff706e-8bbf-4043-96b3-53b6e810fd20",
+			"steps": []
+		},
+		{
+			"uuid": "cb9f48a3-45f1-49c2-906f-ade45b262fce",
+			"title": "Game",
+			"description": "Loop\n\nEvery time you die in endless mode, your progress is saved. Making a new character lets you start over.",
+			"category": "05ff706e-8bbf-4043-96b3-53b6e810fd20",
+			"steps": []
+		},
+		{
+			"uuid": "e89b2da3-9b2b-4f1d-8a7b-7bcbbf353635",
+			"title": "Bootloader",
+			"description": "",
+			"category": "05ff706e-8bbf-4043-96b3-53b6e810fd20",
+			"steps": [
+				{
+					"details": "Bootsplash Scene\n",
+					"done": false
+				},
+				{
+					"details": "Load User Data",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "a4feaf71-f15b-4e8c-831a-aeafae61ca3d",
+			"title": "Event Bus Autoload",
+			"description": "",
+			"category": "05ff706e-8bbf-4043-96b3-53b6e810fd20",
+			"steps": []
+		},
+		{
+			"uuid": "886d6330-8575-455c-9586-52643f74d2ac",
+			"title": "Input Mapping",
+			"description": "",
+			"category": "05ff706e-8bbf-4043-96b3-53b6e810fd20",
+			"steps": []
+		},
+		{
+			"uuid": "e4b01748-aac7-4e8b-904c-fdb8473cc469",
+			"title": "Main Menu",
+			"description": "",
+			"category": "d983ad7a-e8aa-4014-9ed1-4ea0cf3aa7d9",
+			"steps": []
+		},
+		{
+			"uuid": "eb4e2463-9f61-473d-bc65-4753bfb4902a",
+			"title": "Pause Menu",
+			"description": "",
+			"category": "d983ad7a-e8aa-4014-9ed1-4ea0cf3aa7d9",
+			"steps": []
+		},
+		{
+			"uuid": "9c3a0b77-7388-40c8-8ef0-92289ea5a904",
+			"title": "HUD",
+			"description": "",
+			"category": "d983ad7a-e8aa-4014-9ed1-4ea0cf3aa7d9",
+			"steps": []
+		},
+		{
+			"uuid": "e1f44886-8a8a-4586-86ca-61768e3fe704",
+			"title": "Sandbox",
+			"description": "",
+			"category": "a4a9e763-73ef-4600-9be3-0f4dc981ffb0",
+			"steps": []
+		},
+		{
+			"uuid": "61ae5ce3-7b35-47eb-92f5-d82d98d2711e",
+			"title": "Endless Mode",
+			"description": "",
+			"category": "a4a9e763-73ef-4600-9be3-0f4dc981ffb0",
+			"steps": []
+		},
+		{
+			"uuid": "d77fab11-3386-4798-be3b-b284db970373",
+			"title": "Player",
+			"description": "",
+			"category": "0718bd89-ba2e-4403-a3d9-d014e3b5f8ba",
+			"steps": []
+		},
+		{
+			"uuid": "607dccdd-27dd-444d-9073-5fddbb42d88b",
+			"title": "AI",
+			"description": "",
+			"category": "0718bd89-ba2e-4403-a3d9-d014e3b5f8ba",
+			"steps": []
+		},
+		{
+			"uuid": "e174873b-6779-43dd-aa55-b20f7a89bf9f",
+			"title": "Hitbox",
+			"description": "",
+			"category": "0b15e929-1d92-403d-bfb8-8b0a6d9a2a33",
+			"steps": []
+		},
+		{
+			"uuid": "0936f24c-b143-46fa-b2c5-ff97b4976e96",
+			"title": "Hurtbox",
+			"description": "",
+			"category": "0b15e929-1d92-403d-bfb8-8b0a6d9a2a33",
+			"steps": []
+		},
+		{
+			"uuid": "07bca75a-bee6-4a2b-b1cb-a01bda19ed64",
+			"title": "Level Design",
+			"description": "",
+			"category": "6ff8ff78-2c81-4b77-8eca-874a0773df41",
+			"steps": []
+		},
+		{
+			"uuid": "21980e5d-8888-44d3-9e3e-3813b19d156b",
+			"title": "Asset Pipeline",
+			"description": "",
+			"category": "6ff8ff78-2c81-4b77-8eca-874a0773df41",
+			"steps": []
+		},
+		{
+			"uuid": "2b18ca69-92cb-42ef-b84c-cbf9c515674c",
+			"title": "Optimization",
+			"description": "these are notes\n",
+			"category": "6ff8ff78-2c81-4b77-8eca-874a0773df41",
+			"steps": []
+		},
+		{
+			"uuid": "26ebe590-bf12-4617-8ae7-d59649ed470c",
+			"title": "Item Database",
+			"description": "",
+			"category": "cea5071f-00d4-401d-9e82-cb62c01ba31a",
+			"steps": []
+		},
+		{
+			"uuid": "83d8a525-e45d-4846-8abf-79f882727f70",
+			"title": "Slime",
+			"description": "",
+			"category": "0718bd89-ba2e-4403-a3d9-d014e3b5f8ba",
+			"steps": []
+		},
+		{
+			"uuid": "fd9c736e-7a05-4be2-82fd-a91722365029",
+			"title": "Slime Database",
+			"description": "",
+			"category": "cea5071f-00d4-401d-9e82-cb62c01ba31a",
+			"steps": []
+		},
+		{
+			"uuid": "be8b844d-6a08-4b59-83d1-5fa800208e19",
+			"title": "Dev Tools",
+			"description": "Entity Spawner, Level Generator\n\n--- Entity Spawner ---\n\nPlayer\nSlime\nChest\n\n--- Level Generator ---\n\n\n\n",
+			"category": "a525dfd3-4c67-4c18-9618-22fe557680a9",
+			"steps": [
+				{
+					"details": "Player Spawner",
+					"done": false
+				},
+				{
+					"details": "Slime Spawner",
+					"done": false
+				},
+				{
+					"details": "Chest Spawner",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "9c5b39a9-6bb5-449d-8092-cc0af8232f21",
+			"title": "Weapons",
+			"description": "weapons are fully customizable\n\n--- Swords ---\nSwap out hilt, blade, power, etc.\n\n--- Guns ---\nswap out sight, mag, etc.\n\n\nmaybe player is part slime and can stretch, bringing some realism to the absurd weapon designs\nhave a scene with all weapon attachment meshes, adjusting offsets to center the item for displays",
+			"category": "cea5071f-00d4-401d-9e82-cb62c01ba31a",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"f092c72e-0884-455a-b5c7-fd9e3ff6807e"
+			],
+			[
+				"ddee47c8-a782-4ebc-b39d-3ee8f41fd7e1"
+			],
+			[
+				"30f9cfbe-ff98-4166-b33e-8876252f99f1"
+			]
+		]
+	}
+}

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://btbj53lgyuo1t"]
+
+[ext_resource type="Script" uid="uid://btheluobtism3" path="res://_dev/junk/dungeon.gd" id="1_1r0uo"]
+
+[node name="Node3D" type="Node3D" unique_id=1486690838]
+script = ExtResource("1_1r0uo")
+_dimensions = Vector2i(8, 8)
+_critical_path_length = 12

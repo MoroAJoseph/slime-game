@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GunPartVisualData" format=3 uid="uid://bvhr2gp4ro1qb"]
+
+[ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/base/visual/gun_part_visual_data.gd" id="1_mbvxs"]
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://weapons/base/visual/weapon_part_socket_data.gd" id="2_qm0wb"]
+
+[resource]
+script = ExtResource("1_mbvxs")
+socket = 3
+item_name = "Test Rifle Barrel"
+mesh_file_path = "uid://bxpndp44ybkqd"
+metadata/_custom_type_script = "uid://c1aht68om0gag"

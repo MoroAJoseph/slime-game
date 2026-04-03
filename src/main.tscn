@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://daibuare47bx"]
+
+[ext_resource type="Script" uid="uid://lo4h3nqfapfr" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://d1hpybwch15fe" path="res://core/bootsplash/bootsplash.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dwax50gm4bjg3" path="res://core/game/game.tscn" id="3_1bvp3"]
+
+[node name="Main" type="Node" unique_id=1833113714]
+script = ExtResource("1_ig7tw")
+_bootsplash_scene = ExtResource("2_h2yge")
+_game_scene = ExtResource("3_1bvp3")

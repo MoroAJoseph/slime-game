@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d1hpybwch15fe"]
+
+[ext_resource type="Script" uid="uid://elbx6pwd4kpv" path="res://core/bootsplash/bootsplash.gd" id="1_wnqow"]
+
+[node name="Bootsplash" type="Node" unique_id=142335365]
+script = ExtResource("1_wnqow")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=608449190]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1696929153]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=770016891]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=326606280]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27022192, 0.27022192, 0.2702219, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control" unique_id=753091033]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 40
+text = "Bootsplash"
+horizontal_alignment = 1
+vertical_alignment = 1

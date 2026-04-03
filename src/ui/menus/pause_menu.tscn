@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://c8m22w661d0wi"]
+
+[ext_resource type="Script" uid="uid://bcop0l2xcs3a6" path="res://ui/menus/pause_menu.gd" id="1_hv7dm"]
+
+[node name="PauseMenu" type="Control" unique_id=669495035]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hv7dm")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1703886855]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=951894338]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=1762201183]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control" unique_id=1591592933]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/Control/VBoxContainer" unique_id=824782673]
+custom_minimum_size = Vector2(240, 120)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 36
+text = "PAUSED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resume" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=1304947117]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="Settings" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=2121875844]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "Restart"
+
+[node name="Restart" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=814188592]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "Restart Level"
+
+[node name="Exit" type="Button" parent="MarginContainer/Control/VBoxContainer" unique_id=93858604]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "Exit"
+
+[node name="Quit" type="Button" parent="MarginContainer/Control" unique_id=368332213]
+custom_minimum_size = Vector2(180, 90)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -90.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="MarginContainer/Control/Quit" to="." method="_on_quit_pressed"]

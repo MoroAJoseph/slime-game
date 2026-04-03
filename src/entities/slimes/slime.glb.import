@@ -1,0 +1,51 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://csm4hn223hpo2"
+path="res://.godot/imported/slime.glb-d15c1f8112def389e3498908848ce641.scn"
+
+[deps]
+
+source_file="res://entities/slimes/slime.glb"
+dest_files=["res://.godot/imported/slime.glb-d15c1f8112def389e3498908848ce641.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path=""
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"nodes": {
+"PATH:SoftRig/Skeleton3D": {
+"rest_pose/load_pose": 1,
+"rest_pose/selected_animation": "Reset",
+"retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":Resource("uid://xcs63phwdaoq", "res://entities/slimes/slime_skeleton_profile.tres"),"bonemap":null,"bone_map/Control_Bottom":&"","bone_map/Bendy_Main":&"","bone_map/Bendy_Top":&"","bone_map/Control_Top":&"","bone_map/Rigid_1":&"","bone_map/Rigid_2":&"","bone_map/Rigid_3":&"","bone_map/Rigid_4":&"","bone_map/Rigid_5":&"","bone_map/Rigid_6":&"","bone_map/Rigid_7":&"","bone_map/Rigid_8":&"","bone_map/Rigid_9":&"","bone_map/Rigid_10":&"","bone_map/Rigid_11":&"","script":null)
+
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=1

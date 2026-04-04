@@ -42,6 +42,10 @@ class PlayerEvent:
 	# - Notifications -
 	
 	# General
+	class InputToggled extends Event:
+		var value: bool
+		func _init(_value: bool):
+			value = _value
 	class Died extends Event: pass
 	class Spawned extends Event: 
 		var player: Player

@@ -20,6 +20,7 @@ var _last_movement_direction: Vector3 = Vector3.BACK
 var _input_mode: InputMode = InputMode.ADVENTURE
 var _was_aiming: bool = false
 var _hurt_enabled: bool = false
+var _input_enabled: bool = false
 
 # Grounding settings
 var _cone_ray_count: int = 8
@@ -53,7 +54,10 @@ func _process(delta: float) -> void:
 	if _input_mode == InputMode.ACTION:
 		COMBAT_CONTROLLER.handle_combat_input(delta)
 	
-	if Input.is_action_just_pressed("player_reload"):
+	if Input.is_action_just_pressed("player_interact"):
+		_handle_ui_interaction()
+	
+	if Input.is_action_just_pressed("player_reload") and _input_enabled:
 		COMBAT_CONTROLLER.request_reload()
 
 	_handle_loadout_input()
@@ -61,14 +65,45 @@ func _process(delta: float) -> void:
 	_update_minimap_icon()
 
 func _physics_process(_delta: float) -> void:
-	_input_direction = Input.get_vector(
-		"player_move_left", "player_move_right", 
-		"player_move_forward", "player_move_backward"
-	)
+	if not _input_enabled: 
+		_input_direction = Vector2.ZERO
+	else:
+		_input_direction = Input.get_vector(
+			"player_move_left", "player_move_right", 
+			"player_move_forward", "player_move_backward"
+		)
 
 # ===
 # Local
 # ===
+
+func _handle_ui_interaction():
+	var space_state = get_world_3d().direct_space_state
+	var camera = CAMERA_CONTROLLER.CAMERA
+	
+	# Use the actual viewport center for the crosshair
+	var screen_center = get_viewport().get_visible_rect().size / 2
+	
+	var ray_origin = camera.project_ray_origin(screen_center)
+	var ray_dir = camera.project_ray_normal(screen_center)
+	# Increase length to 10.0 to ensure it reaches from outside/back of cab
+	var ray_end = ray_origin + (ray_dir * 10.0) 
+	
+	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	
+	# Layer 8 (WorldUI) = 128 bitmask
+	query.collision_mask = 128 
+	query.collide_with_areas = true 
+	# CRITICAL: Exclude player body so the ray doesn't hit your own back/head
+	query.exclude = [self.get_rid()] 
+	
+	var result = space_state.intersect_ray(query)
+	
+	if result:
+		# If this prints, the physics side is working!
+		print("Hit: ", result.collider.name) 
+		if result.collider.has_method("handle_mouse_event"):
+			result.collider.handle_mouse_event(result.position)
 
 func _setup_loadout() -> void:
 	_current_weapon_data = data.loadout_data.primary_weapon
@@ -81,6 +116,7 @@ func _update_minimap_icon() -> void:
 	MINIMAP_ICON.global_rotation.y = model_yaw + PI
 	
 func _handle_loadout_input() -> void:
+	if not _input_enabled: return
 	if Input.is_action_just_pressed("player_primary_weapon"):
 		_swap_to_slot(0)
 	elif Input.is_action_just_pressed("player_secondary_weapon"):
@@ -96,6 +132,8 @@ func _swap_to_slot(slot_index: int) -> void:
 	COMBAT_CONTROLLER.register_active_weapon(weapon_node, weapon_res)
 
 func _update_input_mode() -> void:
+	if not _input_enabled: return
+
 	var is_aiming = Input.is_action_pressed("player_aim")
 	var is_shooting = Input.is_action_pressed("player_shoot")
 	
@@ -125,6 +163,7 @@ func get_minimap_forward() -> Vector3:
 
 func spawn() -> void:
 	_hurt_enabled = false
+	_input_enabled = true
 	MODEL_CONTROLLER.reset_visuals()
 	MODEL_CONTROLLER.set_spawn_visuals(true)
 	
@@ -146,6 +185,7 @@ func spawn() -> void:
 
 func die() -> void:
 	_hurt_enabled = false
+	_input_enabled = false
 	STATE_MACHINE._transition_to_next_state("Dead")
 	MODEL_CONTROLLER.trigger_death_visuals()
 	await get_tree().create_timer(3.0).timeout
@@ -178,7 +218,6 @@ func apply_rotation(delta: float) -> void:
 func is_grounded_cone() -> bool:
 	var space = get_world_3d().direct_space_state
 	for i in range(_cone_ray_count):
-		var angle = float(i) / _cone_ray_count * TAU
 		var ray = PhysicsRayQueryParameters3D.create(global_position + Vector3(0, 0.2, 0), global_position + Vector3(0, -_cone_ray_length, 0))
 		ray.exclude = [self]
 		if space.intersect_ray(ray): return true
@@ -199,6 +238,8 @@ func _on_event(event: EventBus.Event) -> void:
 	if event is EventBus.PlayerEvent.Died:
 		STATE_MACHINE._transition_to_next_state("Idle")
 		spawn()
+	elif event is EventBus.PlayerEvent.InputToggled:
+		_input_enabled = event.value
 
 # ===
 # Signals

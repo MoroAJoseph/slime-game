@@ -15,12 +15,12 @@
 process_mode = 3
 script = ExtResource("1_4gkfv")
 
-[node name="WorldController" type="Node" parent="." unique_id=1530627212 node_paths=PackedStringArray("_world_node")]
+[node name="WorldController" type="Node" parent="." unique_id=1530627212]
 process_mode = 3
 script = ExtResource("2_risx7")
-_world_node = NodePath("World")
+_title_level_path = "uid://bpesullmcdohe"
 
-[node name="World" type="Node3D" parent="WorldController" unique_id=1072822466]
+[node name="World" type="Node3D" parent="WorldController" unique_id=1072822466 groups=["world_root"]]
 process_mode = 1
 
 [node name="UIController" type="Node" parent="." unique_id=2127822112 node_paths=PackedStringArray("_menus_layer", "_loading_layer", "_main_menu", "_pause_menu")]
@@ -51,6 +51,8 @@ initial_state = NodePath("Title")
 
 [node name="Title" type="Node" parent="StateMachine" unique_id=1450245938]
 script = ExtResource("5_00x87")
+sandbox_path = "uid://veq7gq7hkrm8"
+endless_hub_path = "uid://dsf0bu7i0kwhe"
 
 [node name="Play" type="Node" parent="StateMachine" unique_id=1801488272]
 script = ExtResource("6_xakte")

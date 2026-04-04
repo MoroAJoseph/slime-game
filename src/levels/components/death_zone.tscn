@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bcr0jf1joqkxw"]
+
+[node name="DeathZone" type="Area3D" unique_id=211758584]

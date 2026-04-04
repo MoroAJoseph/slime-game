@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TransformData" format=3 uid="uid://ddd82leekvy0w"]
+
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/transform_data.gd" id="1_ulpmj"]
+
+[resource]
+script = ExtResource("1_ulpmj")
+position = Vector3(-0.24254683, 0.07451886, -0.008737266)
+rotation = Vector3(-71.1, 158.5, 47)
+scale = Vector3(0.25, 0.25, 0.25)
+metadata/_custom_type_script = "uid://djoelq250kqg8"

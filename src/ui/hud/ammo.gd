@@ -40,6 +40,7 @@ func _on_event(event: EventBus.Event) -> void:
 		_ammo_tween.tween_property(_percentage_bar, "value", target_val, 0.2)\
 			.set_trans(Tween.TRANS_QUINT)\
 			.set_ease(Tween.EASE_OUT)
+	
 	elif event is EventBus.PlayerEvent.ReloadStarted:
 		_reloading_node.text = "Reloading"
 		
@@ -51,5 +52,6 @@ func _on_event(event: EventBus.Event) -> void:
 		# Set bar to 0 first if it's empty, then fill to 100
 		_ammo_tween.tween_property(_percentage_bar, "value", 100.0, event.duration)\
 			.set_trans(Tween.TRANS_LINEAR)
+	
 	elif event is EventBus.PlayerEvent.ReloadFinished:
 		_reloading_node.text = ""

@@ -2,8 +2,10 @@
 class_name WeaponData
 extends Resource
 
-@export var hand_bone_transform: TransformData
+@export var right_hand_bone_transform: TransformData
+@export var right_hip_bone_transform: TransformData
 @export var upper_back_bone_transform: TransformData
+@export var lower_back_bone_transform: TransformData
 
 func _connect_res(old_res: Resource, new_res: Resource) -> Resource:
 	if old_res and old_res.is_connected("changed", emit_changed):

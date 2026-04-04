@@ -3,6 +3,7 @@ class_name GunModelController
 extends Node3D
 
 @onready var mesh_visual_scene: PackedScene = preload("res://core/mesh/mesh_visual.tscn")
+const WEAPON_MATERIAL_PATH: String = "res://weapons/base/weapon_rgb_material.res"
 
 var gun_data: GunData
 var _instantiated_parts: Dictionary = {}
@@ -16,7 +17,6 @@ func rebuild(data: GunData) -> void:
 	_clear_all()
 	_instantiated_parts.clear()
 	
-	# Reset specific markers
 	_barrel_spawn_marker = null
 	_muzzle_spawn_marker = null
 	
@@ -32,11 +32,7 @@ func _assemble_recursive(part_data: GunPartData, parent_node: Node, transform_of
 	if mesh_visual_scene == null:
 		mesh_visual_scene = load("res://core/mesh/mesh_visual.tscn")
 	
-	if not mesh_visual_scene:
-		push_error("GunModelController: mesh_visual_scene could not be loaded!")
-		return
-	
-	var instance = mesh_visual_scene.instantiate()
+	var instance = mesh_visual_scene.instantiate() as MeshVisual
 	parent_node.add_child(instance)
 	
 	if Engine.is_editor_hint():
@@ -44,14 +40,21 @@ func _assemble_recursive(part_data: GunPartData, parent_node: Node, transform_of
 
 	_instantiated_parts[socket_type] = instance
 	
+	# --- MATERIAL LOGIC ---
+	var base_mat = load(WEAPON_MATERIAL_PATH)
+	var material_instance: ShaderMaterial = null # Cast to ShaderMaterial
+	if base_mat:
+		material_instance = base_mat.duplicate()
+	
 	if instance.has_method("setup_visual"):
 		if not part_data.visual_data.mesh_path.is_empty():
-			var m = load(part_data.visual_data.mesh_path)
+			var mesh_res = load(part_data.visual_data.mesh_path)
 			instance.setup_visual(
-				m, 
+				mesh_res, 
 				part_data.visual_data.color_red, 
 				part_data.visual_data.color_green, 
-				part_data.visual_data.color_blue
+				part_data.visual_data.color_blue,
+				material_instance
 			)
 	
 	if transform_offset_data:
@@ -59,53 +62,34 @@ func _assemble_recursive(part_data: GunPartData, parent_node: Node, transform_of
 		instance.rotation_degrees = transform_offset_data.rotation
 		instance.scale = transform_offset_data.scale
 
-	# Handle child sockets
 	for socket_key in part_data.visual_data.socket_transforms.keys():
 		var t_data = part_data.visual_data.socket_transforms[socket_key]
-		
-		# SOCKET LOGIC: Bullet Spawns
 		if socket_key == GunResource.GunPartSocket.BULLET_SPAWN:
-			# Check the current context (is this a Barrel or a Muzzle we are currently building?)
 			var marker = _create_bullet_marker(instance, t_data)
-			
 			if socket_type == GunResource.GunPartSocket.MUZZLE:
 				_muzzle_spawn_marker = marker
 			elif socket_type == GunResource.GunPartSocket.BARREL:
 				_barrel_spawn_marker = marker
 			continue
 		
-		# SOCKET LOGIC: Recursive parts
 		var child_part = gun_data.get_part(socket_key)
 		if child_part:
 			_assemble_recursive(child_part, instance, t_data, socket_key)
 
-## Helper to create the node and set the owner
 func _create_bullet_marker(parent: Node, t_data: TransformData) -> Marker3D:
 	var marker = Marker3D.new()
 	marker.name = "BulletSpawnMarker"
 	parent.add_child(marker)
-	
-	if Engine.is_editor_hint():
-		marker.owner = get_tree().edited_scene_root
-	
+	if Engine.is_editor_hint(): marker.owner = get_tree().edited_scene_root
 	marker.position = t_data.position
 	marker.rotation_degrees = t_data.rotation
 	return marker
 
-## Get logic based on muzzle-priority hierarchy
 func get_projectile_spawn() -> Transform3D:
-	# 1. Prefer Muzzle
-	if _muzzle_spawn_marker and is_instance_valid(_muzzle_spawn_marker):
-		return _muzzle_spawn_marker.global_transform
-	
-	# 2. Fallback to Barrel
-	if _barrel_spawn_marker and is_instance_valid(_barrel_spawn_marker):
-		return _barrel_spawn_marker.global_transform
-	
-	# 3. Fail state
-	push_warning("GunModelController: No bullet spawn marker found on Muzzle or Barrel!")
-	return global_transform # Returning global_transform instead of null to prevent physics crashes
+	if is_instance_valid(_muzzle_spawn_marker): return _muzzle_spawn_marker.global_transform
+	if is_instance_valid(_barrel_spawn_marker): return _barrel_spawn_marker.global_transform
+	return global_transform
 
 func _clear_all() -> void:
 	for child in get_children():
-		child.free()
+		child.queue_free()

@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_a1voo"]
 script = ExtResource("1_0viev")
+fire_modes = Array[int]([2])
 metadata/_custom_type_script = "uid://bslkbecbij1fi"
 
 [sub_resource type="Resource" id="Resource_03cec"]
@@ -27,6 +28,7 @@ metadata/_custom_type_script = "uid://djoelq250kqg8"
 [sub_resource type="Resource" id="Resource_uwf6d"]
 script = ExtResource("3_m7r1g")
 mesh_path = "uid://davlexg2tcl58"
+color_red = Color(0.1866526, 0.7967305, 0, 1)
 socket_transforms = Dictionary[int, ExtResource("4_5v84d")]({
 1: SubResource("Resource_03cec"),
 2: SubResource("Resource_naefj"),

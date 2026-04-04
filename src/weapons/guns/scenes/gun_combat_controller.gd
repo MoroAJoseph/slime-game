@@ -60,17 +60,22 @@ func _spawn_projectile(dir: Vector3, projectile_spawn: Transform3D) -> void:
 		bullet.initialize(b_data, dir, projectile_spawn)
 
 func reload() -> void:
-	if is_reloading or current_ammo == _combat_data.ammo_capacity: return
+	# Validation: Don't reload if already in progress or ammo is already full
+	if is_reloading or current_ammo == _combat_data.ammo_capacity: 
+		return
 	
 	is_reloading = true
 	EventBus.publish(EventBus.PlayerEvent.ReloadStarted.new(_combat_data.reload_duration))
 	
 	await get_tree().create_timer(_combat_data.reload_duration).timeout
-	if not is_inside_tree(): return
+	
+	if not is_inside_tree(): 
+		return
 
 	current_ammo = _combat_data.ammo_capacity
 	is_reloading = false
 	_publish_ammo()
+	EventBus.publish(EventBus.PlayerEvent.ReloadFinished.new())
 
 func _publish_ammo() -> void:
 	EventBus.publish(EventBus.PlayerEvent.AmmoUpdated.new(current_ammo, _combat_data.ammo_capacity))

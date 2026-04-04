@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://dsf0bu7i0kwhe"]
+
+[ext_resource type="Script" uid="uid://dcypnt1mc0wxe" path="res://levels/scenes/endless_hub/endless_hub.gd" id="1_usxov"]
+[ext_resource type="Script" uid="uid://chgp3untiddwc" path="res://entities/player/scenes/player_spawn_point.gd" id="2_usxov"]
+[ext_resource type="PackedScene" uid="uid://ca75bth86vc77" path="res://entities/player/scenes/player.tscn" id="2_xnuax"]
+[ext_resource type="MeshLibrary" uid="uid://c33elcm08huq0" path="res://levels/tilesets/hub.meshlib" id="3_3oxs5"]
+[ext_resource type="Resource" uid="uid://0qwga3covou3" path="res://_dev/dev_player_data.tres" id="4_v741y"]
+[ext_resource type="PackedScene" uid="uid://creif8ubgdbti" path="res://entities/player/model/player.glb" id="5_5hwib"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5rde0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_5hwib"]
+sky_material = SubResource("ProceduralSkyMaterial_5rde0")
+
+[sub_resource type="Environment" id="Environment_ecllc"]
+background_mode = 2
+sky = SubResource("Sky_5hwib")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="EndlessHub" type="Node3D" unique_id=1337022952]
+script = ExtResource("1_usxov")
+_player_scene = ExtResource("2_xnuax")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1063591831]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=308972779]
+environment = SubResource("Environment_ecllc")
+
+[node name="PlayerSpawnPoint" type="Marker3D" parent="." unique_id=1025290519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.3000001, 7.0000005)
+script = ExtResource("2_usxov")
+player_data = ExtResource("4_v741y")
+metadata/_custom_type_script = "uid://chgp3untiddwc"
+
+[node name="Entities" type="Node3D" parent="." unique_id=1972184509]
+
+[node name="Projectiles" type="Node3D" parent="." unique_id=2036332384 groups=["projectile_bucket"]]
+
+[node name="FX" type="Node3D" parent="." unique_id=1874106233]
+
+[node name="Static" type="Node3D" parent="." unique_id=1091379425]
+
+[node name="Floor2x2" type="GridMap" parent="Static" unique_id=1399161350]
+mesh_library = ExtResource("3_3oxs5")
+data = {
+"cells": PackedInt32Array(0, 65535, 49, 0, 0, 49, 65535, 0, 49, 65535, 65535, 49, 1, 0, 49, 2, 0, 49, 2, 65535, 49, 1, 65535, 49, 0, 65534, 49, 0, 65533, 49, 65535, 65533, 49, 65535, 65534, 49, 65534, 65534, 49, 65534, 65533, 49, 65533, 65533, 49, 65533, 65534, 49, 65533, 65535, 49, 65534, 65535, 49, 65534, 0, 49, 65533, 0, 49, 65533, 1, 49, 65533, 2, 49, 65534, 2, 49, 65534, 1, 49, 65535, 2, 49, 0, 2, 49, 0, 1, 49, 65535, 1, 49, 1, 65534, 49, 2, 65534, 49, 2, 65533, 49, 1, 65533, 49, 1, 1, 49, 1, 2, 49, 2, 2, 49, 2, 1, 49, 3, 65533, 49, 3, 65534, 49, 3, 65535, 49, 4, 65532, 49, 4, 65533, 49, 4, 65534, 49, 4, 65535, 49, 3, 0, 49, 3, 1, 49, 3, 2, 49, 4, 1, 49, 4, 0, 49, 4, 2, 49, 5, 2, 49, 5, 1, 49, 5, 0, 49, 5, 65535, 49, 5, 65534, 49, 5, 65533, 49, 5, 65532, 49, 6, 65532, 49, 6, 65533, 49, 6, 65534, 49, 6, 65535, 49, 6, 0, 49, 6, 1, 49, 6, 2, 49, 7, 1, 49, 7, 0, 49, 7, 65535, 49, 7, 65534, 49, 7, 65533, 49, 7, 65532, 49, 7, 2, 49, 7, 3, 49, 6, 3, 49, 5, 3, 49, 4, 3, 49, 4, 4, 49, 3, 4, 49, 2, 4, 49, 2, 3, 49, 1, 3, 49, 3, 3, 49, 5, 4, 49, 6, 4, 49, 0, 3, 49, 65535, 3, 49, 0, 4, 49, 65535, 4, 49, 65534, 4, 49, 65534, 3, 49, 65533, 3, 49, 1, 4, 49, 3, 65532, 49)
+}
+
+[node name="Walls2x1" type="GridMap" parent="Static" unique_id=1347924891]
+mesh_library = ExtResource("3_3oxs5")
+cell_size = Vector3(2, 2, 1)
+data = {
+"cells": PackedInt32Array(65534, 65533, 14, 0, 65533, 14, 2, 65533, 14, 4, 65533, 11, 4, 65532, 655372)
+}
+
+[node name="Doors2x2" type="GridMap" parent="Static" unique_id=1698361066]
+mesh_library = ExtResource("3_3oxs5")
+data = {
+"cells": PackedInt32Array(4, 65534, 7)
+}
+
+[node name="Props" type="GridMap" parent="Static" unique_id=350979620]
+mesh_library = ExtResource("3_3oxs5")
+data = {
+"cells": PackedInt32Array(1, 3, 655417)
+}
+
+[node name="Stations" type="Node3D" parent="." unique_id=979716402]
+
+[node name="player" parent="." unique_id=535105664 instance=ExtResource("5_5hwib")]
+transform = Transform3D(-0.0027575896, 0, 0.9999962, 0, 1, 0, -0.9999962, 0, -0.0027575896, -6.9389415, 0.000102232065, 6.280878)

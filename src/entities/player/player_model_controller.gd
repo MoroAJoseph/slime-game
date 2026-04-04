@@ -1,60 +1,150 @@
 class_name PlayerModelController
 extends Node3D
 
+## Manages the visual representation of the player, including weapon attachments,
+## holographic spawn effects, and death transitions.
+
 @export_group("Spawn")
 @export var spawn_meshes: Array[MeshInstance3D] = []
-@export var spawn_shader: Shader
+@export var player_spawn_shader: Shader
+@export var weapon_spawn_shader: Shader
 
 @export_group("Death")
 @export var death_particles: GPUParticles3D 
 
 @onready var _gun_scene: PackedScene = preload("res://weapons/guns/scenes/gun.tscn")
 
-# Bones
+# Bone Attachments
 @onready var SKELETON: Skeleton3D = $Armature/GeneralSkeleton
 @onready var RIGHT_HAND: BoneAttachment3D = $Armature/GeneralSkeleton/RIGHT_HAND
+@onready var RIGHT_HIP: BoneAttachment3D = $Armature/GeneralSkeleton/RIGHT_HIP
 @onready var UPPER_BACK: BoneAttachment3D = $Armature/GeneralSkeleton/UPPER_BACK
+@onready var LOWER_BACK: BoneAttachment3D = $Armature/GeneralSkeleton/LOWER_BACK
 
 var _active_weapon_node: Node3D
-var _holstered_weapon_node: Node3D
+var _current_spawn_height: float = -0.5
 
 # ===
-# Built-In
+# Public Interface
 # ===
 
-func _ready() -> void:
-	pass
+## Updates the "scan line" position for all active shaders in world space
+func update_spawn_visual(height_offset: float) -> void:
+	# Keep the shader pinned to a specific height relative to the floor
+	_current_spawn_height = global_position.y + height_offset
+	_propagate_spawn_height(self)
 
-# ===
-# Local
-# ===
+## Toggles the holographic spawn shader on/off for body and all weapon slots
+func set_spawn_visuals(active: bool) -> void:
+	# Apply to the base body meshes
+	for mesh in spawn_meshes:
+		_apply_spawn_material(mesh, active, player_spawn_shader)
+	
+	# Ensure all potential weapon slots are checked for meshes
+	var slots = [RIGHT_HAND, RIGHT_HIP, UPPER_BACK, LOWER_BACK ]
+	for slot in slots:
+		_recursive_mesh_apply(slot, active, weapon_spawn_shader)
 
-## Removes current children from the hand and instantiates the new weapon scene
+## Equips a weapon to the active hand (RIGHT_HAND)
 func equip_weapon(weapon_data: WeaponData) -> Node3D:
-	# Clear current hand visuals
-	for child in RIGHT_HAND.get_children():
-		child.queue_free()
+	_clear_slot(RIGHT_HAND)
 	
 	if not weapon_data:
 		_active_weapon_node = null
 		return null
 
-	# Instantiate the weapon visual
 	var weapon_instance = _spawn_weapon_resource(weapon_data)
 	if weapon_instance:
 		RIGHT_HAND.add_child(weapon_instance)
 		_active_weapon_node = weapon_instance
 		
-		# APPLY TRANSFORM & SCALE
-		if weapon_data.hand_bone_transform:
-			weapon_instance.position = weapon_data.hand_bone_transform.position
-			weapon_instance.rotation_degrees = weapon_data.hand_bone_transform.rotation
-			weapon_instance.scale = weapon_data.hand_bone_transform.scale
-		else:
-			# Safety default: If no transform data, ensure scale is at least 1,1,1
-			weapon_instance.scale = Vector3.ONE
+		# Apply hand-specific transform
+		_apply_transform(weapon_instance, weapon_data.right_hand_bone_transform)
+
+		# Ensure visual consistency if mid-spawn
+		if _is_spawn_effect_active():
+			_recursive_mesh_apply(weapon_instance, true, weapon_spawn_shader)
 
 	return _active_weapon_node
+
+## Updates the visual of a holstered weapon based on the specific bone slot
+func update_holster_visual(weapon_data: WeaponData, slot: BoneAttachment3D) -> void:
+	_clear_slot(slot)
+		
+	if weapon_data:
+		var holster_instance = _spawn_weapon_resource(weapon_data)
+		slot.add_child(holster_instance)
+		holster_instance.set_process(false) # Disable logic for holstered items
+		
+		# Auto-select the correct transform from WeaponData based on the slot provided
+		var target_transform: TransformData = null
+		if slot == RIGHT_HIP:
+			target_transform = weapon_data.right_hip_bone_transform
+		elif slot == UPPER_BACK:
+			target_transform = weapon_data.upper_back_bone_transform
+		elif slot == LOWER_BACK:
+			target_transform = weapon_data.lower_back_bone_transform
+			
+		_apply_transform(holster_instance, target_transform)
+		
+		if _is_spawn_effect_active():
+			_recursive_mesh_apply(holster_instance, true, weapon_spawn_shader)
+
+## Clears all material overrides and resets visibility
+func reset_visuals() -> void:
+	set_spawn_visuals(false)
+	SKELETON.visible = true
+	if death_particles:
+		death_particles.emitting = false
+
+# ===
+# Private Helpers
+# ===
+
+func _clear_slot(slot: Node) -> void:
+	for child in slot.get_children():
+		child.queue_free()
+
+func _apply_transform(node: Node3D, data: TransformData) -> void:
+	if not data:
+		return
+	node.position = data.position
+	node.rotation_degrees = data.rotation
+	node.scale = data.scale
+
+func _apply_spawn_material(mesh: MeshInstance3D, active: bool, shader_res: Shader) -> void:
+	if active:
+		var original_mat = mesh.get_active_material(0)
+		var new_mat = ShaderMaterial.new()
+		new_mat.shader = shader_res
+		
+		# Inherit properties from the original material (textures/colors)
+		if original_mat is ShaderMaterial:
+			var params = ["red_color", "green_color", "blue_color", "albedo", "texture_albedo"]
+			for p in params:
+				var val = original_mat.get_shader_parameter(p)
+				if val != null:
+					new_mat.set_shader_parameter(p, val)
+		elif original_mat is StandardMaterial3D:
+			new_mat.set_shader_parameter("albedo", original_mat.albedo_color)
+			new_mat.set_shader_parameter("texture_albedo", original_mat.albedo_texture)
+		
+		new_mat.set_shader_parameter("spawn_height", _current_spawn_height)
+		mesh.material_override = new_mat
+	else:
+		mesh.material_override = null
+
+func _recursive_mesh_apply(node: Node, active: bool, shader_res: Shader) -> void:
+	if node is MeshInstance3D:
+		_apply_spawn_material(node, active, shader_res)
+	for child in node.get_children():
+		_recursive_mesh_apply(child, active, shader_res)
+
+func _propagate_spawn_height(node: Node) -> void:
+	if node is MeshInstance3D and node.material_override is ShaderMaterial:
+		node.material_override.set_shader_parameter("spawn_height", _current_spawn_height)
+	for child in node.get_children():
+		_propagate_spawn_height(child)
 
 func _spawn_weapon_resource(weapon_data: WeaponData) -> Node3D:
 	if weapon_data is GunData:
@@ -62,62 +152,7 @@ func _spawn_weapon_resource(weapon_data: WeaponData) -> Node3D:
 		if gun_instance.has_method("set_gun_data"):
 			gun_instance.set_gun_data(weapon_data)
 		return gun_instance
-	
-	# Add melee/sword instantiation here later
 	return null
 
-func update_holster_visual(weapon_data: WeaponData) -> void:
-	for child in UPPER_BACK.get_children():
-		child.queue_free()
-		
-	if weapon_data:
-		var holster_instance = _spawn_weapon_resource(weapon_data)
-		UPPER_BACK.add_child(holster_instance)
-		# Disable processing/collision on holstered items if necessary
-		holster_instance.set_process(false)
-
-func set_spawn_visuals(active: bool) -> void:
-	for mesh in spawn_meshes:
-		if active:
-			var original_mat = mesh.get_active_material(0)
-			var new_mat = ShaderMaterial.new()
-			new_mat.shader = spawn_shader
-			if original_mat is StandardMaterial3D:
-				new_mat.set_shader_parameter("albedo", original_mat.albedo_color)
-				new_mat.set_shader_parameter("texture_albedo", original_mat.albedo_texture)
-			mesh.material_override = new_mat
-		else:
-			mesh.material_override = null
-
-func trigger_death_visuals() -> void:
-	SKELETON.visible = false 
-	
-	if death_particles:
-		var process_material = death_particles.process_material as ParticleProcessMaterial
-		process_material.gravity = Vector3.ZERO
-		death_particles.visible = true
-		death_particles.restart()
-		death_particles.emitting = true
-		
-		var timer = get_tree().create_timer(0.5)
-		timer.timeout.connect(func():
-			process_material.gravity = Vector3(0, -12.0, 0)
-		)
-
-func reset_visuals() -> void:
-	for mesh in spawn_meshes:
-		mesh.material_override = null
-	
-	SKELETON.visible = true
-	
-	if death_particles:
-		death_particles.visible = false
-		death_particles.emitting = false
-
-# ===
-# Events
-# ===
-
-# ===
-# Signals
-# ===
+func _is_spawn_effect_active() -> bool:
+	return spawn_meshes.size() > 0 and spawn_meshes[0].material_override != null

@@ -80,7 +80,7 @@ class PlayerEvent:
 
 # --- UI ---
 class UIEvent:
-	# Actions
+	# - Actions -
 	class ToggleMenu extends Event:
 		enum Menu { MAIN, PAUSE }
 		var menu: Menu
@@ -96,6 +96,10 @@ class UIEvent:
 		var is_visible: bool
 		func _init(_is_visible: bool): 
 			is_visible = _is_visible
+	class ToggleMinimapRotation extends Event:
+		var value: bool
+		func _init(_value: bool):
+			value = _value
 	class MainMenuAction extends Event:
 		enum Action { SANDBOX, ENDLESS, EXIT, SETTINGS }
 		var action: Action

@@ -12,6 +12,7 @@ metadata/_custom_type_script = "uid://b8c0i4t7ec0by"
 [sub_resource type="Resource" id="Resource_a1pq7"]
 script = ExtResource("3_42p26")
 mesh_path = "uid://d4m7slxuo276m"
+color_red = Color(0.1882353, 0.79607844, 0, 1)
 metadata/_custom_type_script = "uid://c1aht68om0gag"
 
 [resource]

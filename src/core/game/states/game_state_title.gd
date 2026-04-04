@@ -1,6 +1,9 @@
 # Title
 extends GameState
 
+@export_file("*.tscn") var sandbox_path: String
+@export_file("*.tscn") var endless_hub_path: String
+
 # ===
 # Parent
 # ===
@@ -25,13 +28,18 @@ func _on_event(event: EventBus.Event) -> void:
 func _on_ui_event_main_menu_action(event: EventBus.UIEvent.MainMenuAction) -> void:
 	match event.action:
 		event.Action.SANDBOX:
-			# TODO Play animation 
-			_transition_to(StateName.LOAD, LoadStateData.new(StateName.PLAY, "res://_dev/sandbox.tscn"))
+			# TODO Play animation
+			if sandbox_path == "":
+				push_error("Sandboxpath not set in Title State inspector!")
+				return 
+			_transition_to(StateName.LOAD, LoadStateData.new(StateName.PLAY, sandbox_path))
 
 		event.Action.ENDLESS:
 			# TODO Play animation
-			# Load into endless mode
-			pass
+			if endless_hub_path == "":
+				push_error("Endless Hub path not set in Title State inspector!")
+				return
+			_transition_to(StateName.LOAD, LoadStateData.new(StateName.PLAY, endless_hub_path))
 		
 		event.Action.SETTINGS:
 			# TODO Play animation

@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var data: PlayerData
 @export_range(0.01, 1.0) var _mouse_sensitivity: float = 0.15
 
-# Controllers
+@onready var MINIMAP_ICON: Sprite3D = $MinimapIcon
 @onready var STATE_MACHINE: StateMachine = $StateMachine
 @onready var MODEL_CONTROLLER: PlayerModelController = $ModelController
 @onready var CAMERA_CONTROLLER: PlayerCameraController = $CameraController
@@ -58,8 +58,9 @@ func _process(delta: float) -> void:
 
 	_handle_loadout_input()
 	_update_animations(delta)
+	_update_minimap_icon()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_input_direction = Input.get_vector(
 		"player_move_left", "player_move_right", 
 		"player_move_forward", "player_move_backward"
@@ -73,6 +74,12 @@ func _setup_loadout() -> void:
 	_current_weapon_data = data.loadout_data.primary_weapon
 	_swap_to_slot(0)
 
+func _update_minimap_icon() -> void:
+	if not MINIMAP_ICON: return
+	
+	var model_yaw = MODEL_CONTROLLER.global_rotation.y
+	MINIMAP_ICON.global_rotation.y = model_yaw + PI
+	
 func _handle_loadout_input() -> void:
 	if Input.is_action_just_pressed("player_primary_weapon"):
 		_swap_to_slot(0)
@@ -111,15 +118,30 @@ func _update_animations(delta: float) -> void:
 		_was_aiming
 	)
 
+func get_minimap_forward() -> Vector3:
+	var cam_forward = -CAMERA_CONTROLLER.get_horizontal_basis().z
+	cam_forward.y = 0
+	return cam_forward.normalized()
+
 func spawn() -> void:
+	_hurt_enabled = false
 	MODEL_CONTROLLER.reset_visuals()
 	MODEL_CONTROLLER.set_spawn_visuals(true)
 	
+	# 2. Animate the "Scanning" line from feet to head
 	var tween = create_tween()
-	tween.tween_method(func(v): RenderingServer.global_shader_parameter_set("player_spawn_height", v), -0.1, 2.2, 2.0)
-	tween.finished.connect(func(): 
-		MODEL_CONTROLLER.set_spawn_visuals(false)
-		_hurt_enabled = true
+	tween.tween_method(
+		MODEL_CONTROLLER.update_spawn_visual, 
+		-0.2, # Start slightly below feet
+		2.0,  # End above head
+		3.0   # Duration in seconds
+	).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN_OUT)
+	
+	tween.finished.connect(
+		func(): 
+			MODEL_CONTROLLER.set_spawn_visuals(false)
+			_hurt_enabled = true
+			EventBus.publish(EventBus.PlayerEvent.Spawned.new(self))
 	)
 
 func die() -> void:

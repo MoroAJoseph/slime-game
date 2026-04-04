@@ -1,28 +1,28 @@
 [gd_resource type="Resource" script_class="GunData" format=3 uid="uid://bqx047nin6pcg"]
 
 [ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://weapons/guns/data/classes/gun_part_data.gd" id="1_4oevo"]
-[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/transform_data.gd" id="1_wuopd"]
+[ext_resource type="Resource" uid="uid://cwr67llxirjcy" path="res://weapons/guns/data/bone_transforms/rifle_lower_back_transform.tres" id="1_naefj"]
 [ext_resource type="Resource" uid="uid://cxplp8vhacnc7" path="res://weapons/guns/data/files/test_rifle_frame.tres" id="2_hxgm7"]
 [ext_resource type="Resource" uid="uid://e2ftdnv8h37x" path="res://weapons/guns/data/files/test_rifle_mag.tres" id="4_37op4"]
+[ext_resource type="Resource" uid="uid://cy6q7wci4dlat" path="res://weapons/guns/data/files/test_rifle_stock.tres" id="4_wuopd"]
 [ext_resource type="Resource" uid="uid://cijf15g6m8cph" path="res://weapons/guns/data/files/test_rifle_barrel.tres" id="5_03cec"]
 [ext_resource type="Script" uid="uid://bxrubfyqf0s6f" path="res://weapons/guns/data/classes/gun_data.gd" id="5_37op4"]
 [ext_resource type="Resource" uid="uid://b2eouh30ykhnu" path="res://weapons/guns/data/files/test_rifle_muzzle.tres" id="6_naefj"]
-
-[sub_resource type="Resource" id="Resource_37op4"]
-script = ExtResource("1_wuopd")
-position = Vector3(0.035930812, 0.110899806, 0.062354922)
-rotation = Vector3(61.3, -151.7, 15.4)
-scale = Vector3(0.25, 0.25, 0.25)
-metadata/_custom_type_script = "uid://djoelq250kqg8"
+[ext_resource type="Resource" uid="uid://cuti1csjbl1us" path="res://weapons/guns/data/bone_transforms/rifle_right_hand_transform.tres" id="8_pxfxp"]
+[ext_resource type="Resource" uid="uid://ddd82leekvy0w" path="res://weapons/guns/data/bone_transforms/rifle_right_hip_transform.tres" id="9_2eugo"]
+[ext_resource type="Resource" uid="uid://bivd3w34wdfjp" path="res://weapons/guns/data/bone_transforms/rifle_upper_back_transform.tres" id="11_303tc"]
 
 [resource]
 script = ExtResource("5_37op4")
 parts = Dictionary[int, ExtResource("1_4oevo")]({
 0: ExtResource("2_hxgm7"),
-1: null,
+1: ExtResource("4_wuopd"),
 2: ExtResource("4_37op4"),
 3: ExtResource("5_03cec"),
 4: ExtResource("6_naefj")
 })
-hand_bone_transform = SubResource("Resource_37op4")
+right_hand_bone_transform = ExtResource("8_pxfxp")
+right_hip_bone_transform = ExtResource("9_2eugo")
+upper_back_bone_transform = ExtResource("11_303tc")
+lower_back_bone_transform = ExtResource("1_naefj")
 metadata/_custom_type_script = "uid://bxrubfyqf0s6f"

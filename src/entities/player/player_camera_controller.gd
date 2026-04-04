@@ -2,7 +2,6 @@ class_name PlayerCameraController
 extends Node3D
 
 @export_group("Config")
-@export var _default_pitch_deg: float = 20.0
 @export var _default_boom_length: float = 6.0
 @export var _zoomed_boom_length: float = 4.0
 @export var _boom_lerp_speed: float = 10.0

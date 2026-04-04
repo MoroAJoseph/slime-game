@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b0nkncx3yda0n"]
+
+[ext_resource type="Script" uid="uid://dp3xhh4hdnkyo" path="res://weapons/guns/scenes/gun.gd" id="1_yilug"]
+[ext_resource type="PackedScene" uid="uid://bu8wfu85gksv1" path="res://weapons/guns/scenes/gun_combat_controller.tscn" id="2_vnb42"]
+[ext_resource type="PackedScene" uid="uid://cceoo7mfrj6a6" path="res://weapons/guns/scenes/gun_model_controller.tscn" id="3_5abni"]
+
+[node name="Gun" type="Node3D" unique_id=963538918]
+script = ExtResource("1_yilug")
+
+[node name="GunCombatController" parent="." unique_id=1879925525 instance=ExtResource("2_vnb42")]
+
+[node name="GunModelController" parent="." unique_id=351060332 instance=ExtResource("3_5abni")]

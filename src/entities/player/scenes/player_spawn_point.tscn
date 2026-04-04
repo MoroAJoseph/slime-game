@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cdtuy1lnge7dh"]
+
+[ext_resource type="Script" uid="uid://chgp3untiddwc" path="res://entities/player/scenes/player_spawn_point.gd" id="1_lj64j"]
+
+[node name="PlayerSpawnPoint" type="Marker3D" unique_id=187764602]
+script = ExtResource("1_lj64j")
+metadata/_custom_type_script = "uid://connexmvsgr0y"

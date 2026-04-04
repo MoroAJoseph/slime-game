@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="GunPartData" format=3 uid="uid://cijf15g6m8cph"]
+
+[ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://weapons/guns/data/classes/gun_part_data.gd" id="1_cigq1"]
+[ext_resource type="Script" uid="uid://dp0irghqgqdss" path="res://weapons/guns/data/classes/gun_barrel_combat_data.gd" id="1_yc7kh"]
+[ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/guns/data/classes/gun_part_visual_data.gd" id="3_qg7jl"]
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/transform_data.gd" id="4_56csu"]
+
+[sub_resource type="Resource" id="Resource_na3e7"]
+script = ExtResource("1_yc7kh")
+bullet_velocity = 60
+metadata/_custom_type_script = "uid://dp0irghqgqdss"
+
+[sub_resource type="Resource" id="Resource_yc7kh"]
+script = ExtResource("4_56csu")
+position = Vector3(0, 0, -0.23)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[sub_resource type="Resource" id="Resource_qg7jl"]
+script = ExtResource("4_56csu")
+position = Vector3(0, 0, -0.295)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[sub_resource type="Resource" id="Resource_r5pjk"]
+script = ExtResource("3_qg7jl")
+mesh_path = "uid://e677hrwmi8fp"
+socket_transforms = Dictionary[int, ExtResource("4_56csu")]({
+4: SubResource("Resource_yc7kh"),
+8: SubResource("Resource_qg7jl")
+})
+metadata/_custom_type_script = "uid://c1aht68om0gag"
+
+[resource]
+script = ExtResource("1_cigq1")
+item_name = "Test Rifle Barrel"
+socket = 3
+visual_data = SubResource("Resource_r5pjk")
+combat_data = SubResource("Resource_na3e7")
+metadata/_custom_type_script = "uid://bnjaolcgppm3v"

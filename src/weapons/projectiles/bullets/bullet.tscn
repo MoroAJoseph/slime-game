@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kv1betb06n5"]
 
-[ext_resource type="Script" uid="uid://dhwxthxs5hdhp" path="res://weapons/projectiles/bullets/bullet.gd" id="1_mt5ps"]
+[ext_resource type="Script" uid="uid://dhwxthxs5hdhp" path="res://weapons/projectiles/bullets/bullet_projectile.gd" id="1_mt5ps"]
 [ext_resource type="Script" uid="uid://eghf6rhqkspq" path="res://components/combat/hitbox.gd" id="2_k0gmc"]
 [ext_resource type="PackedScene" uid="uid://dr2xhecqcqrwr" path="res://components/combat/damage/damage_number.tscn" id="2_kolp2"]
 

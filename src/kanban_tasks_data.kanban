@@ -261,7 +261,7 @@
 		{
 			"uuid": "9c5b39a9-6bb5-449d-8092-cc0af8232f21",
 			"title": "Weapons",
-			"description": "weapons are fully customizable\n\n--- Swords ---\nSwap out hilt, blade, power, etc.\n\n--- Guns ---\nswap out sight, mag, etc.\n\n\nmaybe player is part slime and can stretch, bringing some realism to the absurd weapon designs\nhave a scene with all weapon attachment meshes, adjusting offsets to center the item for displays",
+			"description": "- Parts are interchangable per weapon type\n\n===\n=== Swords\n===\n\n===\n=== Guns\n===\n\n--- Parts ---\n\n- Frame\n\n- Barrel\n- Stock\n- Magazine\n- Rear Sight \n- Front Sight\n- Muzzle\n\n\n",
 			"category": "cea5071f-00d4-401d-9e82-cb62c01ba31a",
 			"steps": []
 		}

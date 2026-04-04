@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="GunPartData" format=3 uid="uid://cy6q7wci4dlat"]
+
+[ext_resource type="Script" uid="uid://b8c0i4t7ec0by" path="res://weapons/guns/data/classes/gun_stock_combat_data.gd" id="1_datpa"]
+[ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://weapons/guns/data/classes/gun_part_data.gd" id="2_3qj22"]
+[ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/guns/data/classes/gun_part_visual_data.gd" id="3_42p26"]
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/transform_data.gd" id="4_8n6km"]
+
+[sub_resource type="Resource" id="Resource_edt6m"]
+script = ExtResource("1_datpa")
+metadata/_custom_type_script = "uid://b8c0i4t7ec0by"
+
+[sub_resource type="Resource" id="Resource_a1pq7"]
+script = ExtResource("3_42p26")
+mesh_path = "uid://d4m7slxuo276m"
+metadata/_custom_type_script = "uid://c1aht68om0gag"
+
+[resource]
+script = ExtResource("2_3qj22")
+item_name = "Test Rifle Stock"
+socket = 1
+visual_data = SubResource("Resource_a1pq7")
+combat_data = SubResource("Resource_edt6m")
+metadata/_custom_type_script = "uid://bnjaolcgppm3v"

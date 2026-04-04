@@ -1,2 +1,0 @@
-class_name ModelController
-extends Node3D

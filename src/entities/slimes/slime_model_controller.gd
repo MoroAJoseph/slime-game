@@ -1,5 +1,5 @@
 class_name SlimeModelController
-extends ModelController
+extends Node3D
 
 @onready var _body_mesh: MeshInstance3D = $SoftRig/GeneralSkeleton/Body
 @onready var _body_highlight: MeshInstance3D = $SoftRig/GeneralSkeleton/Highlights

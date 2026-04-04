@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="GunPartData" format=3 uid="uid://b2eouh30ykhnu"]
+
+[ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://weapons/guns/data/classes/gun_part_data.gd" id="1_nhg8f"]
+[ext_resource type="Script" uid="uid://d3p1dxin630m4" path="res://weapons/guns/data/classes/gun_muzzle_combat_data.gd" id="1_yq567"]
+[ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/guns/data/classes/gun_part_visual_data.gd" id="2_h1v2w"]
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/transform_data.gd" id="3_yq567"]
+
+[sub_resource type="Resource" id="Resource_fkekr"]
+script = ExtResource("1_yq567")
+metadata/_custom_type_script = "uid://d3p1dxin630m4"
+
+[sub_resource type="Resource" id="Resource_6cfl5"]
+script = ExtResource("3_yq567")
+position = Vector3(0, 0, -0.31)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[sub_resource type="Resource" id="Resource_jfkd2"]
+script = ExtResource("2_h1v2w")
+mesh_path = "uid://vvlal4lawpiv"
+socket_transforms = Dictionary[int, ExtResource("3_yq567")]({
+8: SubResource("Resource_6cfl5")
+})
+metadata/_custom_type_script = "uid://c1aht68om0gag"
+
+[resource]
+script = ExtResource("1_nhg8f")
+item_name = "Test Rifle Muzzle"
+socket = 4
+visual_data = SubResource("Resource_jfkd2")
+combat_data = SubResource("Resource_fkekr")
+metadata/_custom_type_script = "uid://bnjaolcgppm3v"

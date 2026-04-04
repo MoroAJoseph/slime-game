@@ -31,15 +31,29 @@ class GameplayEvent:
 
 # --- Player ---
 class PlayerEvent:
-	# Actions
+	# - Actions -
+	
+	# Loadout
+	class RequestWeaponSwap extends Event: pass
+	
+	# Gun
 	class RequestReload extends Event: pass
 	
-	# Notifications
+	# - Notifications -
+	
+	# General
 	class Died extends Event: pass
 	class Spawned extends Event: 
 		var player: Player
 		func _init(_player: Player):
 			player = _player
+	
+	# Loadout
+	class WeaponSwapped extends Event: 
+		func _init():
+			pass
+	
+	# Gun
 	class AimStarted extends Event: 
 		enum Type { HIP, SCOPE }
 		var type: Type
@@ -61,6 +75,8 @@ class PlayerEvent:
 		func _init(_current: int, _maximum: int): 
 			current = _current
 			maximum = _maximum
+	
+	# Sword
 
 # --- UI ---
 class UIEvent:

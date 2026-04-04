@@ -1,15 +1,16 @@
 [gd_scene format=3 uid="uid://veq7gq7hkrm8"]
 
 [ext_resource type="Script" uid="uid://dcbft48v4acct" path="res://core/level/level.gd" id="1_7he1i"]
-[ext_resource type="PackedScene" uid="uid://ca75bth86vc77" path="res://entities/player/player.tscn" id="1_85hcc"]
+[ext_resource type="PackedScene" uid="uid://ca75bth86vc77" path="res://entities/player/scenes/player.tscn" id="1_85hcc"]
 [ext_resource type="PackedScene" uid="uid://bwffd6a2wggjy" path="res://entities/slimes/slime.tscn" id="1_wfhpi"]
 [ext_resource type="Script" uid="uid://b85edpjne8suq" path="res://core/level/level_data.gd" id="2_0glgv"]
 [ext_resource type="Material" uid="uid://n6bklpjctmd7" path="res://_dev/level_design/prototyping_static.material" id="5_6jbby"]
 [ext_resource type="PackedScene" uid="uid://bb04srrhd30i" path="res://entities/slimes/slime_spawn_point.tscn" id="5_gck8l"]
 [ext_resource type="Script" uid="uid://dsx4gqqpbhhb1" path="res://entities/slimes/slime_data.gd" id="6_llpag"]
-[ext_resource type="PackedScene" uid="uid://cdtuy1lnge7dh" path="res://entities/player/player_spawn_point.tscn" id="7_llpag"]
-[ext_resource type="Script" uid="uid://b4qohxd871ki4" path="res://entities/player/player_data.gd" id="8_tv6ri"]
-[ext_resource type="Script" uid="uid://c6pq011tq63dc" path="res://weapons/guns/gun_combat_data.gd" id="9_jpsdj"]
+[ext_resource type="PackedScene" uid="uid://cdtuy1lnge7dh" path="res://entities/player/scenes/player_spawn_point.tscn" id="7_llpag"]
+[ext_resource type="Script" uid="uid://b4qohxd871ki4" path="res://entities/player/dataclasses/player_data.gd" id="8_tv6ri"]
+[ext_resource type="Script" uid="uid://d2fycj4pes8d6" path="res://entities/player/dataclasses/player_loadout_data.gd" id="9_6jbby"]
+[ext_resource type="Resource" uid="uid://bqx047nin6pcg" path="res://_dev/test_gun_data.tres" id="9_piqkd"]
 [ext_resource type="PackedScene" uid="uid://creif8ubgdbti" path="res://entities/player/model/player.glb" id="10_mye1a"]
 
 [sub_resource type="Resource" id="Resource_gck8l"]
@@ -61,17 +62,15 @@ slime_color = Color(0.58903176, 0.1531527, 0.23644525, 1)
 name = "Red"
 metadata/_custom_type_script = "uid://dsx4gqqpbhhb1"
 
-[sub_resource type="Resource" id="Resource_fkr2p"]
-script = ExtResource("9_jpsdj")
-mag_capacity = 45
-base_damage = 10.0
-crit_chance = 0.5
-metadata/_custom_type_script = "uid://c6pq011tq63dc"
+[sub_resource type="Resource" id="Resource_dmu6m"]
+script = ExtResource("9_6jbby")
+primary_weapon = ExtResource("9_piqkd")
+metadata/_custom_type_script = "uid://d2fycj4pes8d6"
 
 [sub_resource type="Resource" id="Resource_jpsdj"]
 script = ExtResource("8_tv6ri")
 jump_force = 16.0
-loadout_data = SubResource("Resource_fkr2p")
+loadout_data = SubResource("Resource_dmu6m")
 metadata/_custom_type_script = "uid://b4qohxd871ki4"
 
 [node name="Sandbox" type="Node3D" unique_id=499407631]
@@ -279,7 +278,7 @@ player_data = SubResource("Resource_jpsdj")
 
 [node name="Instances" type="Node3D" parent="Entities/Player" unique_id=1337566402]
 
-[node name="Projectiles" type="Node3D" parent="." unique_id=886301825]
+[node name="Projectiles" type="Node3D" parent="." unique_id=886301825 groups=["projectile_bucket"]]
 
 [node name="Interactables" type="Node3D" parent="." unique_id=711460407]
 

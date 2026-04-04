@@ -19,7 +19,7 @@ texture = ExtResource("5_cxhb7")
 
 [node name="HUD" type="CanvasLayer" unique_id=1613823854 node_paths=PackedStringArray("MINIMAP_CAMERA")]
 script = ExtResource("1_4d6w6")
-MINIMAP_CAMERA = NodePath("Control/SafeArea/Control/Minimap/SubViewportContainer/SubViewport/MinimapCamera")
+MINIMAP_CAMERA = NodePath("MiniMap/Minimap/SubViewportContainer/SubViewport/MinimapCamera")
 
 [node name="Control" type="Control" parent="." unique_id=1267680416]
 layout_mode = 3
@@ -163,25 +163,28 @@ value = 100.0
 texture_progress = ExtResource("7_cxhb7")
 texture_progress_offset = Vector2(-6, -9)
 
-[node name="Minimap" type="MarginContainer" parent="Control/SafeArea/Control" unique_id=827271267]
-layout_mode = 1
+[node name="MiniMap" type="CanvasLayer" parent="." unique_id=1197039746]
+
+[node name="Minimap" type="MarginContainer" parent="MiniMap" unique_id=827271267]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
+offset_left = -296.0
+offset_top = 40.0
+offset_right = -40.0
+offset_bottom = 296.0
 grow_horizontal = 0
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/SafeArea/Control/Minimap" unique_id=197125908]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MiniMap/Minimap" unique_id=197125908]
 layout_mode = 2
 
-[node name="SubViewport" type="SubViewport" parent="Control/SafeArea/Control/Minimap/SubViewportContainer" unique_id=591641204]
+[node name="SubViewport" type="SubViewport" parent="MiniMap/Minimap/SubViewportContainer" unique_id=591641204]
 handle_input_locally = false
 size = Vector2i(256, 256)
 render_target_update_mode = 4
 
-[node name="MinimapCamera" type="Camera3D" parent="Control/SafeArea/Control/Minimap/SubViewportContainer/SubViewport" unique_id=659460326]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -8, 0, 0)
+[node name="MinimapCamera" type="Camera3D" parent="MiniMap/Minimap/SubViewportContainer/SubViewport" unique_id=659460326]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 cull_mask = 8
 projection = 1
 size = 10.0

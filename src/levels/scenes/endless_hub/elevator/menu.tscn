@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8oy3thayf0n7"]
 
-[ext_resource type="Script" uid="uid://dlq3n4j6s7uf0" path="res://levels/scenes/endless_hub/endless_elevator_menu_.gd" id="1_lqqjh"]
+[ext_resource type="Script" uid="uid://dlq3n4j6s7uf0" path="res://levels/scenes/endless_hub/elevator/menu.gd" id="1_lqqjh"]
 
 [node name="EndlessElevatorMenu" type="Control" unique_id=1123192353 node_paths=PackedStringArray("buttons_container")]
 custom_minimum_size = Vector2(512, 512)

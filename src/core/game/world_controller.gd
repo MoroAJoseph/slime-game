@@ -1,22 +1,15 @@
 class_name WorldController
 extends Node
 
-@export_file var _title_level_path: String
 
 @onready var _world_node: Node3D = $World
 
 # ===
-# Built-In
+# Public
 # ===
 
-func _ready() -> void:
-	EventBus.subscribe(_on_event)
-
-# ===
-# Local
-# ===
-
-func _load_scene(path: String) -> void:
+func load_scene(path: String) -> void:
+	# Clear existing world
 	for child in _world_node.get_children():
 		child.queue_free()
 	
@@ -30,9 +23,15 @@ func _load_scene(path: String) -> void:
 	
 	if map_instance is Level:
 		_initialize_game_level(map_instance)
+		# We still publish this so the UI/Player knows the world is ready
 		EventBus.publish(EventBus.GameplayEvent.LevelLoaded.new(map_instance.data))
 	else:
+		# Title screen or non-gameplay scene
 		EventBus.publish(EventBus.GameplayEvent.TitleLoaded.new())
+
+# ===
+# Private
+# ===
 
 func _initialize_game_level(level_node: Level) -> void:
 	var level_data: LevelData
@@ -51,13 +50,3 @@ func _initialize_game_level(level_node: Level) -> void:
 		level_data.target_enemy_count = 15
 
 	level_node.data = level_data
-
-# ===
-# Events
-# ===
-
-func _on_event(event: EventBus.Event) -> void:
-	if event is EventBus.GameplayEvent.RequestLoadLevel:
-		_load_scene(event.path)
-	elif event is EventBus.GameplayEvent.RequestLoadTitle:
-		_load_scene(_title_level_path)

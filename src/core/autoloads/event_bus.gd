@@ -11,23 +11,26 @@ class BootsplashFinished extends Event: pass
 
 # --- Gameplay ---
 class GameplayEvent:
-	# Actions
-	class RequestPause extends Event: pass
-	class RequestResume extends Event: pass
-	class RequestLoadTitle extends Event: pass
-	class RequestLoadLevel extends Event:
-		var path: String
-		func _init(_path: String): 
-			path = _path
-	
-	# Notifications
-	class GamePaused extends Event: pass
-	class GameResumed extends Event: pass
+	# Global Transitions
+	class BootsplashFinished extends Event: pass
 	class TitleLoaded extends Event: pass
 	class LevelLoaded extends Event:
 		var data: LevelData
 		func _init(_data: LevelData): 
 			data = _data
+			
+	# State Notifications
+	class GamePaused extends Event: pass
+	class GameResumed extends Event: pass
+	
+	# Hub Interactions (Still useful for specific world-to-logic triggers)
+	class HubAction extends Event:
+		enum Action { LAUNCH_RUN, OPEN_FORGE, OPEN_VAULT }
+		var action: Action
+		var level_path: String
+		func _init(_action: Action, _path: String = ""):
+			action = _action
+			level_path = _path
 
 # --- Player ---
 class PlayerEvent:
@@ -84,33 +87,35 @@ class PlayerEvent:
 
 # --- UI ---
 class UIEvent:
-	# - Actions -
-	class ToggleMenu extends Event:
-		enum Menu { MAIN, PAUSE }
-		var menu: Menu
-		var is_visible: bool
-		func _init(_menu: Menu, _is_visible: bool):
-			menu = _menu
-			is_visible = _is_visible
 	class ToggleHud extends Event:
 		var is_visible: bool
 		func _init(_is_visible: bool):
 			is_visible = _is_visible
+	
 	class ToggleLoading extends Event:
 		var is_visible: bool
 		func _init(_is_visible: bool): 
 			is_visible = _is_visible
+	
 	class ToggleMinimapRotation extends Event:
 		var value: bool
 		func _init(_value: bool):
 			value = _value
+	
 	class MainMenuAction extends Event:
 		enum Action { SANDBOX, ENDLESS, EXIT, SETTINGS }
 		var action: Action
 		func _init(_action: Action): 
 			action = _action
+	
 	class PauseMenuAction extends Event:
 		enum Action { RESUME, RESTART, SETTINGS, EXIT, QUIT }
+		var action: Action
+		func _init(_action: Action): 
+			action = _action
+	
+	class EndlessHubMenuAction extends Event:
+		enum Action { CLOSE, EXIT, QUIT }
 		var action: Action
 		func _init(_action: Action): 
 			action = _action

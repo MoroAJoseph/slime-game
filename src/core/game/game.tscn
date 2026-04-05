@@ -9,27 +9,26 @@
 [ext_resource type="PackedScene" uid="uid://0etvxeffgdta" path="res://ui/menus/main_menu.tscn" id="5_camtn"]
 [ext_resource type="PackedScene" uid="uid://c8m22w661d0wi" path="res://ui/menus/pause_menu.tscn" id="6_edoqx"]
 [ext_resource type="Script" uid="uid://cxid8h0ln26lh" path="res://core/game/states/game_state_play.gd" id="6_xakte"]
+[ext_resource type="PackedScene" uid="uid://dr4tlu08lqmap" path="res://ui/menus/endless_hub_menu.tscn" id="7_o7dow"]
 [ext_resource type="Script" uid="uid://dg3b75vrpvkfd" path="res://core/game/states/game_state_load.gd" id="7_xmhhf"]
+[ext_resource type="PackedScene" uid="uid://bui6n5gymcwhb" path="res://ui/menus/backpack_menu.tscn" id="8_lnsb0"]
+[ext_resource type="Script" uid="uid://sguc5df4brlo" path="res://core/game/game_state_expedition.gd" id="10_6fyre"]
 
 [node name="Game" type="Node" unique_id=898484314]
 process_mode = 3
 script = ExtResource("1_4gkfv")
+title_level_path = "uid://bpesullmcdohe"
+sandbox_path = "uid://veq7gq7hkrm8"
+endless_hub_path = "uid://dsf0bu7i0kwhe"
 
 [node name="WorldController" type="Node" parent="." unique_id=1530627212]
-process_mode = 3
 script = ExtResource("2_risx7")
-_title_level_path = "uid://bpesullmcdohe"
 
 [node name="World" type="Node3D" parent="WorldController" unique_id=1072822466 groups=["world_root"]]
 process_mode = 1
 
-[node name="UIController" type="Node" parent="." unique_id=2127822112 node_paths=PackedStringArray("_menus_layer", "_loading_layer", "_main_menu", "_pause_menu")]
-process_mode = 3
+[node name="UIController" type="Node" parent="." unique_id=2127822112]
 script = ExtResource("2_slpoq")
-_menus_layer = NodePath("Menus")
-_loading_layer = NodePath("Loading")
-_main_menu = NodePath("Menus/MainMenu")
-_pause_menu = NodePath("Menus/Pause")
 
 [node name="HUD" parent="UIController" unique_id=1267680416 instance=ExtResource("4_xmhhf")]
 
@@ -39,23 +38,28 @@ follow_viewport_enabled = true
 
 [node name="MainMenu" parent="UIController/Menus" unique_id=482945197 instance=ExtResource("5_camtn")]
 
-[node name="Pause" parent="UIController/Menus" unique_id=669495035 instance=ExtResource("6_edoqx")]
+[node name="PauseMenu" parent="UIController/Menus" unique_id=669495035 instance=ExtResource("6_edoqx")]
+
+[node name="EndlessHubMenu" parent="UIController/Menus" unique_id=653173030 instance=ExtResource("7_o7dow")]
+
+[node name="BackpackMenu" parent="UIController/Menus" unique_id=685789889 instance=ExtResource("8_lnsb0")]
 
 [node name="Loading" type="CanvasLayer" parent="UIController" unique_id=1421524645]
 layer = 3
 
 [node name="StateMachine" type="Node" parent="." unique_id=723252709 node_paths=PackedStringArray("initial_state")]
-process_mode = 3
 script = ExtResource("3_risx7")
 initial_state = NodePath("Title")
 
 [node name="Title" type="Node" parent="StateMachine" unique_id=1450245938]
 script = ExtResource("5_00x87")
-sandbox_path = "uid://veq7gq7hkrm8"
-endless_hub_path = "uid://dsf0bu7i0kwhe"
 
-[node name="Play" type="Node" parent="StateMachine" unique_id=1801488272]
+[node name="Hub" type="Node" parent="StateMachine" unique_id=1801488272]
 script = ExtResource("6_xakte")
+
+[node name="Expedition" type="Node" parent="StateMachine" unique_id=743476941]
+script = ExtResource("10_6fyre")
+metadata/_custom_type_script = "uid://bopo7k4hhvfvg"
 
 [node name="Load" type="Node" parent="StateMachine" unique_id=1383355484]
 script = ExtResource("7_xmhhf")

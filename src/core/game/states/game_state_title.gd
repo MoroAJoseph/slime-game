@@ -1,8 +1,7 @@
 # Title
 extends GameState
 
-@export_file("*.tscn") var sandbox_path: String
-@export_file("*.tscn") var endless_hub_path: String
+
 
 # ===
 # Parent
@@ -11,9 +10,11 @@ extends GameState
 func enter(_prev_state_path: String, _data: Object) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	EventBus.subscribe(_on_event)
-	EventBus.publish(EventBus.GameplayEvent.RequestLoadTitle.new())
+	_world_controller.load_scene(_title_level_path)
+	_ui_controller.toggle_main_menu(true)
 
 func exit() -> void:
+	_ui_controller.hide_all()
 	EventBus.unsubscribe(_on_event)
 
 # ===
@@ -22,30 +23,10 @@ func exit() -> void:
 
 func _on_event(event: EventBus.Event) -> void:
 	if event is EventBus.UIEvent.MainMenuAction:
-		_on_ui_event_main_menu_action(event)
-
-# --- UI ---
-func _on_ui_event_main_menu_action(event: EventBus.UIEvent.MainMenuAction) -> void:
-	match event.action:
-		event.Action.SANDBOX:
-			# TODO Play animation
-			if sandbox_path == "":
-				push_error("Sandboxpath not set in Title State inspector!")
-				return 
-			_transition_to(StateName.LOAD, LoadStateData.new(StateName.PLAY, sandbox_path))
-
-		event.Action.ENDLESS:
-			# TODO Play animation
-			if endless_hub_path == "":
-				push_error("Endless Hub path not set in Title State inspector!")
-				return
-			_transition_to(StateName.LOAD, LoadStateData.new(StateName.PLAY, endless_hub_path))
-		
-		event.Action.SETTINGS:
-			# TODO Play animation
-			# Transition from main menu to settings menu
-			pass
-		
-		event.Action.EXIT:
-			# TODO Play animation
-			get_tree().quit()
+		match event.action:
+			event.Action.SANDBOX:
+				_transition_to(StateName.LOAD, LoadStateData.new(StateName.HUB, _sandbox_path))
+			event.Action.ENDLESS:
+				_transition_to(StateName.LOAD, LoadStateData.new(StateName.HUB, _endless_hub_path))
+			event.Action.EXIT:
+				get_tree().quit()

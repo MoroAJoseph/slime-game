@@ -1,9 +1,14 @@
 class_name GameState
 extends State
 
-enum StateName { TITLE, PLAY, LOAD }
+enum StateName { TITLE, HUB, EXPEDITION, LOAD }
 
 var _owner: Game
+var _world_controller: WorldController
+var _ui_controller: UIController
+var _title_level_path: String 
+var _sandbox_path: String
+var _endless_hub_path: String
 
 # ===
 # Built-In
@@ -15,7 +20,7 @@ func _ready() -> void:
 	assert(_owner != null, _get_assert_message("GameState", "Game"))
 
 # ===
-# Dataclasses
+# Public
 # ===
 
 class LoadStateData extends RefCounted:
@@ -25,12 +30,19 @@ class LoadStateData extends RefCounted:
 		target_state = _target_state
 		level_path = _level_path
 
-# ===
-# Local
-# ===
-
 func get_state_name(state: StateName) -> String:
 	return StateName.keys()[state].capitalize()
+
+func setup(game: Game) -> void:
+	_world_controller = game.WORLD_CONTROLLER
+	_ui_controller = game.UI_CONTROLLER
+	_title_level_path = game.title_level_path
+	_sandbox_path = game.sandbox_path
+	_endless_hub_path = game.endless_hub_path
+
+# ===
+# Private
+# ===
 
 func _transition_to(state: StateName, data: Object) -> void:
 	finished.emit(get_state_name(state), data)

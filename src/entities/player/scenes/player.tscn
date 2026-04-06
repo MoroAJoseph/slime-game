@@ -24,6 +24,18 @@
 [ext_resource type="Script" uid="uid://46xcqtmh0g70" path="res://entities/player/states/player_state_exit.gd" id="12_gx6sm"]
 [ext_resource type="Script" uid="uid://bvo0nscx3aq1e" path="res://entities/player/states/player_state_dead.gd" id="13_yqrof"]
 [ext_resource type="Script" uid="uid://srqg1i1onh3m" path="res://entities/player/player_combat_controller.gd" id="20_juixi"]
+[ext_resource type="Animation" uid="uid://hys1fnoywh0n" path="res://entities/player/animation/individual/unarmed idle.res" id="24_66qwf"]
+[ext_resource type="Animation" uid="uid://bu3n0sfidest4" path="res://entities/player/animation/individual/unarmed jump.res" id="25_ns1m0"]
+[ext_resource type="Animation" uid="uid://bo70pnfkphxre" path="res://entities/player/animation/individual/unarmed running.res" id="26_qe7f2"]
+[ext_resource type="Animation" uid="uid://bngj3bpghvrj6" path="res://entities/player/animation/individual/unarmed left strafe.res" id="27_bpw1b"]
+[ext_resource type="Animation" uid="uid://unpbqwkah62k" path="res://entities/player/animation/individual/unarmed right strafe.res" id="28_8cn5l"]
+[ext_resource type="Animation" uid="uid://410ybt8e8nx8" path="res://entities/player/animation/individual/unarmed left turn.res" id="29_ew3y5"]
+[ext_resource type="Animation" uid="uid://256pu0uvf0oj" path="res://entities/player/animation/individual/unarmed left turn 90.res" id="30_iod35"]
+[ext_resource type="Animation" uid="uid://bxtrilh4cv60b" path="res://entities/player/animation/individual/unarmed right turn.res" id="31_sfd6j"]
+[ext_resource type="Animation" uid="uid://uj6g31y7132v" path="res://entities/player/animation/individual/unarmed right turn 90.res" id="32_jgxcf"]
+[ext_resource type="Animation" uid="uid://0s8usw438vcp" path="res://entities/player/animation/individual/unarmed walking.res" id="33_36gg7"]
+[ext_resource type="Animation" uid="uid://b7rfmf7fhupiq" path="res://entities/player/animation/individual/unarmed left strafe walking.res" id="34_chv51"]
+[ext_resource type="Animation" uid="uid://bfx6hnb25bg4c" path="res://entities/player/animation/individual/unarmed right strafe walking.res" id="35_231wb"]
 
 [sub_resource type="Resource" id="Resource_e0sbn"]
 script = ExtResource("3_y0u04")
@@ -348,6 +360,22 @@ _data = {
 &"RESET": SubResource("Animation_j3ovn")
 }
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wb3uv"]
+_data = {
+&"idle": ExtResource("24_66qwf"),
+&"jump": ExtResource("25_ns1m0"),
+&"run_forward": ExtResource("26_qe7f2"),
+&"run_left": ExtResource("27_bpw1b"),
+&"run_right": ExtResource("28_8cn5l"),
+&"unarmed left turn": ExtResource("29_ew3y5"),
+&"unarmed left turn 90": ExtResource("30_iod35"),
+&"unarmed right turn": ExtResource("31_sfd6j"),
+&"unarmed right turn 90": ExtResource("32_jgxcf"),
+&"walk_forward": ExtResource("33_36gg7"),
+&"walk_left": ExtResource("34_chv51"),
+&"walk_right": ExtResource("35_231wb")
+}
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3wlsy"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j3ovn"]
@@ -377,7 +405,7 @@ input_0/name = "InPlace"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
-input_1/name = "Moving"
+input_1/name = "InMotion"
 input_1/auto_advance = false
 input_1/break_loop_at_end = false
 input_1/reset = true
@@ -541,7 +569,7 @@ input_0/name = "InPlace"
 input_0/auto_advance = false
 input_0/break_loop_at_end = false
 input_0/reset = true
-input_1/name = "Moving"
+input_1/name = "InMotion"
 input_1/auto_advance = false
 input_1/break_loop_at_end = false
 input_1/reset = true
@@ -611,11 +639,11 @@ input_1/reset = true
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssgi7"]
 animation = &"Rifle/jump_loop"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rtlkk"]
-animation = &"Rifle/jump_in_place_start"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a2brg"]
 animation = &"Rifle/jump_forward_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rtlkk"]
+animation = &"Rifle/jump_in_place_start"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_arp52"]
 animation = &"Rifle/jump_in_place_end"
@@ -632,11 +660,11 @@ animation = &"Rifle/jump_in_place_start"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8q4fm"]
 animation = &"Rifle/jump_forward_start"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_np63p"]
-animation = &"Rifle/jump_in_place_end"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0eo6o"]
 animation = &"Rifle/jump_forward_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_np63p"]
+animation = &"Rifle/jump_in_place_end"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cnswy"]
 animation = &"Rifle/idle_aiming"
@@ -648,7 +676,7 @@ animation = &"Rifle/draw_back_upper"
 animation = &"Rifle/sheath_back_upper"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_afbqv"]
-graph_offset = Vector2(-16.986206, 891.2794)
+graph_offset = Vector2(-1230.8303, 803.3833)
 nodes/output/position = Vector2(1480, 860)
 nodes/Mode_Select/node = SubResource("AnimationNodeTransition_bwdx1")
 nodes/Mode_Select/position = Vector2(440, 860)
@@ -661,7 +689,7 @@ nodes/Adventure_Ground_Select/position = Vector2(-560, -540)
 nodes/Adventure_Jump_Select/node = SubResource("AnimationNodeTransition_eyb6c")
 nodes/Adventure_Jump_Select/position = Vector2(-880, -280)
 nodes/Adventure_Walk/node = SubResource("AnimationNodeBlendSpace1D_24ehl")
-nodes/Adventure_Walk/position = Vector2(-1240, -1000)
+nodes/Adventure_Walk/position = Vector2(-1220, -940)
 nodes/Adventure_Run/node = SubResource("AnimationNodeBlendSpace1D_wuv6x")
 nodes/Adventure_Run/position = Vector2(-1220, -660)
 nodes/Adventure_Locomotion_Select/node = SubResource("AnimationNodeTransition_ghoj8")
@@ -678,8 +706,8 @@ nodes/Adventure_Land_Select/node = SubResource("AnimationNodeTransition_221hk")
 nodes/Adventure_Land_Select/position = Vector2(-820, 580)
 nodes/adventure_land_in_place/node = SubResource("AnimationNodeAnimation_np63p")
 nodes/adventure_land_in_place/position = Vector2(-1220, 480)
-nodes/adventure_land_moving/node = SubResource("AnimationNodeAnimation_0eo6o")
-nodes/adventure_land_moving/position = Vector2(-1220, 780)
+nodes/adventure_land_in_motion/node = SubResource("AnimationNodeAnimation_0eo6o")
+nodes/adventure_land_in_motion/position = Vector2(-1220, 780)
 nodes/Action_Ground_Select/node = SubResource("AnimationNodeTransition_afbqv")
 nodes/Action_Ground_Select/position = Vector2(-480, 1460)
 nodes/Action_Air_Select/node = SubResource("AnimationNodeTransition_j3ovn")
@@ -694,8 +722,8 @@ nodes/Action_Jump_Select/node = SubResource("AnimationNodeTransition_gx6sm")
 nodes/Action_Jump_Select/position = Vector2(-840, 1700)
 nodes/action_jump_in_place/node = SubResource("AnimationNodeAnimation_rtlkk")
 nodes/action_jump_in_place/position = Vector2(-1180, 1660)
-nodes/action_jump_moving/node = SubResource("AnimationNodeAnimation_a2brg")
-nodes/action_jump_moving/position = Vector2(-1180, 1900)
+nodes/action_jump_in_motion/node = SubResource("AnimationNodeAnimation_a2brg")
+nodes/action_jump_in_motion/position = Vector2(-1180, 1880)
 nodes/action_airborne/node = SubResource("AnimationNodeAnimation_ssgi7")
 nodes/action_airborne/position = Vector2(-840, 2180)
 nodes/action_land_in_place/node = SubResource("AnimationNodeAnimation_arp52")
@@ -716,30 +744,363 @@ nodes/draw/node = SubResource("AnimationNodeAnimation_q5bfg")
 nodes/draw/position = Vector2(900, 1420)
 nodes/sheath/node = SubResource("AnimationNodeAnimation_p22ii")
 nodes/sheath/position = Vector2(1560, 1360)
-node_connections = [&"output", 0, &"Aim_Blend", &"Mode_Select", 0, &"Adventure_Select", &"Mode_Select", 1, &"Action_Select", &"Adventure_Select", 0, &"Adventure_Ground_Select", &"Adventure_Select", 1, &"Adventure_Air_Select", &"Action_Select", 0, &"Action_Ground_Select", &"Action_Select", 1, &"Action_Air_Select", &"Adventure_Ground_Select", 0, &"Adventure_Locomotion_Select", &"Adventure_Ground_Select", 1, &"Adventure_Jump_Select", &"Adventure_Jump_Select", 0, &"adventure_jump_in_place", &"Adventure_Jump_Select", 1, &"adventure_jump_moving", &"Adventure_Locomotion_Select", 0, &"Adventure_Walk", &"Adventure_Locomotion_Select", 1, &"Adventure_Run", &"Adventure_Air_Select", 0, &"adventure_airborne", &"Adventure_Air_Select", 1, &"Adventure_Land_Select", &"Adventure_Land_Select", 0, &"adventure_land_in_place", &"Adventure_Land_Select", 1, &"adventure_land_moving", &"Action_Ground_Select", 0, &"Action_Locomotion_Select", &"Action_Ground_Select", 1, &"Action_Jump_Select", &"Action_Air_Select", 0, &"action_airborne", &"Action_Air_Select", 1, &"Action_Land_Select", &"Action_Locomotion_Select", 0, &"Action_Walk", &"Action_Locomotion_Select", 1, &"Action_Run", &"Action_Jump_Select", 0, &"action_jump_in_place", &"Action_Jump_Select", 1, &"action_jump_moving", &"Action_Land_Select", 0, &"action_land_in_place", &"Action_Land_Select", 1, &"action_land_moving", &"Aim_Blend", 0, &"Mode_Select", &"Aim_Blend", 1, &"aiming", &"Draw_Shot", 1, &"draw", &"Sheath_Shot", 1, &"sheath"]
+node_connections = [&"output", 0, &"Aim_Blend", &"Mode_Select", 0, &"Adventure_Select", &"Mode_Select", 1, &"Action_Select", &"Adventure_Select", 0, &"Adventure_Ground_Select", &"Adventure_Select", 1, &"Adventure_Air_Select", &"Action_Select", 0, &"Action_Ground_Select", &"Action_Select", 1, &"Action_Air_Select", &"Adventure_Ground_Select", 0, &"Adventure_Locomotion_Select", &"Adventure_Ground_Select", 1, &"Adventure_Jump_Select", &"Adventure_Jump_Select", 0, &"adventure_jump_in_place", &"Adventure_Jump_Select", 1, &"adventure_jump_moving", &"Adventure_Locomotion_Select", 0, &"Adventure_Walk", &"Adventure_Locomotion_Select", 1, &"Adventure_Run", &"Adventure_Air_Select", 0, &"adventure_airborne", &"Adventure_Air_Select", 1, &"Adventure_Land_Select", &"Adventure_Land_Select", 0, &"adventure_land_in_place", &"Adventure_Land_Select", 1, &"adventure_land_in_motion", &"Action_Ground_Select", 0, &"Action_Locomotion_Select", &"Action_Ground_Select", 1, &"Action_Jump_Select", &"Action_Air_Select", 0, &"action_airborne", &"Action_Air_Select", 1, &"Action_Land_Select", &"Action_Locomotion_Select", 0, &"Action_Walk", &"Action_Locomotion_Select", 1, &"Action_Run", &"Action_Jump_Select", 0, &"action_jump_in_place", &"Action_Jump_Select", 1, &"action_jump_in_motion", &"Action_Land_Select", 0, &"action_land_in_place", &"Action_Land_Select", 1, &"action_land_moving", &"Aim_Blend", 0, &"Mode_Select", &"Aim_Blend", 1, &"aiming", &"Draw_Shot", 1, &"draw", &"Sheath_Shot", 1, &"sheath"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gx6sm"]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yqrof"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_sfd6j"]
+input_0/name = "Airborne"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Land"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ttr27"]
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_jgxcf"]
+input_0/name = "Locomotion"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Jump"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_36gg7"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_chv51"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_231wb"]
+input_0/name = "Walk"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wb3uv"]
+animation = &"Unarmed/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gkepj"]
+animation = &"Unarmed/run_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y6fyq"]
+animation = &"Unarmed/run_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yiotw"]
+animation = &"Unarmed/run_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k1bod"]
+animation = &"Rifle/run_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tjj02"]
+animation = &"Rifle/run_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lotey"]
+animation = &"Rifle/run_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h5b5e"]
+animation = &"Unarmed/run_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xr2f2"]
+animation = &"Unarmed/run_forward"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_183un"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_wb3uv")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_gkepj")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_y6fyq")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_yiotw")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_k1bod")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_tjj02")
+blend_point_5/pos = Vector2(1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_lotey")
+blend_point_6/pos = Vector2(-1, -1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_h5b5e")
+blend_point_7/pos = Vector2(-1, 1)
+blend_point_8/node = SubResource("AnimationNodeAnimation_xr2f2")
+blend_point_8/pos = Vector2(1, 1)
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_66qwf"]
+input_0/name = "Ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Air"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8axkk"]
+animation = &"Unarmed/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_63kp5"]
+animation = &"Unarmed/walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v0ct8"]
+animation = &"Unarmed/walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rqkjl"]
+animation = &"Unarmed/walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1rnc"]
+animation = &"Rifle/walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_873ps"]
+animation = &"Rifle/walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jpcut"]
+animation = &"Rifle/walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wkjbv"]
+animation = &"Unarmed/walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8dbvk"]
+animation = &"Unarmed/walk_forward"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_v8juj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8axkk")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_63kp5")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_v0ct8")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_rqkjl")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_g1rnc")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_873ps")
+blend_point_5/pos = Vector2(1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_jpcut")
+blend_point_6/pos = Vector2(-1, -1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_wkjbv")
+blend_point_7/pos = Vector2(-1, 1)
+blend_point_8/node = SubResource("AnimationNodeAnimation_8dbvk")
+blend_point_8/pos = Vector2(1, 1)
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_8cn5l"]
+input_0/name = "Airborne"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Land"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ns1m0"]
+input_0/name = "Locomotion"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Jump"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ew3y5"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_iod35"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_bpw1b"]
+input_0/name = "Walk"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iod35"]
+animation = &"Unarmed/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sfd6j"]
+animation = &"Unarmed/run_forward"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_jgxcf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_iod35")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_sfd6j")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_qe7f2"]
+input_0/name = "Ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Air"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_36gg7"]
+animation = &"Unarmed/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_chv51"]
+animation = &"Unarmed/walk_forward"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_231wb"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_36gg7")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_chv51")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gkepj"]
+input_0/name = "Adventure"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Action"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h2y0n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6pw3o"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h8wl2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhb4n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vcm0m"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4wa00"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_anodm"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sg25l"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bwm6r"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pajht"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yqrof"]
+graph_offset = Vector2(-1412.0286, 766.4586)
+nodes/output/position = Vector2(580, 920)
+nodes/Mode_Select/node = SubResource("AnimationNodeTransition_gkepj")
+nodes/Mode_Select/position = Vector2(240, 900)
+nodes/Adventure_Select/node = SubResource("AnimationNodeTransition_qe7f2")
+nodes/Adventure_Select/position = Vector2(-340, -120)
+nodes/Action_Select/node = SubResource("AnimationNodeTransition_66qwf")
+nodes/Action_Select/position = Vector2(-240, 2040)
+nodes/Adventure_Ground_Select/node = SubResource("AnimationNodeTransition_ns1m0")
+nodes/Adventure_Ground_Select/position = Vector2(-700, -580)
+nodes/Adventure_Locomotion_Select/node = SubResource("AnimationNodeTransition_bpw1b")
+nodes/Adventure_Locomotion_Select/position = Vector2(-1160, -920)
+nodes/Adventure_Walk/node = SubResource("AnimationNodeBlendSpace1D_231wb")
+nodes/Adventure_Walk/position = Vector2(-1440, -1000)
+nodes/Adventure_Run/node = SubResource("AnimationNodeBlendSpace1D_jgxcf")
+nodes/Adventure_Run/position = Vector2(-1440, -760)
+nodes/Adventure_Jump_Select/node = SubResource("AnimationNodeTransition_ew3y5")
+nodes/Adventure_Jump_Select/position = Vector2(-1120, -300)
+nodes/Adventure_Air_Select/node = SubResource("AnimationNodeTransition_8cn5l")
+nodes/Adventure_Air_Select/position = Vector2(-700, 300)
+nodes/Adventure_Land_Select/node = SubResource("AnimationNodeTransition_iod35")
+nodes/Adventure_Land_Select/position = Vector2(-1080, 540)
+nodes/adventure_jump_in_place/node = SubResource("AnimationNodeAnimation_sg25l")
+nodes/adventure_jump_in_place/position = Vector2(-1500, -420)
+nodes/adventure_jump_in_motion/node = SubResource("AnimationNodeAnimation_anodm")
+nodes/adventure_jump_in_motion/position = Vector2(-1500, -120)
+nodes/adventure_airborne/node = SubResource("AnimationNodeAnimation_4wa00")
+nodes/adventure_airborne/position = Vector2(-1074.9231, 159.45882)
+nodes/adventure_land_in_place/node = SubResource("AnimationNodeAnimation_pajht")
+nodes/adventure_land_in_place/position = Vector2(-1440, 460)
+nodes/adventure_land_in_motion/node = SubResource("AnimationNodeAnimation_bwm6r")
+nodes/adventure_land_in_motion/position = Vector2(-1440, 740)
+nodes/Action_Ground_Select/node = SubResource("AnimationNodeTransition_jgxcf")
+nodes/Action_Ground_Select/position = Vector2(-640, 1560)
+nodes/Action_Air_Select/node = SubResource("AnimationNodeTransition_sfd6j")
+nodes/Action_Air_Select/position = Vector2(-640, 2400)
+nodes/Action_Jump_Select/node = SubResource("AnimationNodeTransition_36gg7")
+nodes/Action_Jump_Select/position = Vector2(-1020, 1860)
+nodes/Action_Locomotion_Select/node = SubResource("AnimationNodeTransition_231wb")
+nodes/Action_Locomotion_Select/position = Vector2(-1060, 1220)
+nodes/Action_Walk/node = SubResource("AnimationNodeBlendSpace2D_v8juj")
+nodes/Action_Walk/position = Vector2(-1400, 1100)
+nodes/Action_Run/node = SubResource("AnimationNodeBlendSpace2D_183un")
+nodes/Action_Run/position = Vector2(-1420, 1420)
+nodes/action_jump_in_place/node = SubResource("AnimationNodeAnimation_h8wl2")
+nodes/action_jump_in_place/position = Vector2(-1360, 1760)
+nodes/action_jump_in_motion/node = SubResource("AnimationNodeAnimation_6pw3o")
+nodes/action_jump_in_motion/position = Vector2(-1360, 2040)
+nodes/action_airborne/node = SubResource("AnimationNodeAnimation_h2y0n")
+nodes/action_airborne/position = Vector2(-980, 2280)
+nodes/Action_Land_Select/node = SubResource("AnimationNodeTransition_chv51")
+nodes/Action_Land_Select/position = Vector2(-1000, 2620)
+nodes/action_land_in_place/node = SubResource("AnimationNodeAnimation_vcm0m")
+nodes/action_land_in_place/position = Vector2(-1400, 2520)
+nodes/action_land_in_motion/node = SubResource("AnimationNodeAnimation_fhb4n")
+nodes/action_land_in_motion/position = Vector2(-1400, 2780)
+node_connections = [&"output", 0, &"Mode_Select", &"Mode_Select", 0, &"Adventure_Select", &"Mode_Select", 1, &"Action_Select", &"Adventure_Select", 0, &"Adventure_Ground_Select", &"Adventure_Select", 1, &"Adventure_Air_Select", &"Action_Select", 0, &"Action_Ground_Select", &"Action_Select", 1, &"Action_Air_Select", &"Adventure_Ground_Select", 0, &"Adventure_Locomotion_Select", &"Adventure_Ground_Select", 1, &"Adventure_Jump_Select", &"Adventure_Locomotion_Select", 0, &"Adventure_Walk", &"Adventure_Locomotion_Select", 1, &"Adventure_Run", &"Adventure_Jump_Select", 0, &"adventure_jump_in_place", &"Adventure_Jump_Select", 1, &"adventure_jump_in_motion", &"Adventure_Air_Select", 0, &"adventure_airborne", &"Adventure_Air_Select", 1, &"Adventure_Land_Select", &"Adventure_Land_Select", 0, &"adventure_land_in_place", &"Adventure_Land_Select", 1, &"adventure_land_in_motion", &"Action_Ground_Select", 0, &"Action_Locomotion_Select", &"Action_Ground_Select", 1, &"Action_Jump_Select", &"Action_Air_Select", 0, &"action_airborne", &"Action_Air_Select", 1, &"Action_Land_Select", &"Action_Jump_Select", 0, &"action_jump_in_place", &"Action_Jump_Select", 1, &"action_jump_in_motion", &"Action_Locomotion_Select", 0, &"Action_Walk", &"Action_Locomotion_Select", 1, &"Action_Run", &"Action_Land_Select", 0, &"action_land_in_place", &"Action_Land_Select", 1, &"action_land_in_motion"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bpw1b"]
 advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8cn5l"]
+advance_mode = 2
+advance_condition = &"is_rifle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ew3y5"]
+advance_mode = 2
+advance_condition = &"is_unarmed"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3wlsy"]
 states/End/position = Vector2(1075, 102)
 states/Interactions/node = SubResource("AnimationNodeBlendTree_3wlsy")
 states/Interactions/position = Vector2(739, -89)
 states/Pistol/node = SubResource("AnimationNodeBlendTree_j3ovn")
-states/Pistol/position = Vector2(285, 22)
+states/Pistol/position = Vector2(916, -130)
 states/Rifle/node = SubResource("AnimationNodeBlendTree_afbqv")
 states/Rifle/position = Vector2(538, -155)
-states/Start/position = Vector2(533, 22)
+states/Start/position = Vector2(-25, 17)
 states/Sword/node = SubResource("AnimationNodeBlendTree_gx6sm")
 states/Sword/position = Vector2(547, 192)
 states/Unarmed/node = SubResource("AnimationNodeBlendTree_yqrof")
-states/Unarmed/position = Vector2(802, 30)
-transitions = ["Start", "Rifle", SubResource("AnimationNodeStateMachineTransition_ttr27")]
-graph_offset = Vector2(-168, -360)
+states/Unarmed/position = Vector2(426, 27)
+transitions = ["Start", "Unarmed", SubResource("AnimationNodeStateMachineTransition_bpw1b"), "Unarmed", "Rifle", SubResource("AnimationNodeStateMachineTransition_8cn5l"), "Rifle", "Unarmed", SubResource("AnimationNodeStateMachineTransition_ew3y5")]
+graph_offset = Vector2(-272, -251)
 
 [node name="Player" type="CharacterBody3D" unique_id=2041591954 groups=["Player"]]
 collision_layer = 2
@@ -786,50 +1147,50 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0.0021384205, 0, -0.0016464932)
+bones/0/position = Vector3(0, 0, 0)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Hips"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.757011e-08, 0.9979194, 4.091332e-07)
 bones/1/enabled = true
-bones/1/position = Vector3(0.047759376, 0.93714744, -0.044773854)
-bones/1/rotation = Quaternion(-0.05758501, -0.46061516, -0.011346119, 0.88565737)
+bones/1/position = Vector3(-0.04064307, 0.98995996, -0.014199549)
+bones/1/rotation = Quaternion(-0.031886816, -0.047580115, -0.024732336, 0.998052)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Spine"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.16957e-08, 0.09923464, -0.012273356)
 bones/2/enabled = true
 bones/2/position = Vector3(-8.16957e-08, 0.09923464, -0.012273356)
-bones/2/rotation = Quaternion(0.0486029, 0.004710717, 0.0051797046, 0.9987937)
+bones/2/rotation = Quaternion(0.029154789, 0.013863562, 0.023326812, 0.99920654)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Chest"
 bones/3/parent = 2
 bones/3/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1619371e-05, 0.11645443, -0.014223445)
 bones/3/enabled = true
 bones/3/position = Vector3(-1.1619371e-05, 0.11645443, -0.014223445)
-bones/3/rotation = Quaternion(0.045028474, 0.010909857, 0.0045298226, 0.9989159)
+bones/3/rotation = Quaternion(0.01041761, 0.00353885, 0.013758975, 0.9998449)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "UpperChest"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0822707e-05, 0.13360204, -0.016264593)
 bones/4/enabled = true
 bones/4/position = Vector3(-1.0822707e-05, 0.13360204, -0.016264593)
-bones/4/rotation = Quaternion(0.0796201, 0.011259496, -0.0010306411, 0.9967612)
+bones/4/rotation = Quaternion(0.010237411, 0.003745649, 0.013835029, 0.9998449)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Neck"
 bones/5/parent = 4
 bones/5/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2941228e-05, 0.1503248, 0.007929032)
 bones/5/enabled = true
 bones/5/position = Vector3(-1.2941228e-05, 0.1503248, 0.007929032)
-bones/5/rotation = Quaternion(0.02140702, 0.04900587, -0.0030025488, 0.9985646)
+bones/5/rotation = Quaternion(0.048973765, -0.0014887752, 0.004556846, 0.9987886)
 bones/5/scale = Vector3(1, 1, 1)
 bones/6/name = "Head"
 bones/6/parent = 5
 bones/6/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.022352e-06, 0.10321832, 0.03142428)
 bones/6/enabled = true
 bones/6/position = Vector3(-9.022352e-06, 0.10321832, 0.03142428)
-bones/6/rotation = Quaternion(-0.012714517, 0.31517595, -0.05510892, 0.94734657)
+bones/6/rotation = Quaternion(-0.06990688, 0.01023154, -0.0005358438, 0.99750096)
 bones/6/scale = Vector3(1, 1, 1)
 bones/7/name = "headtop_end"
 bones/7/parent = 6
@@ -843,49 +1204,49 @@ bones/8/parent = 4
 bones/8/rest = Transform3D(0, 1, 0, 0, 0, 1, 1, 0, 0, 0.06105025, 0.09110938, 0.0070554633)
 bones/8/enabled = true
 bones/8/position = Vector3(0.06105025, 0.09110938, 0.0070554633)
-bones/8/rotation = Quaternion(0.36018118, 0.5271534, 0.6578407, -0.3995304)
+bones/8/rotation = Quaternion(0.45866543, 0.49923792, 0.63011044, -0.37861386)
 bones/8/scale = Vector3(1, 1, 1)
 bones/9/name = "LeftUpperArm"
 bones/9/parent = 8
 bones/9/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.026009273, 0.12655063, -0.0026483396)
 bones/9/enabled = true
 bones/9/position = Vector3(-0.026009273, 0.12655063, -0.0026483396)
-bones/9/rotation = Quaternion(0.061333783, 0.8328152, -0.49535146, 0.23934084)
+bones/9/rotation = Quaternion(0.1267974, 0.8022119, -0.57026315, -0.1232016)
 bones/9/scale = Vector3(1, 1, 1)
 bones/10/name = "LeftLowerArm"
 bones/10/parent = 9
 bones/10/rest = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 6.071154e-08, 0.27404678, -2.4565941e-05)
 bones/10/enabled = true
 bones/10/position = Vector3(6.071154e-08, 0.27404678, -2.4565941e-05)
-bones/10/rotation = Quaternion(0.68111724, -0.72417504, -0.07195295, -0.08045209)
+bones/10/rotation = Quaternion(0.0090049775, -0.70704865, 0.0090049775, 0.7070502)
 bones/10/scale = Vector3(1, 1, 1)
 bones/11/name = "LeftHand"
 bones/11/parent = 10
 bones/11/rest = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -2.4479552e-05, 0.27614453, 8.39841e-08)
 bones/11/enabled = true
 bones/11/position = Vector3(-2.4479552e-05, 0.27614453, 8.39841e-08)
-bones/11/rotation = Quaternion(0.0747596, 0.51753014, 0.030655121, 0.85184145)
+bones/11/rotation = Quaternion(0.05196855, 0.47840908, -0.0142597, 0.876482)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "LeftThumbMetacarpal"
 bones/12/parent = 11
 bones/12/rest = Transform3D(0, -0.577, 0.816, 0, 0.816, 0.577, -1, 0, 0, -0.030029736, 0.03789014, 0.021668218)
 bones/12/enabled = true
 bones/12/position = Vector3(-0.030029736, 0.03789014, 0.021668218)
-bones/12/rotation = Quaternion(-0.14274901, 0.6877001, 0.17226017, 0.6906648)
+bones/12/rotation = Quaternion(-0.23049895, 0.6828909, 0.17169985, 0.67160225)
 bones/12/scale = Vector3(1, 0.99939233, 0.99939233)
 bones/13/name = "LeftThumbProximal"
 bones/13/parent = 12
 bones/13/rest = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 2.9802322e-08, 0, -2.9802322e-08, 0.9999999, -0.021217002, 0.042288724, 0.003897622)
 bones/13/enabled = true
 bones/13/position = Vector3(-0.021217002, 0.042288724, 0.003897622)
-bones/13/rotation = Quaternion(0.10938364, 0.053400986, 0.01642516, 0.9924282)
+bones/13/rotation = Quaternion(0.2015038, 0.20387977, -0.05960199, 0.95617825)
 bones/13/scale = Vector3(0.99999994, 0.9999999, 0.9999999)
 bones/14/name = "LeftThumbDistal"
 bones/14/parent = 13
 bones/14/rest = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, -0.019594625, 0.03905461, 0.0035993126)
 bones/14/enabled = true
 bones/14/position = Vector3(-0.019594625, 0.03905461, 0.0035993126)
-bones/14/rotation = Quaternion(-0.14735815, -0.142418, -0.15617651, 0.9662359)
+bones/14/rotation = Quaternion(0.040003557, -0.05287882, -0.12858944, 0.9894789)
 bones/14/scale = Vector3(1, 1.0000001, 1.0000001)
 bones/15/name = "handthumb4.L"
 bones/15/parent = 14
@@ -893,27 +1254,27 @@ bones/15/rest = Transform3D(-0.06481775, -0.44242606, -0.89445966, 0.038288116, 
 bones/15/enabled = true
 bones/15/position = Vector3(-0.015467448, 0.03082822, 0.0028411455)
 bones/15/rotation = Quaternion(0.1427988, -0.70719606, 0.17961903, 0.66874456)
-bones/15/scale = Vector3(1.0005778, 1.0004867, 1.0001521)
+bones/15/scale = Vector3(1.0005777, 1.0004866, 1.0001522)
 bones/16/name = "LeftIndexProximal"
 bones/16/parent = 11
 bones/16/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.028220406, 0.12266653, 0.0023074516)
 bones/16/enabled = true
 bones/16/position = Vector3(-0.028220406, 0.12266653, 0.0023074516)
-bones/16/rotation = Quaternion(0.1806808, 0.083295695, -0.0038796659, 0.9800006)
+bones/16/rotation = Quaternion(0.06621671, 0.00073456764, 0.008430958, 0.9977695)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/name = "LeftIndexIntermediate"
 bones/17/parent = 16
 bones/17/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7340976e-07, 0.038919635, -3.3358162e-06)
 bones/17/enabled = true
 bones/17/position = Vector3(-3.7340976e-07, 0.038919635, -3.3358162e-06)
-bones/17/rotation = Quaternion(0.24565066, -3.2037492e-06, -0.025173482, 0.9690315)
+bones/17/rotation = Quaternion(0.15099795, -1.8775463e-06, -0.015473813, 0.98841304)
 bones/17/scale = Vector3(1, 1, 1)
 bones/18/name = "LeftIndexDistal"
 bones/18/parent = 17
 bones/18/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.923907e-08, 0.03415157, -3.1306365e-06)
 bones/18/enabled = true
 bones/18/position = Vector3(9.923907e-08, 0.03415157, -3.1306365e-06)
-bones/18/rotation = Quaternion(0.24643224, -3.1590462e-06, -0.025253654, 0.96883094)
+bones/18/rotation = Quaternion(0.07008183, -9.983778e-07, -0.0071816742, 0.99751544)
 bones/18/scale = Vector3(1, 1, 1)
 bones/19/name = "handindex4.L"
 bones/19/parent = 18
@@ -927,21 +1288,21 @@ bones/20/parent = 11
 bones/20/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4585612e-07, 0.1277554, -1.1285998e-05)
 bones/20/enabled = true
 bones/20/position = Vector3(-1.4585612e-07, 0.1277554, -1.1285998e-05)
-bones/20/rotation = Quaternion(0.1798295, 0.08903641, -0.00031495097, 0.9796601)
+bones/20/rotation = Quaternion(0.13653125, -0.0038379873, -0.022952018, 0.9903624)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "LeftMiddleIntermediate"
 bones/21/parent = 20
 bones/21/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0864885e-08, 0.03613968, -3.2571122e-06)
 bones/21/enabled = true
 bones/21/position = Vector3(-1.0864885e-08, 0.03613968, -3.2571122e-06)
-bones/21/rotation = Quaternion(0.38814908, -3.3974648e-06, -0.039776266, 0.9207378)
+bones/21/rotation = Quaternion(0.15125467, -1.4007092e-06, -0.015500158, 0.9883733)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "LeftMiddleDistal"
 bones/22/parent = 21
 bones/22/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.750399e-07, 0.034597624, -3.034439e-06)
 bones/22/enabled = true
 bones/22/position = Vector3(2.750399e-07, 0.034597624, -3.034439e-06)
-bones/22/rotation = Quaternion(0.37232465, -3.784895e-06, -0.03815463, 0.92731804)
+bones/22/rotation = Quaternion(0.15993273, -1.5348198e-06, -0.016389312, 0.98699194)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "handmiddle4.L"
 bones/23/parent = 22
@@ -955,21 +1316,21 @@ bones/24/parent = 11
 bones/24/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.022166355, 0.12147027, -0.00011058723)
 bones/24/enabled = true
 bones/24/position = Vector3(0.022166355, 0.12147027, -0.00011058723)
-bones/24/rotation = Quaternion(0.15596478, 0.010912612, -0.0010726154, 0.9877018)
+bones/24/rotation = Quaternion(0.18325111, -0.004654303, -0.03145483, 0.9825518)
 bones/24/scale = Vector3(1, 1, 1)
 bones/25/name = "LeftRingIntermediate"
 bones/25/parent = 24
 bones/25/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3033675e-07, 0.036011748, -3.1810328e-06)
 bones/25/enabled = true
 bones/25/position = Vector3(-3.3033675e-07, 0.036011748, -3.1810328e-06)
-bones/25/rotation = Quaternion(0.56392276, -9.39518e-06, -0.057789043, 0.8238031)
+bones/25/rotation = Quaternion(0.1813877, -3.0100334e-06, -0.018588088, 0.98323596)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "LeftRingDistal"
 bones/26/parent = 25
 bones/26/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3187508e-07, 0.033073217, -3.0013928e-06)
 bones/26/enabled = true
 bones/26/position = Vector3(2.3187508e-07, 0.033073217, -3.0013928e-06)
-bones/26/rotation = Quaternion(0.2852088, 0.019705428, -0.09367933, 0.9536728)
+bones/26/rotation = Quaternion(0.15521279, -2.6524067e-06, -0.015905708, 0.98775303)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "handring4.L"
 bones/27/parent = 26
@@ -983,21 +1344,21 @@ bones/28/parent = 11
 bones/28/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04725836, 0.10908222, 0.0022517822)
 bones/28/enabled = true
 bones/28/position = Vector3(0.04725836, 0.10908222, 0.0022517822)
-bones/28/rotation = Quaternion(0.057503648, -0.06987923, -0.010058253, 0.99584585)
+bones/28/rotation = Quaternion(0.23386809, -0.003443852, -0.04900852, 0.9710263)
 bones/28/scale = Vector3(1, 1, 1)
 bones/29/name = "LeftLittleIntermediate"
 bones/29/parent = 28
 bones/29/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1675537e-05, 0.041366488, -3.4627244e-06)
 bones/29/enabled = true
 bones/29/position = Vector3(-1.1675537e-05, 0.041366488, -3.4627244e-06)
-bones/29/rotation = Quaternion(0.43312725, -0.00020137429, -0.044384927, 0.9002393)
+bones/29/rotation = Quaternion(0.15125774, -7.036328e-05, -0.015500337, 0.98837286)
 bones/29/scale = Vector3(1, 1, 1)
 bones/30/name = "LeftLittleDistal"
 bones/30/parent = 29
 bones/30/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1787226e-05, 0.025948301, -2.4756096e-06)
 bones/30/enabled = true
 bones/30/position = Vector3(1.1787226e-05, 0.025948301, -2.4756096e-06)
-bones/30/rotation = Quaternion(0.27413827, -7.30157e-07, -0.028092925, 0.96128)
+bones/30/rotation = Quaternion(0.14349757, -4.1723246e-07, -0.014705179, 0.9895414)
 bones/30/scale = Vector3(1, 1, 1)
 bones/31/name = "handpinky4.L"
 bones/31/parent = 30
@@ -1011,49 +1372,49 @@ bones/32/parent = 4
 bones/32/rest = Transform3D(0, -1, 0, 0, 0, 1, -1, 0, 0, -0.061064955, 0.091099605, 0.00705565)
 bones/32/enabled = true
 bones/32/position = Vector3(-0.061064955, 0.091099605, 0.00705565)
-bones/32/rotation = Quaternion(0.36484334, -0.52199715, -0.6276406, -0.44774526)
+bones/32/rotation = Quaternion(0.4770656, -0.47761333, -0.63643616, -0.37315264)
 bones/32/scale = Vector3(1, 1, 1)
 bones/33/name = "RightUpperArm"
 bones/33/parent = 32
 bones/33/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.026008878, 0.1265502, -0.0026712695)
 bones/33/enabled = true
 bones/33/position = Vector3(0.026008878, 0.1265502, -0.0026712695)
-bones/33/rotation = Quaternion(-0.25541228, 0.87445545, -0.39149562, 0.12970522)
+bones/33/rotation = Quaternion(-0.14860578, 0.8279026, -0.49620056, 0.21512458)
 bones/33/scale = Vector3(1, 1, 1)
 bones/34/name = "RightLowerArm"
 bones/34/parent = 33
 bones/34/rest = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2.0989395e-07, 0.27404675, 2.364931e-05)
 bones/34/enabled = true
 bones/34/position = Vector3(2.0989395e-07, 0.27404675, 2.364931e-05)
-bones/34/rotation = Quaternion(0.56801605, 0.620876, -0.4586539, 0.28549516)
+bones/34/rotation = Quaternion(0.04128138, 0.70590436, -0.041281335, 0.7058972)
 bones/34/scale = Vector3(1, 1, 1)
 bones/35/name = "RightHand"
 bones/35/parent = 34
 bones/35/rest = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -2.3954357e-05, 0.27614462, 3.3446653e-07)
 bones/35/enabled = true
 bones/35/position = Vector3(-2.3954357e-05, 0.27614462, 3.3446653e-07)
-bones/35/rotation = Quaternion(0.21449102, -0.6497471, -0.055401333, 0.7271541)
+bones/35/rotation = Quaternion(0.04246771, -0.57097447, 0.035911262, 0.8190818)
 bones/35/scale = Vector3(1, 1, 1)
 bones/36/name = "RightThumbMetacarpal"
 bones/36/parent = 35
 bones/36/rest = Transform3D(0, 0.577, -0.816, 0, 0.816, 0.577, 1, 0, 0, 0.030029772, 0.037886254, 0.021674877)
 bones/36/enabled = true
 bones/36/position = Vector3(0.030029772, 0.037886254, 0.021674877)
-bones/36/rotation = Quaternion(-0.19869156, -0.7678924, -0.18341859, 0.5807069)
+bones/36/rotation = Quaternion(-0.24051854, -0.6719302, -0.18474568, 0.6756698)
 bones/36/scale = Vector3(1, 0.99939233, 0.99939233)
 bones/37/name = "RightThumbProximal"
 bones/37/parent = 36
 bones/37/rest = Transform3D(0.99999994, 0, 0, 0, 0.9999999, 2.9802322e-08, 0, -2.9802322e-08, 0.9999999, 0.021223027, 0.04228549, 0.003895383)
 bones/37/enabled = true
 bones/37/position = Vector3(0.021223027, 0.04228549, 0.003895383)
-bones/37/rotation = Quaternion(0.17844464, -0.07259014, -0.010153801, 0.9812162)
+bones/37/rotation = Quaternion(0.23821144, -0.20987567, 0.051172145, 0.9468839)
 bones/37/scale = Vector3(0.99999994, 0.9999999, 0.9999999)
 bones/38/name = "RightThumbDistal"
 bones/38/parent = 37
 bones/38/rest = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0.019601334, 0.039051883, 0.0035973112)
 bones/38/enabled = true
 bones/38/position = Vector3(0.019601334, 0.039051883, 0.0035973112)
-bones/38/rotation = Quaternion(0.2174186, -0.09241668, 0.12058322, 0.96418256)
+bones/38/rotation = Quaternion(0.045557756, 0.046076108, 0.16169058, 0.984712)
 bones/38/scale = Vector3(1, 1.0000001, 1.0000001)
 bones/39/name = "handthumb4.R"
 bones/39/parent = 38
@@ -1061,27 +1422,27 @@ bones/39/rest = Transform3D(-0.06247563, 0.4428023, 0.8944404, -0.040090352, 0.8
 bones/39/enabled = true
 bones/39/position = Vector3(0.015472063, 0.030825948, 0.0028395357)
 bones/39/rotation = Quaternion(0.14249063, 0.7062253, -0.18017964, 0.66968465)
-bones/39/scale = Vector3(1.0005773, 1.0004863, 1.0001523)
+bones/39/scale = Vector3(1.0005773, 1.0004864, 1.0001522)
 bones/40/name = "RightIndexProximal"
 bones/40/parent = 35
 bones/40/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.028220514, 0.12266604, 0.0023289963)
 bones/40/enabled = true
 bones/40/position = Vector3(0.028220514, 0.12266604, 0.0023289963)
-bones/40/rotation = Quaternion(0.044935092, -0.0008224249, 0.050966546, 0.9976886)
+bones/40/rotation = Quaternion(0.059512928, -0.0009909272, -0.010975897, 0.99816674)
 bones/40/scale = Vector3(1, 1, 1)
 bones/41/name = "RightIndexIntermediate"
 bones/41/parent = 40
 bones/41/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9760775e-07, 0.03891977, 3.3299943e-06)
 bones/41/enabled = true
 bones/41/position = Vector3(3.9760775e-07, 0.03891977, 3.3299943e-06)
-bones/41/rotation = Quaternion(0.10052395, -8.493662e-07, 0.008188665, 0.994901)
+bones/41/rotation = Quaternion(0.15128753, -1.2665987e-06, 0.012324184, 0.988413)
 bones/41/scale = Vector3(1, 1, 1)
 bones/42/name = "RightIndexDistal"
 bones/42/parent = 41
 bones/42/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0697616e-08, 0.03415167, 2.9225748e-06)
 bones/42/enabled = true
 bones/42/position = Vector3(-6.0697616e-08, 0.03415167, 2.9225748e-06)
-bones/42/rotation = Quaternion(0.28847107, -2.6822088e-06, 0.023499664, 0.95720017)
+bones/42/rotation = Quaternion(0.07021637, -6.854534e-07, 0.00571993, 0.99751544)
 bones/42/scale = Vector3(1, 1, 1)
 bones/43/name = "handindex4.R"
 bones/43/parent = 42
@@ -1095,21 +1456,21 @@ bones/44/parent = 35
 bones/44/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5822303e-07, 0.12775533, 1.1208954e-05)
 bones/44/enabled = true
 bones/44/position = Vector3(2.5822303e-07, 0.12775533, 1.1208954e-05)
-bones/44/rotation = Quaternion(0.0064646155, -0.03161758, 0.10548858, 0.9938967)
+bones/44/rotation = Quaternion(0.13051493, 0.0036880667, 0.018922476, 0.99125886)
 bones/44/scale = Vector3(1, 1, 1)
 bones/45/name = "RightMiddleIntermediate"
 bones/45/parent = 44
 bones/45/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4788604e-08, 0.036139797, 3.117666e-06)
 bones/45/enabled = true
 bones/45/position = Vector3(5.4788604e-08, 0.036139797, 3.117666e-06)
-bones/45/rotation = Quaternion(0.78051996, -6.1187884e-06, 0.06358286, 0.6218888)
+bones/45/rotation = Quaternion(0.15154472, -1.0430812e-06, 0.012345104, 0.98837334)
 bones/45/scale = Vector3(1, 1, 1)
 bones/46/name = "RightMiddleDistal"
 bones/46/parent = 45
 bones/46/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4456372e-07, 0.034597594, 3.1271165e-06)
 bones/46/enabled = true
 bones/46/position = Vector3(-2.4456372e-07, 0.034597594, 3.1271165e-06)
-bones/46/rotation = Quaternion(0.5808558, -4.75347e-06, 0.047317706, 0.81263)
+bones/46/rotation = Quaternion(0.16023958, -1.400709e-06, 0.013053624, 0.9869918)
 bones/46/scale = Vector3(1, 1, 1)
 bones/47/name = "handmiddle4.R"
 bones/47/parent = 46
@@ -1123,21 +1484,21 @@ bones/48/parent = 35
 bones/48/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022166235, 0.12147007, -8.9404704e-05)
 bones/48/enabled = true
 bones/48/position = Vector3(-0.022166235, 0.12147007, -8.9404704e-05)
-bones/48/rotation = Quaternion(0.09111222, 0.113680795, 0.10051383, 0.98421144)
+bones/48/rotation = Quaternion(0.17745188, 0.0044975434, 0.02645937, 0.9837635)
 bones/48/scale = Vector3(1, 1, 1)
 bones/49/name = "RightRingIntermediate"
 bones/49/parent = 48
 bones/49/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7781538e-07, 0.03601205, 3.1848679e-06)
 bones/49/enabled = true
 bones/49/position = Vector3(3.7781538e-07, 0.03601205, 3.1848679e-06)
-bones/49/rotation = Quaternion(0.83666563, -2.2351745e-07, 0.068156905, 0.543457)
+bones/49/rotation = Quaternion(0.18173559, -8.940695e-08, 0.01480457, 0.98323596)
 bones/49/scale = Vector3(1, 1, 1)
 bones/50/name = "RightRingDistal"
 bones/50/parent = 49
 bones/50/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.856238e-07, 0.03307316, 2.8953725e-06)
 bones/50/enabled = true
 bones/50/position = Vector3(-1.856238e-07, 0.03307316, 2.8953725e-06)
-bones/50/rotation = Quaternion(0.6330093, -4.656613e-07, 0.051566362, 0.77242494)
+bones/50/rotation = Quaternion(0.1555105, -1.6391277e-07, 0.012668282, 0.98775303)
 bones/50/scale = Vector3(1, 1, 1)
 bones/51/name = "handring4.R"
 bones/51/parent = 50
@@ -1151,21 +1512,21 @@ bones/52/parent = 35
 bones/52/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047258254, 0.10908179, 0.0022708187)
 bones/52/enabled = true
 bones/52/position = Vector3(-0.047258254, 0.10908179, 0.0022708187)
-bones/52/rotation = Quaternion(0.042569995, 0.15520206, 0.08593947, 0.9832164)
+bones/52/rotation = Quaternion(0.22849344, 0.0033974792, 0.042981084, 0.97259027)
 bones/52/scale = Vector3(1, 1, 1)
 bones/53/name = "RightLittleIntermediate"
 bones/53/parent = 52
 bones/53/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9373444e-07, 0.04136652, 3.7332754e-06)
 bones/53/enabled = true
 bones/53/position = Vector3(2.9373444e-07, 0.04136652, 3.7332754e-06)
-bones/53/rotation = Quaternion(0.72973514, 5.505048e-06, 0.059446074, 0.6811409)
+bones/53/rotation = Quaternion(0.15154797, 1.0728836e-06, 0.012345552, 0.9883728)
 bones/53/scale = Vector3(1, 1, 1)
 bones/54/name = "RightLittleDistal"
 bones/54/parent = 53
 bones/54/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6298565e-07, 0.025948463, 2.205427e-06)
 bones/54/enabled = true
 bones/54/position = Vector3(-3.6298565e-07, 0.025948463, 2.205427e-06)
-bones/54/rotation = Quaternion(0.6238807, -8.806586e-06, 0.050822973, 0.7798653)
+bones/54/rotation = Quaternion(0.14377284, -1.9818547e-06, 0.011711986, 0.9895415)
 bones/54/scale = Vector3(1, 1, 1)
 bones/55/name = "handpinky4.R"
 bones/55/parent = 54
@@ -1179,28 +1540,28 @@ bones/56/parent = 1
 bones/56/rest = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, 0.09124458, -0.066563904, -0.0005537717)
 bones/56/enabled = true
 bones/56/position = Vector3(0.09124458, -0.066563904, -0.0005537717)
-bones/56/rotation = Quaternion(0.13718542, 0.17676857, 0.9685267, -0.10903781)
+bones/56/rotation = Quaternion(0.1360843, 0.074863724, 0.9850594, -0.07439446)
 bones/56/scale = Vector3(1, 1, 1)
 bones/57/name = "LeftLowerLeg"
 bones/57/parent = 56
 bones/57/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.002446814, 0.4059543, -0.005156159)
 bones/57/enabled = true
 bones/57/position = Vector3(-0.002446814, 0.4059543, -0.005156159)
-bones/57/rotation = Quaternion(-0.032866206, 0.9609964, -0.24466711, 0.124674976)
+bones/57/rotation = Quaternion(-0.039248824, 0.993474, -0.10613278, 0.0143135255)
 bones/57/scale = Vector3(1, 1, 1)
 bones/58/name = "LeftFoot"
 bones/58/parent = 57
 bones/58/rest = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, -0.002446683, 0.42047927, 0.020591522)
 bones/58/enabled = true
 bones/58/position = Vector3(-0.002446683, 0.42047927, 0.020591522)
-bones/58/rotation = Quaternion(-0.051555328, 0.722101, -0.68752956, 0.056703985)
+bones/58/rotation = Quaternion(-0.042750094, 0.7115892, -0.6994734, 0.050499775)
 bones/58/scale = Vector3(1, 1, 1)
 bones/59/name = "LeftToes"
 bones/59/parent = 58
 bones/59/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -0.0037353649, 0.13966562, -0.07208546)
 bones/59/enabled = true
 bones/59/position = Vector3(-0.0037353649, 0.13966562, -0.07208546)
-bones/59/rotation = Quaternion(-0.0008677223, 0.99999607, 0.0018184185, -0.0019518314)
+bones/59/rotation = Quaternion(-1.4191635e-07, 0.9990753, 0.04299629, -1.35001645e-08)
 bones/59/scale = Vector3(1, 1, 1)
 bones/60/name = "toe_end.L"
 bones/60/parent = 59
@@ -1214,28 +1575,28 @@ bones/61/parent = 1
 bones/61/rest = Transform3D(-1, 0, 0, 0, -1, 0, 0, 0, 1, -0.09124449, -0.06656402, -0.00055377674)
 bones/61/enabled = true
 bones/61/position = Vector3(-0.09124449, -0.06656402, -0.00055377674)
-bones/61/rotation = Quaternion(-0.19136775, 0.14688729, 0.9584918, 0.15197349)
+bones/61/rotation = Quaternion(-0.09211148, -0.015682539, 0.9952538, -0.02719177)
 bones/61/scale = Vector3(1, 1, 1)
 bones/62/name = "RightLowerLeg"
 bones/62/parent = 61
 bones/62/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.002446802, 0.4059545, -0.005142872)
 bones/62/enabled = true
 bones/62/position = Vector3(0.002446802, 0.4059545, -0.005142872)
-bones/62/rotation = Quaternion(0.03793897, 0.94411606, -0.32665002, -0.022476457)
+bones/62/rotation = Quaternion(0.033580396, 0.9942895, -0.05735517, -0.083493985)
 bones/62/scale = Vector3(1, 1, 1)
 bones/63/name = "RightFoot"
 bones/63/parent = 62
 bones/63/rest = Transform3D(-1, 0, 0, 0, 0, -1, 0, -1, 0, 0.0024467043, 0.42047858, 0.020605322)
 bones/63/enabled = true
 bones/63/position = Vector3(0.0024467043, 0.42047858, 0.020605322)
-bones/63/rotation = Quaternion(0.082477346, 0.6252931, -0.7744977, -0.048575286)
+bones/63/rotation = Quaternion(0.011319245, 0.68061286, -0.73207897, -0.026425352)
 bones/63/scale = Vector3(1, 1, 1)
 bones/64/name = "RightToes"
 bones/64/parent = 63
 bones/64/rest = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.003735368, 0.13966559, -0.07208538)
 bones/64/enabled = true
 bones/64/position = Vector3(0.003735368, 0.13966559, -0.07208538)
-bones/64/rotation = Quaternion(-0.018830728, 0.9995425, -0.01387641, -0.019174825)
+bones/64/rotation = Quaternion(-5.536127e-08, 0.9981557, 0.060707133, -4.690406e-08)
 bones/64/scale = Vector3(1, 1, 1)
 bones/65/name = "toe_end.R"
 bones/65/parent = 64
@@ -1259,22 +1620,22 @@ skeleton = NodePath("..")
 surface_material_override/0 = SubResource("StandardMaterial3D_y0u04")
 
 [node name="RIGHT_HAND" type="BoneAttachment3D" parent="ModelController/Armature/GeneralSkeleton" unique_id=227423426]
-transform = Transform3D(0.97348654, -0.03434001, -0.22613126, -0.18090582, 0.48881197, -0.8527162, 0.1398955, 0.87101597, 0.4696281, -0.17049368, 1.1508597, 0.06568543)
+transform = Transform3D(0.7029564, -0.16327828, -0.6921148, -0.3245525, -0.93903863, -0.107993215, -0.6326939, 0.30062994, -0.71292955, -0.22490393, 0.76590616, 0.018645734)
 bone_name = "RightThumbProximal"
 bone_idx = 37
 
 [node name="RIGHT_HIP" type="BoneAttachment3D" parent="ModelController/Armature/GeneralSkeleton" unique_id=1281859421]
-transform = Transform3D(0.5754099, 0.073146604, -0.8145877, 0.032951504, 0.9931105, 0.112453565, 0.81720114, -0.091548786, 0.5690353, 0.049897797, 0.93714744, -0.046420347)
+transform = Transform3D(0.99424887, 0.052402664, -0.09339757, -0.04633395, 0.9967431, 0.06600293, 0.09655212, -0.06129586, 0.9934387, -0.04064307, 0.98995996, -0.014199549)
 bone_name = "Hips"
 bone_idx = 1
 
 [node name="UPPER_BACK" type="BoneAttachment3D" parent="ModelController/Armature/GeneralSkeleton" unique_id=414424914]
-transform = Transform3D(0.6903202, -0.2393871, -0.6827531, 0.072119445, 0.9617436, -0.26428804, 0.71990067, 0.13320358, 0.68117553, 0.04026991, 1.4289645, -0.065400526)
+transform = Transform3D(0.99634844, -0.07032594, -0.048415117, 0.06344231, 0.98929524, -0.13141476, 0.05713873, 0.12786332, 0.9901445, -0.044818852, 1.487921, -0.04955905)
 bone_name = "Neck"
 bone_idx = 5
 
 [node name="LOWER_BACK" type="BoneAttachment3D" parent="ModelController/Armature/GeneralSkeleton" unique_id=95495374]
-transform = Transform3D(0.583399, -0.012020014, -0.8120968, 0.042677082, 0.9989628, 0.015872784, 0.81106377, -0.043918088, 0.5833069, 0.067154154, 1.0343182, -0.062489197)
+transform = Transform3D(0.99773043, 0.001209714, -0.06732401, -0.00073403947, 0.99997455, 0.007089775, 0.06733089, -0.007024266, 0.99770594, -0.03429669, 1.0880613, -0.032475058)
 bone_name = "Spine"
 bone_idx = 2
 
@@ -1340,12 +1701,15 @@ _animation_tree = NodePath("AnimationTree")
 root_node = NodePath("../../ModelController")
 libraries/ = SubResource("AnimationLibrary_afbqv")
 libraries/Rifle = ExtResource("3_3t07l")
+libraries/Unarmed = SubResource("AnimationLibrary_wb3uv")
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationController" unique_id=719024907]
 root_node = NodePath("../../ModelController")
 root_motion_track = NodePath("%GeneralSkeleton:Root")
 tree_root = SubResource("AnimationNodeStateMachine_3wlsy")
 anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/is_rifle = false
+parameters/conditions/is_unarmed = true
 parameters/Rifle/Mode_Select/current_state = "Adventure"
 parameters/Rifle/Mode_Select/transition_request = ""
 parameters/Rifle/Mode_Select/current_index = 0
@@ -1396,6 +1760,49 @@ parameters/Rifle/Draw_Shot/request = 0
 parameters/Rifle/Sheath_Shot/active = false
 parameters/Rifle/Sheath_Shot/internal_active = false
 parameters/Rifle/Sheath_Shot/request = 0
+parameters/Unarmed/Mode_Select/current_state = "Action"
+parameters/Unarmed/Mode_Select/transition_request = ""
+parameters/Unarmed/Mode_Select/current_index = 1
+parameters/Unarmed/Adventure_Select/current_state = "Ground"
+parameters/Unarmed/Adventure_Select/transition_request = ""
+parameters/Unarmed/Adventure_Select/current_index = 0
+parameters/Unarmed/Action_Select/current_state = "Ground"
+parameters/Unarmed/Action_Select/transition_request = ""
+parameters/Unarmed/Action_Select/current_index = 0
+parameters/Unarmed/Adventure_Ground_Select/current_state = "Locomotion"
+parameters/Unarmed/Adventure_Ground_Select/transition_request = ""
+parameters/Unarmed/Adventure_Ground_Select/current_index = 0
+parameters/Unarmed/Adventure_Locomotion_Select/current_state = "Walk"
+parameters/Unarmed/Adventure_Locomotion_Select/transition_request = ""
+parameters/Unarmed/Adventure_Locomotion_Select/current_index = 0
+parameters/Unarmed/Adventure_Walk/blend_position = 0.0
+parameters/Unarmed/Adventure_Run/blend_position = 0.0
+parameters/Unarmed/Adventure_Jump_Select/current_state = ""
+parameters/Unarmed/Adventure_Jump_Select/transition_request = "InPlace"
+parameters/Unarmed/Adventure_Jump_Select/current_index = -1
+parameters/Unarmed/Adventure_Air_Select/current_state = ""
+parameters/Unarmed/Adventure_Air_Select/transition_request = "Airborne"
+parameters/Unarmed/Adventure_Air_Select/current_index = -1
+parameters/Unarmed/Adventure_Land_Select/current_state = ""
+parameters/Unarmed/Adventure_Land_Select/transition_request = "InPlace"
+parameters/Unarmed/Adventure_Land_Select/current_index = -1
+parameters/Unarmed/Action_Ground_Select/current_state = "Locomotion"
+parameters/Unarmed/Action_Ground_Select/transition_request = ""
+parameters/Unarmed/Action_Ground_Select/current_index = 0
+parameters/Unarmed/Action_Air_Select/current_state = ""
+parameters/Unarmed/Action_Air_Select/transition_request = "Airborne"
+parameters/Unarmed/Action_Air_Select/current_index = -1
+parameters/Unarmed/Action_Jump_Select/current_state = ""
+parameters/Unarmed/Action_Jump_Select/transition_request = "InPlace"
+parameters/Unarmed/Action_Jump_Select/current_index = -1
+parameters/Unarmed/Action_Locomotion_Select/current_state = "Walk"
+parameters/Unarmed/Action_Locomotion_Select/transition_request = ""
+parameters/Unarmed/Action_Locomotion_Select/current_index = 0
+parameters/Unarmed/Action_Walk/blend_position = Vector2(0, 0)
+parameters/Unarmed/Action_Run/blend_position = Vector2(0, 0)
+parameters/Unarmed/Action_Land_Select/current_state = ""
+parameters/Unarmed/Action_Land_Select/transition_request = "InPlace"
+parameters/Unarmed/Action_Land_Select/current_index = -1
 
 [node name="LandingRay" type="RayCast3D" parent="." unique_id=229260120]
 transform = Transform3D(12, 0, 0, 0, 1, 0, 0, 0, 12, 0, 1, 0)

@@ -9,23 +9,21 @@ var _force_land_check: bool = false
 var _current_weapon_subtype_string: String = "Unarmed"
 var _current_weapon_data: WeaponData:
 	set(v):
-		if _current_weapon_data == v: return
 		_current_weapon_data = v
 		
-		# If null or not a gun, we are Unarmed
+		# If null or sheathed, we are Unarmed
 		if not v or not (v is GunData):
 			_current_weapon_subtype_string = "Unarmed"
-			return
-			
-		# Logic: RIFLE -> Rifle | SMG -> SMG
-		var raw_name = GunResource.GunType.keys()[v.type]
-		if raw_name.length() <= 3: 
-			_current_weapon_subtype_string = raw_name
+		
 		else:
-			_current_weapon_subtype_string = raw_name.capitalize()
+			# Logic: RIFLE -> Rifle | SMG -> SMG
+			var raw_name = GunResource.GunType.keys()[v.type]
+			_current_weapon_subtype_string = raw_name if raw_name.length() <= 3 else raw_name.capitalize()
+
+		_update_root_conditions()
 
 # ===
-# Local
+# Public
 # ===
 
 func update(delta: float, state_name: String, mode: int, weapon_data: WeaponData, is_aiming: bool) -> void:
@@ -36,11 +34,12 @@ func update(delta: float, state_name: String, mode: int, weapon_data: WeaponData
 	var is_action = (mode == 1)
 	var branch = "Action_" if is_action else "Adventure_"
 
-	# Weapon Mode
+	# Weapon Mode (Action vs Adventure)
 	_set_p("Mode_Select/transition_request", "Action" if is_action else "Adventure")
 
-	# Aim blending
-	_update_aim_blend(delta, is_aiming)
+	# Aim blending - Only if not unarmed
+	if _current_weapon_subtype_string != "Unarmed":
+		_update_aim_blend(delta, is_aiming)
 
 	# Air/Ground branching
 	var player = owner as Player
@@ -51,6 +50,24 @@ func update(delta: float, state_name: String, mode: int, weapon_data: WeaponData
 		_process_air_logic(player, branch)
 	else:
 		_process_ground_logic(delta, player, state_name, branch, is_action)
+
+func request_landing_state() -> void:
+	_force_land_check = true
+
+# ===
+# Private
+# ===
+
+func _update_root_conditions() -> void:
+	var is_unarmed = (_current_weapon_subtype_string == "Unarmed")
+	var is_rifle = (_current_weapon_subtype_string == "Rifle")
+	
+	_animation_tree.set("parameters/conditions/is_unarmed", is_unarmed)
+	_animation_tree.set("parameters/conditions/is_rifle", is_rifle)
+	
+	# Future-proofing for other types
+	# var is_pistol = (_current_weapon_subtype_string == "Pistol")
+	# _animation_tree.set("parameters/conditions/is_pistol", is_pistol)
 
 func _process_ground_logic(delta: float, player: Player, state_name: String, branch: String, is_action: bool) -> void:
 	var ground_target = "Jump" if state_name == "Jump" else "Locomotion"
@@ -78,18 +95,14 @@ func _process_ground_logic(delta: float, player: Player, state_name: String, bra
 func _process_air_logic(player: Player, branch: String) -> void:
 	if _last_air_state == "":
 		_jump_was_inplace = player._input_direction.length() < 0.1
-		_set_p(branch + "Jump_Select/transition_request", "InPlace" if _jump_was_inplace else "Moving")
+		_set_p(branch + "Jump_Select/transition_request", "InPlace" if _jump_was_inplace else "InMotion")
 
 	var target_air_state: String
 	
-	# Logic: Play Land only if we are about to hit the ground.
-	# Otherwise, play Airborne (the jump/fall loop).
 	if _force_land_check or player.is_grounded_cone():
 		target_air_state = "Land"
-		# Reset the force check once we've successfully transitioned to Land
 		_force_land_check = false 
 	else:
-		# This covers both the upward jump and the downward fall
 		target_air_state = "Airborne"
 
 	if target_air_state != _last_air_state:
@@ -103,9 +116,6 @@ func _update_aim_blend(delta: float, is_aiming: bool) -> void:
 		var target = 1.0 if is_aiming else 0.0
 		_set_p(path, lerpf(current, target, 10.0 * delta))
 
-func request_landing_state() -> void:
-	_force_land_check = true
-
 func _set_p(sub_path: String, value) -> void:
 	var path = _get_valid_path(sub_path)
 	if path != "":
@@ -116,7 +126,7 @@ func _get_p(sub_path: String):
 	return _animation_tree.get(path) if path != "" else null
 
 func _get_valid_path(sub_path: String) -> String:
-	# ry the current weapon (e.g., parameters/Rifle/...)
+	# Try the current weapon (e.g., parameters/Rifle/...)
 	var full_path = "parameters/" + _current_weapon_subtype_string + "/" + sub_path
 	if _animation_tree.get(full_path) != null:
 		return full_path
@@ -126,6 +136,4 @@ func _get_valid_path(sub_path: String) -> String:
 	if _animation_tree.get(fallback) != null:
 		return fallback
 		
-	# Total failure
-	push_error("ANIM_TREE: Path not found for " + _current_weapon_subtype_string + " OR Unarmed: " + sub_path)
 	return ""

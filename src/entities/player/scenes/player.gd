@@ -273,11 +273,16 @@ func _update_input_mode() -> void:
 
 func _update_animations(delta: float) -> void:
 	if not STATE_MACHINE.state: return
+	
+	var anim_weapon_data = null
+	if not COMBAT_CONTROLLER.is_sheathed:
+		anim_weapon_data = COMBAT_CONTROLLER.active_weapon_data
+	
 	ANIMATION_CONTROLLER.update(
 		delta, 
 		STATE_MACHINE.state.name, 
 		int(_input_mode), 
-		COMBAT_CONTROLLER.active_weapon_data, 
+		anim_weapon_data, 
 		_was_aiming
 	)
 

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://nn2moybug4vn" path="res://levels/scenes/endless_hub/elevator/elevator.tscn" id="7_elud6"]
 [ext_resource type="PackedScene" uid="uid://cccdu0igjwcmw" path="res://levels/scenes/endless_hub/jump_start_terminal/jump_start_terminal.tscn" id="7_x2y76"]
 [ext_resource type="PackedScene" uid="uid://ci7tuwcjhpin4" path="res://levels/scenes/endless_hub/holo_globe_console/holo_globe_console.tscn" id="8_kndpt"]
+[ext_resource type="PackedScene" uid="uid://v3p4jf3d3wuv" path="res://entities/components/player_detector/player_detector.tscn" id="9_r372g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5rde0"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -22,6 +23,9 @@ background_mode = 2
 sky = SubResource("Sky_5hwib")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g671l"]
+size = Vector3(2.1000001, 1.9, 3.1000001)
 
 [node name="EndlessHub" type="Node3D" unique_id=1337022952]
 script = ExtResource("1_usxov")
@@ -46,195 +50,421 @@ metadata/_custom_type_script = "uid://chgp3untiddwc"
 
 [node name="FX" type="Node3D" parent="." unique_id=1874106233]
 
-[node name="player" parent="." unique_id=535105664 instance=ExtResource("5_5hwib")]
-transform = Transform3D(-0.0027575896, 0, 0.9999962, 0, 1, 0, -0.9999962, 0, -0.0027575896, -1.9389415, -0.09989768, -9.6191225)
+[node name="player" parent="." unique_id=179473384 instance=ExtResource("5_5hwib")]
+transform = Transform3D(0.9999962, 0, 0.0027575458, 0, 1, 0, -0.0027575458, 0, 0.9999962, 498.26108, -0.09989768, -14.019123)
 
-[node name="Static" type="Node3D" parent="." unique_id=1341134902]
+[node name="Floors" type="Node3D" parent="." unique_id=1341134902]
 
-[node name="Atrium" type="Node3D" parent="Static" unique_id=1603806381]
+[node name="Atrium" type="Node3D" parent="Floors" unique_id=1603806381]
 
-[node name="FloorLabel" type="Label3D" parent="Static/Atrium" unique_id=747607469]
+[node name="FloorLabel" type="Label3D" parent="Floors/Atrium" unique_id=747607469]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 4.2, -10.5)
 billboard = 1
 text = "Atrium"
 font_size = 128
 
-[node name="ElevatorTarget" type="Marker3D" parent="Static/Atrium" unique_id=2084629550]
+[node name="ElevatorTarget" type="Marker3D" parent="Floors/Atrium" unique_id=2084629550]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15, 0)
 
-[node name="Static" type="Node3D" parent="Static/Atrium" unique_id=1114860725]
+[node name="Static" type="Node3D" parent="Floors/Atrium" unique_id=1114860725]
 
-[node name="Floor" type="CSGBox3D" parent="Static/Atrium/Static" unique_id=497828282]
+[node name="Floor" type="CSGBox3D" parent="Floors/Atrium/Static" unique_id=497828282]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6000006, -0.5, -19.400002)
 layers = 9
 use_collision = true
 size = Vector3(34.4, 1, 30.7)
 material = ExtResource("6_v741y")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Static/Atrium/Static" unique_id=1448500345]
+[node name="CSGBox3D" type="CSGBox3D" parent="Floors/Atrium/Static" unique_id=1448500345]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45, 1.6500001, -3.7000003)
 use_collision = true
 size = Vector3(8.900001, 4.3, 0.5)
 material = ExtResource("6_v741y")
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Static/Atrium/Static" unique_id=998646691]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Floors/Atrium/Static" unique_id=998646691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.35, 1.6500001, -3.6000001)
 use_collision = true
 size = Vector3(8.900001, 4.3, 0.5)
 material = ExtResource("6_v741y")
 
-[node name="Stations" type="Node3D" parent="Static/Atrium" unique_id=562730695]
+[node name="Stations" type="Node3D" parent="Floors/Atrium" unique_id=562730695]
 
-[node name="TransitPod" type="Node3D" parent="Static/Atrium/Stations" unique_id=425544721]
+[node name="TransitPod" type="Node3D" parent="Floors/Atrium/Stations" unique_id=425544721]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6000004, 0, -30.599998)
 
-[node name="Label" type="Label3D" parent="Static/Atrium/Stations/TransitPod" unique_id=1919200185]
+[node name="Label" type="Label3D" parent="Floors/Atrium/Stations/TransitPod" unique_id=1919200185]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
 billboard = 1
 text = "Transit Pod"
 font_size = 128
 
-[node name="PlayerDetector" type="Area3D" parent="Static/Atrium/Stations/TransitPod" unique_id=761683674]
+[node name="PlayerDetector" type="Area3D" parent="Floors/Atrium/Stations/TransitPod" unique_id=761683674]
 collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Static/Atrium/Stations/TransitPod/PlayerDetector" unique_id=1176782800]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floors/Atrium/Stations/TransitPod/PlayerDetector" unique_id=1176782800]
 
-[node name="Camera3D" type="Camera3D" parent="Static/Atrium/Stations/TransitPod" unique_id=1903239362]
+[node name="Camera3D" type="Camera3D" parent="Floors/Atrium/Stations/TransitPod" unique_id=1903239362]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Static/Atrium/Stations/TransitPod" unique_id=602347628]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Floors/Atrium/Stations/TransitPod" unique_id=602347628]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Static/Atrium/Stations/TransitPod" unique_id=2070719730]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Floors/Atrium/Stations/TransitPod" unique_id=2070719730]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Static/Atrium/Stations/TransitPod/CSGCombiner3D" unique_id=1225160890]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Floors/Atrium/Stations/TransitPod/CSGCombiner3D" unique_id=1225160890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 radius = 1.2
 height = 4.5
 sides = 16
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Static/Atrium/Stations/TransitPod/CSGCombiner3D/CSGCylinder3D" unique_id=2058481535]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Floors/Atrium/Stations/TransitPod/CSGCombiner3D/CSGCylinder3D" unique_id=2058481535]
 operation = 2
 radius = 1.0
 height = 4.0
 sides = 16
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Static/Atrium/Stations/TransitPod/CSGCombiner3D" unique_id=264754091]
+[node name="CSGBox3D" type="CSGBox3D" parent="Floors/Atrium/Stations/TransitPod/CSGCombiner3D" unique_id=264754091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39999998, 1)
 operation = 2
 size = Vector3(1, 2, 0.6)
 
-[node name="JumpStartTerminal" parent="Static/Atrium/Stations" unique_id=1933799629 instance=ExtResource("7_x2y76")]
+[node name="JumpStartTerminal" parent="Floors/Atrium/Stations" unique_id=1933799629 instance=ExtResource("7_x2y76")]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0.5999999, 0, -29.1)
 
-[node name="HoloGlobeCommand" parent="Static/Atrium/Stations" unique_id=1877649705 instance=ExtResource("8_kndpt")]
+[node name="HoloGlobeCommand" parent="Floors/Atrium/Stations" unique_id=1877649705 instance=ExtResource("8_kndpt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -18.6)
 
-[node name="LivingQuarters" type="Node3D" parent="Static/Atrium/Stations" unique_id=1917383858]
+[node name="LivingQuarters" type="Node3D" parent="Floors/Atrium/Stations" unique_id=1917383858]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.8, 0, -20.1)
 
-[node name="Label" type="Label3D" parent="Static/Atrium/Stations/LivingQuarters" unique_id=778103568]
+[node name="Label" type="Label3D" parent="Floors/Atrium/Stations/LivingQuarters" unique_id=778103568]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 1.8999996)
 billboard = 1
 text = "Living Quarters"
 font_size = 128
 
-[node name="Forge" type="Node3D" parent="Static" unique_id=766069889]
+[node name="Forge" type="Node3D" parent="Floors" unique_id=766069889]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
 
-[node name="FloorLabel" type="Label3D" parent="Static/Forge" unique_id=1541707267]
+[node name="FloorLabel" type="Label3D" parent="Floors/Forge" unique_id=1541707267]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6000061, 4.2, -10.5)
 billboard = 1
 text = "Forge"
 font_size = 128
 
-[node name="ElevatorTarget" type="Marker3D" parent="Static/Forge" unique_id=1231539257]
+[node name="ElevatorTarget" type="Marker3D" parent="Floors/Forge" unique_id=1231539257]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15, 0)
 
-[node name="Static" type="Node3D" parent="Static/Forge" unique_id=994078664]
+[node name="Static" type="Node3D" parent="Floors/Forge" unique_id=994078664]
 
-[node name="Floor" type="CSGBox3D" parent="Static/Forge/Static" unique_id=180360510]
+[node name="Floor" type="CSGBox3D" parent="Floors/Forge/Static" unique_id=180360510]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05000043, -0.5, -10.45)
 layers = 9
 use_collision = true
 size = Vector3(21.7, 1, 16.800001)
 material = ExtResource("6_v741y")
 
-[node name="Stations" type="Node3D" parent="Static/Forge" unique_id=979716402]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, 0)
+[node name="Stations" type="Node3D" parent="Floors/Forge" unique_id=979716402]
 
-[node name="DismantleBench" type="Node3D" parent="Static/Forge/Stations" unique_id=1217858746]
+[node name="DismantleBench" type="Node3D" parent="Floors/Forge/Stations" unique_id=1217858746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.7)
 
-[node name="SocketingStation" type="Node3D" parent="Static/Forge/Stations" unique_id=1357844334]
+[node name="Label" type="Label3D" parent="Floors/Forge/Stations/DismantleBench" unique_id=1231539709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, 0)
+billboard = 1
+text = "Dismantle Bench"
+font_size = 128
 
-[node name="LoadoutTerminal" type="Node3D" parent="Static/Forge/Stations" unique_id=1454581506]
+[node name="Model" type="Node3D" parent="Floors/Forge/Stations/DismantleBench" unique_id=1598972336]
 
-[node name="Provisioner" type="Node3D" parent="Static/Forge/Stations" unique_id=906321831]
+[node name="Table" type="Node3D" parent="Floors/Forge/Stations/DismantleBench/Model" unique_id=1573371752]
 
-[node name="StandardIssueTerminal" type="Node3D" parent="Static/Forge/Stations" unique_id=1834060269]
+[node name="Table" type="CSGCombiner3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table" unique_id=325980701]
 
-[node name="Bio-Lab" type="Node3D" parent="Static" unique_id=512214277]
+[node name="FrontPanel" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=17321832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0.70000076)
+size = Vector3(2, 0.3, 0.1)
+
+[node name="BackPanel" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=1207440909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, -0.29999924)
+size = Vector3(2, 0.3, 0.1)
+
+[node name="LeftPanel" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=832012751]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 0.65, 0.20000076)
+size = Vector3(1, 0.3, 0.1)
+
+[node name="RightPanel" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=2106103882]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 0.65, 0.20000076)
+size = Vector3(1, 0.3, 0.1)
+
+[node name="TableTop" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=1049294393]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.8000001, 0.20000076)
+size = Vector3(2.2, 1.2, 0.1)
+
+[node name="FrontLeftLeg" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=2118659538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.4, 0.70000076)
+size = Vector3(0.1, 0.8, 0.1)
+
+[node name="BackLeftLeg" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=1574577108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.4, -0.29999924)
+size = Vector3(0.1, 0.8, 0.1)
+
+[node name="BackRightLeg" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=221808933]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.4, -0.29999924)
+size = Vector3(0.1, 0.8, 0.1)
+
+[node name="FrontRightLeg" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=416855261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.4, 0.70000076)
+size = Vector3(0.1, 0.8, 0.1)
+
+[node name="TopBackPanel" type="CSGCombiner3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table" unique_id=619267259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0.05000019)
+
+[node name="Bottom" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table/TopBackPanel" unique_id=1199056818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3999999, -0.39999962)
+size = Vector3(2.2, 0.8, 0.1)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table/TopBackPanel/Bottom" unique_id=1095952643]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.0864868, 0.5, 0.024999619)
+operation = 2
+radius = 0.8
+height = 0.15
+sides = 24
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table/TopBackPanel" unique_id=121336339]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.3999939, 1.8000001, -0.40000057)
+radius = 0.7
+height = 0.1
+sides = 24
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Table/TopBackPanel" unique_id=757803911]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.3999939, 1.8000001, -0.40000057)
+operation = 2
+radius = 0.2
+height = 0.2
+
+[node name="Vise" type="Node3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table" unique_id=1934150467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Vise" type="CSGCombiner3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Vise" unique_id=906442387]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Vise/Vise" unique_id=344969319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1000061, -0.65000004, 0.5)
+size = Vector3(0.1, 0.1, 0.4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Vise/Vise" unique_id=1089820486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3250122, -0.65000004, 0.5)
+size = Vector3(0.05, 0.1, 0.4)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Vise/Vise" unique_id=1879759206]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.2874756, -0.6904841, 0.5)
+radius = 0.005
+height = 0.375
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Floors/Forge/Stations/DismantleBench/Model/Table/Vise/Vise" unique_id=1769918507]
+transform = Transform3D(-1, 2.9802322e-08, 0, -2.5809568e-08, -0.8660254, 0.5, 1.4901161e-08, 0.5, 0.8660254, -1.4743958, -0.6967341, 0.5042076)
+radius = 0.01
+height = 0.1375
+
+[node name="Mallet" type="Node3D" parent="Floors/Forge/Stations/DismantleBench/Model" unique_id=1149572437]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0, -0.2, 0.9499998)
+
+[node name="Mallet" type="CSGCombiner3D" parent="Floors/Forge/Stations/DismantleBench/Model/Mallet" unique_id=895309965]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.1000061, 0.4, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Floors/Forge/Stations/DismantleBench/Model/Mallet/Mallet" unique_id=1926737597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63750005, 0.6999998)
+radius = 0.01
+height = 0.22500001
+sides = 16
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Floors/Forge/Stations/DismantleBench/Model/Mallet/Mallet" unique_id=313667416]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.75, 0.6999998)
+radius = 0.05
+height = 0.1
+sides = 16
+
+[node name="SocketingStation" type="Node3D" parent="Floors/Forge/Stations" unique_id=1357844334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.200012, 0, -4.6)
+
+[node name="Label" type="Label3D" parent="Floors/Forge/Stations/SocketingStation" unique_id=1986354199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7, 0)
+billboard = 1
+text = "Socketing Station"
+font_size = 128
+
+[node name="LoadoutTerminal" type="Node3D" parent="Floors/Forge/Stations" unique_id=1454581506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.200012, 0, -6.6)
+
+[node name="Label" type="Label3D" parent="Floors/Forge/Stations/LoadoutTerminal" unique_id=1573581201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1000004, 0)
+billboard = 1
+text = "Loadout Terminal"
+font_size = 128
+
+[node name="Provisioner" type="Node3D" parent="Floors/Forge/Stations" unique_id=906321831]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -6.899994, 0, -15.8)
+
+[node name="Label" type="Label3D" parent="Floors/Forge/Stations/Provisioner" unique_id=178915758]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7, 0)
+billboard = 1
+text = "Provisioner"
+font_size = 128
+
+[node name="Model" type="Node3D" parent="Floors/Forge/Stations/Provisioner" unique_id=1787629463]
+
+[node name="Stand" type="CSGCombiner3D" parent="Floors/Forge/Stations/Provisioner/Model" unique_id=622193396]
+use_collision = true
+
+[node name="Counter" type="CSGBox3D" parent="Floors/Forge/Stations/Provisioner/Model/Stand" unique_id=1837855065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1000061, 0.49999997, 0.3000002)
+size = Vector3(1, 0.1, 3)
+
+[node name="LeftLeg" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stand" unique_id=1389293132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1000061, 0.25, 1.3000002)
+radius = 0.1
+height = 0.5
+sides = 16
+
+[node name="RightLeg" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stand" unique_id=1420231408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1000061, 0.25, -0.6999998)
+radius = 0.1
+height = 0.5
+sides = 16
+
+[node name="LeftPole" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stand" unique_id=1606548416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1000061, 1.25, 1.6999998)
+radius = 0.1
+height = 1.5
+sides = 16
+
+[node name="CrossBeam" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stand" unique_id=1376427962]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.1000061, 2.05, 0.31874943)
+radius = 0.1
+height = 3.0125
+sides = 16
+
+[node name="RightBeam" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stand" unique_id=1948640624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1000061, 1.25, -1.0999994)
+radius = 0.1
+height = 1.5
+sides = 16
+
+[node name="Sign" type="CSGBox3D" parent="Floors/Forge/Stations/Provisioner/Model/Stand" unique_id=2016628680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0.29999924)
+size = Vector3(0.1, 0.8, 2.8)
+
+[node name="SignLabel" type="Label3D" parent="Floors/Forge/Stations/Provisioner/Model/Stand" unique_id=1361879901]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.1000061, 1.8000001, 0.3000002)
+text = "Slime-N-Stuff"
+font_size = 64
+
+[node name="Stool" type="CSGCombiner3D" parent="Floors/Forge/Stations/Provisioner/Model" unique_id=655551692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3999939, 0, -0.60000134)
+
+[node name="Leg1" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stool" unique_id=1187696312]
+transform = Transform3D(-0.5, -0.43301272, 0.74999994, 0, 0.8660253, 0.49999997, -0.86602545, 0.25000006, -0.43301263, -1.4000244, 0.25, 1.1999998)
+radius = 0.05
+height = 0.5
+sides = 16
+
+[node name="Leg2" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stool" unique_id=467254246]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -1.6000061, 0.25, 1.500001)
+radius = 0.05
+height = 0.5
+sides = 16
+
+[node name="Leg3" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stool" unique_id=983778997]
+transform = Transform3D(-0.50000006, 0.4330127, -0.75, 0, 0.8660254, 0.5, 0.8660254, 0.25000003, -0.43301272, -1.8000183, 0.25, 1.1999998)
+radius = 0.05
+height = 0.5
+sides = 16
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Floors/Forge/Stations/Provisioner/Model/Stool" unique_id=379984286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6000061, 0.5, 1.3000002)
+radius = 0.3
+height = 0.1
+sides = 16
+
+[node name="PlayerDetector" parent="Floors/Forge/Stations/Provisioner" unique_id=182500390 instance=ExtResource("9_r372g")]
+
+[node name="CollisionShape3D" parent="Floors/Forge/Stations/Provisioner/PlayerDetector" index="0" unique_id=1180385177]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5499878, 0.95, 0.34999943)
+shape = SubResource("BoxShape3D_g671l")
+
+[node name="StandardIssueTerminal" type="Node3D" parent="Floors/Forge/Stations" unique_id=1834060269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.600006, 0, -14.6)
+
+[node name="Label" type="Label3D" parent="Floors/Forge/Stations/StandardIssueTerminal" unique_id=831061558]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 3.8999996)
+billboard = 1
+text = "Standard Issue Terminal"
+font_size = 128
+
+[node name="Bio-Lab" type="Node3D" parent="Floors" unique_id=512214277]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 0)
 
-[node name="FloorLabel" type="Label3D" parent="Static/Bio-Lab" unique_id=1091275866]
+[node name="FloorLabel" type="Label3D" parent="Floors/Bio-Lab" unique_id=1091275866]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5999756, 4.2, -10.5)
 billboard = 1
 text = "Bio-Lab"
 font_size = 128
 
-[node name="ElevatorTarget" type="Marker3D" parent="Static/Bio-Lab" unique_id=557337382]
+[node name="ElevatorTarget" type="Marker3D" parent="Floors/Bio-Lab" unique_id=557337382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15, 0)
 
-[node name="Static" type="Node3D" parent="Static/Bio-Lab" unique_id=1238619736]
+[node name="Static" type="Node3D" parent="Floors/Bio-Lab" unique_id=1238619736]
 
-[node name="Floor" type="CSGBox3D" parent="Static/Bio-Lab/Static" unique_id=1206712271]
+[node name="Floor" type="CSGBox3D" parent="Floors/Bio-Lab/Static" unique_id=1206712271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05000043, -0.5, -10.45)
 layers = 9
 use_collision = true
 size = Vector3(21.7, 1, 16.800001)
 material = ExtResource("6_v741y")
 
-[node name="Stations" type="Node3D" parent="Static/Bio-Lab" unique_id=828859541]
+[node name="Stations" type="Node3D" parent="Floors/Bio-Lab" unique_id=828859541]
 
-[node name="CentralVats" type="Node3D" parent="Static/Bio-Lab/Stations" unique_id=87480371]
+[node name="CentralVats" type="Node3D" parent="Floors/Bio-Lab/Stations" unique_id=87480371]
 
-[node name="FusionChamber" type="Node3D" parent="Static/Bio-Lab/Stations" unique_id=1307581240]
+[node name="FusionChamber" type="Node3D" parent="Floors/Bio-Lab/Stations" unique_id=1307581240]
 
-[node name="Slimiary" type="Node3D" parent="Static/Bio-Lab/Stations" unique_id=1681264829]
+[node name="Slimiary" type="Node3D" parent="Floors/Bio-Lab/Stations" unique_id=1681264829]
 
-[node name="CorePrinter" type="Node3D" parent="Static/Bio-Lab/Stations" unique_id=1646597740]
+[node name="CorePrinter" type="Node3D" parent="Floors/Bio-Lab/Stations" unique_id=1646597740]
 
-[node name="Range" type="Node3D" parent="Static" unique_id=1267663255]
+[node name="Range" type="Node3D" parent="Floors" unique_id=1267663255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, 0)
 
-[node name="FloorLabel" type="Label3D" parent="Static/Range" unique_id=616610863]
+[node name="FloorLabel" type="Label3D" parent="Floors/Range" unique_id=616610863]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5999756, 4.2, -10.5)
 billboard = 1
 text = "Range"
 font_size = 128
 
-[node name="ElevatorTarget" type="Marker3D" parent="Static/Range" unique_id=839917283]
+[node name="ElevatorTarget" type="Marker3D" parent="Floors/Range" unique_id=839917283]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15, 0)
 
-[node name="Static" type="Node3D" parent="Static/Range" unique_id=664092921]
+[node name="Static" type="Node3D" parent="Floors/Range" unique_id=664092921]
 
-[node name="Floor" type="CSGBox3D" parent="Static/Range/Static" unique_id=112138017]
+[node name="Floor" type="CSGBox3D" parent="Floors/Range/Static" unique_id=112138017]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05000043, -0.5, -10.45)
 layers = 9
 use_collision = true
 size = Vector3(21.7, 1, 16.800001)
 material = ExtResource("6_v741y")
 
-[node name="Stations" type="Node3D" parent="Static/Range" unique_id=2006385208]
+[node name="Stations" type="Node3D" parent="Floors/Range" unique_id=2006385208]
 
-[node name="HolographicDummySpawner" type="Node3D" parent="Static/Range/Stations" unique_id=340839751]
+[node name="HolographicDummySpawner" type="Node3D" parent="Floors/Range/Stations" unique_id=340839751]
 
-[node name="BallisticsDisplay" type="Node3D" parent="Static/Range/Stations" unique_id=1079978234]
+[node name="BallisticsDisplay" type="Node3D" parent="Floors/Range/Stations" unique_id=1079978234]
 
-[node name="RentAWeapon" type="Node3D" parent="Static/Range/Stations" unique_id=1619407997]
+[node name="RentAWeapon" type="Node3D" parent="Floors/Range/Stations" unique_id=1619407997]
 
-[node name="Elevator" parent="Static" unique_id=1943396077 node_paths=PackedStringArray("atrium_marker", "forge_marker", "biolab_marker", "range_marker") instance=ExtResource("7_elud6")]
+[node name="Elevator" parent="Floors" unique_id=1943396077 node_paths=PackedStringArray("atrium_marker", "forge_marker", "biolab_marker", "range_marker") instance=ExtResource("7_elud6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15, 0)
 atrium_marker = NodePath("../Atrium/ElevatorTarget")
 forge_marker = NodePath("../Forge/ElevatorTarget")
 biolab_marker = NodePath("../Bio-Lab/ElevatorTarget")
 range_marker = NodePath("../Range/ElevatorTarget")
+
+[editable path="Floors/Forge/Stations/Provisioner/PlayerDetector"]

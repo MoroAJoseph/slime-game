@@ -45,6 +45,10 @@ class PlayerEvent:
 	# - Notifications -
 	
 	# General
+	class LookAtTargetUpdated extends Event:
+		var result: Dictionary
+		func _init(_result: Dictionary):
+			result = _result
 	class InputToggled extends Event:
 		var value: bool
 		func _init(_value: bool):
@@ -87,16 +91,6 @@ class PlayerEvent:
 
 # --- UI ---
 class UIEvent:
-	class ToggleHud extends Event:
-		var is_visible: bool
-		func _init(_is_visible: bool):
-			is_visible = _is_visible
-	
-	class ToggleLoading extends Event:
-		var is_visible: bool
-		func _init(_is_visible: bool): 
-			is_visible = _is_visible
-	
 	class ToggleMinimapRotation extends Event:
 		var value: bool
 		func _init(_value: bool):

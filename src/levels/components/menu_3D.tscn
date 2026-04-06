@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cs83qxv6aw6bk"]
+
+[ext_resource type="Script" uid="uid://c82kpy668j51l" path="res://levels/components/menu_3D.gd" id="1_cwqfq"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eep0s"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ob4js"]
+resource_local_to_scene = true
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("ViewportTexture_eep0s")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cwqfq"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_ob4js")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cwqfq"]
+size = Vector3(1, 1, 0.001)
+
+[node name="Menu3D" type="StaticBody3D" unique_id=1013416801]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("1_cwqfq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1745783863]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_cwqfq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1992051640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00049999356)
+shape = SubResource("BoxShape3D_cwqfq")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2042293445]

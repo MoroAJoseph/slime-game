@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://weapons/guns/data/classes/gun_part_data.gd" id="1_cigq1"]
 [ext_resource type="Script" uid="uid://dp0irghqgqdss" path="res://weapons/guns/data/classes/gun_barrel_combat_data.gd" id="1_yc7kh"]
 [ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/guns/data/classes/gun_part_visual_data.gd" id="3_qg7jl"]
-[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/transform_data.gd" id="4_56csu"]
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/data/classes/transform_data.gd" id="4_56csu"]
 
 [sub_resource type="Resource" id="Resource_na3e7"]
 script = ExtResource("1_yc7kh")

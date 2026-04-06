@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://jqyom1ulbeie"]
+
+[ext_resource type="Script" uid="uid://bxn74qren2aj4" path="res://ui/huds/common/minimap/minimap.gd" id="1_kbw71"]
+[ext_resource type="Shader" uid="uid://c7o812o18nbh4" path="res://ui/huds/common/minimap/rounded_minimap.gdshader" id="2_dw8tp"]
+[ext_resource type="Script" uid="uid://ckiqgsq5s8brl" path="res://ui/huds/common/minimap/minimap_camera.gd" id="3_dpxib"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gv4gi"]
+shader = ExtResource("2_dw8tp")
+shader_parameter/bg_color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+shader_parameter/feather = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3vm3"]
+shader = ExtResource("2_dw8tp")
+shader_parameter/bg_color = Color(0.18717614, 0.18717614, 0.18717614, 1)
+shader_parameter/feather = 0.01
+
+[node name="Minimap" type="MarginContainer" unique_id=1358840063]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_bottom = 256.0
+grow_horizontal = 0
+script = ExtResource("1_kbw71")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1071892344]
+material = SubResource("ShaderMaterial_gv4gi")
+layout_mode = 2
+color = Color(0.18000486, 0.18000486, 0.18000486, 1)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=810729096]
+material = SubResource("ShaderMaterial_p3vm3")
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1497165732]
+unique_name_in_owner = true
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918728
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="Camera" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=170449635]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+cull_mask = 8
+projection = 1
+size = 15.0
+script = ExtResource("3_dpxib")

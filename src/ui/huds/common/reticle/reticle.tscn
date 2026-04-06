@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://de1xq5tsnhnf"]
+
+[ext_resource type="Script" uid="uid://cc7emwihwhgrc" path="res://ui/huds/common/reticle/reticle.gd" id="1_ctkx4"]
+
+[node name="Reticle" type="CenterContainer" unique_id=869070153]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ctkx4")
+
+[node name="Top" type="Line2D" parent="." unique_id=1137423761]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="Bottom" type="Line2D" parent="." unique_id=667545398]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="Left" type="Line2D" parent="." unique_id=1029797385]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
+
+[node name="Right" type="Line2D" parent="." unique_id=958578413]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0

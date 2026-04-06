@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://creif8ubgdbti" path="res://entities/player/model/player.glb" id="5_5hwib"]
 [ext_resource type="Material" uid="uid://n6bklpjctmd7" path="res://_dev/level_design/prototyping_static.material" id="6_v741y"]
 [ext_resource type="PackedScene" uid="uid://nn2moybug4vn" path="res://levels/scenes/endless_hub/elevator/elevator.tscn" id="7_elud6"]
+[ext_resource type="PackedScene" uid="uid://cccdu0igjwcmw" path="res://levels/scenes/endless_hub/jump_start_terminal/jump_start_terminal.tscn" id="7_x2y76"]
+[ext_resource type="PackedScene" uid="uid://ci7tuwcjhpin4" path="res://levels/scenes/endless_hub/holo_globe_console/holo_globe_console.tscn" id="8_kndpt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5rde0"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -83,28 +85,14 @@ material = ExtResource("6_v741y")
 
 [node name="Stations" type="Node3D" parent="Static/Atrium" unique_id=562730695]
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Static/Atrium/Stations" unique_id=2070719730]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1000004, 1.6, -25.199999)
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Static/Atrium/Stations/CSGCombiner3D" unique_id=1225160890]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-radius = 1.2
-height = 4.5
-sides = 16
-
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Static/Atrium/Stations/CSGCombiner3D/CSGCylinder3D" unique_id=2058481535]
-operation = 2
-radius = 1.0
-height = 4.0
-sides = 16
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Static/Atrium/Stations/CSGCombiner3D" unique_id=264754091]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39999998, 1)
-operation = 2
-size = Vector3(1, 2, 0.6)
-
 [node name="TransitPod" type="Node3D" parent="Static/Atrium/Stations" unique_id=425544721]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1000004, 0, -25.199999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6000004, 0, -30.599998)
+
+[node name="Label" type="Label3D" parent="Static/Atrium/Stations/TransitPod" unique_id=1919200185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+billboard = 1
+text = "Transit Pod"
+font_size = 128
 
 [node name="PlayerDetector" type="Area3D" parent="Static/Atrium/Stations/TransitPod" unique_id=761683674]
 collision_mask = 2
@@ -115,11 +103,40 @@ collision_mask = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Static/Atrium/Stations/TransitPod" unique_id=602347628]
 
-[node name="JumpStartTerminal" type="Node3D" parent="Static/Atrium/Stations" unique_id=2067890980]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Static/Atrium/Stations/TransitPod" unique_id=2070719730]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="HoloGlobeCommand" type="Node3D" parent="Static/Atrium/Stations" unique_id=37531142]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Static/Atrium/Stations/TransitPod/CSGCombiner3D" unique_id=1225160890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+radius = 1.2
+height = 4.5
+sides = 16
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Static/Atrium/Stations/TransitPod/CSGCombiner3D/CSGCylinder3D" unique_id=2058481535]
+operation = 2
+radius = 1.0
+height = 4.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Static/Atrium/Stations/TransitPod/CSGCombiner3D" unique_id=264754091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39999998, 1)
+operation = 2
+size = Vector3(1, 2, 0.6)
+
+[node name="JumpStartTerminal" parent="Static/Atrium/Stations" unique_id=1933799629 instance=ExtResource("7_x2y76")]
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0.5999999, 0, -29.1)
+
+[node name="HoloGlobeCommand" parent="Static/Atrium/Stations" unique_id=1877649705 instance=ExtResource("8_kndpt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -18.6)
 
 [node name="LivingQuarters" type="Node3D" parent="Static/Atrium/Stations" unique_id=1917383858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.8, 0, -20.1)
+
+[node name="Label" type="Label3D" parent="Static/Atrium/Stations/LivingQuarters" unique_id=778103568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 1.8999996)
+billboard = 1
+text = "Living Quarters"
+font_size = 128
 
 [node name="Forge" type="Node3D" parent="Static" unique_id=766069889]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)

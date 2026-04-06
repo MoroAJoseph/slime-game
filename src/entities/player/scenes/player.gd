@@ -54,11 +54,12 @@ func _process(delta: float) -> void:
 	if _input_mode == InputMode.ACTION:
 		COMBAT_CONTROLLER.handle_combat_input(delta)
 	
-	if Input.is_action_just_pressed("player_interact"):
-		_handle_ui_interaction()
-	
-	if Input.is_action_just_pressed("player_reload") and _input_enabled:
-		COMBAT_CONTROLLER.request_reload()
+	if _input_enabled:
+		if Input.is_action_just_pressed("player_interact"):
+			_attempt_interact()
+		
+		if Input.is_action_just_pressed("player_reload"):
+			COMBAT_CONTROLLER.request_reload()
 
 	_handle_loadout_input()
 	_update_animations(delta)
@@ -72,89 +73,55 @@ func _physics_process(_delta: float) -> void:
 			"player_move_left", "player_move_right", 
 			"player_move_forward", "player_move_backward"
 		)
+	
+	_publish_look_at_target()
 
 # ===
-# Local
+# Public
 # ===
 
-func _handle_ui_interaction():
+func get_viewport_raycast_data(max_dist: float = 15.0) -> Dictionary:
 	var space_state = get_world_3d().direct_space_state
 	var camera = CAMERA_CONTROLLER.CAMERA
-	
-	# Use the actual viewport center for the crosshair
 	var screen_center = get_viewport().get_visible_rect().size / 2
 	
+	# 1. Get the direction from the camera through the center of the screen
 	var ray_origin = camera.project_ray_origin(screen_center)
 	var ray_dir = camera.project_ray_normal(screen_center)
-	# Increase length to 10.0 to ensure it reaches from outside/back of cab
-	var ray_end = ray_origin + (ray_dir * 10.0) 
 	
-	var query = PhysicsRayQueryParameters3D.create(ray_origin, ray_end)
+	# 2. Calculate the distance from the camera to the player
+	# This ensures the ray starts at the player's depth relative to the camera
+	var dist_to_player = ray_origin.distance_to(global_position)
 	
-	# Layer 8 (WorldUI) = 128 bitmask
-	query.collision_mask = 128 
-	query.collide_with_areas = true 
-	# CRITICAL: Exclude player body so the ray doesn't hit your own back/head
-	query.exclude = [self.get_rid()] 
+	# 3. Shift the origin forward to the player's position + 0.5m padding
+	# This uses 'ray_origin' and 'ray_dir' to ensure we stay on the screen-center line
+	var shifted_origin = ray_origin + (ray_dir * (dist_to_player + 0.5))
+	var ray_end = shifted_origin + (ray_dir * max_dist)
 	
-	var result = space_state.intersect_ray(query)
+	# --- Step A: Check Priority (Layers 8 & 3) ---
+	var priority_query = PhysicsRayQueryParameters3D.create(shifted_origin, ray_end, 132)
+	priority_query.collide_with_areas = true
+	priority_query.exclude = [self.get_rid()]
 	
-	if result:
-		# If this prints, the physics side is working!
-		print("Hit: ", result.collider.name) 
-		if result.collider.has_method("handle_mouse_event"):
-			result.collider.handle_mouse_event(result.position)
+	var hit = space_state.intersect_ray(priority_query)
+	
+	# Visibility Check: Only return if the collider is actually visible
+	if not hit.is_empty():
+		var collider = hit.collider
+		if collider.is_visible_in_tree():
+			hit["layer"] = collider.collision_layer
+			return hit
 
-func _setup_loadout() -> void:
-	_current_weapon_data = data.loadout_data.primary_weapon
-	_swap_to_slot(0)
-
-func _update_minimap_icon() -> void:
-	if not MINIMAP_ICON: return
+	# --- Step B: Check World (Layer 1) ---
+	var world_query = PhysicsRayQueryParameters3D.create(shifted_origin, ray_end, 1)
+	world_query.exclude = [self.get_rid()]
 	
-	var model_yaw = MODEL_CONTROLLER.global_rotation.y
-	MINIMAP_ICON.global_rotation.y = model_yaw + PI
-	
-func _handle_loadout_input() -> void:
-	if not _input_enabled: return
-	if Input.is_action_just_pressed("player_primary_weapon"):
-		_swap_to_slot(0)
-	elif Input.is_action_just_pressed("player_secondary_weapon"):
-		_swap_to_slot(1)
-
-func _swap_to_slot(slot_index: int) -> void:
-	if not data.loadout_data: return
-	
-	var weapon_res: WeaponData = data.loadout_data.primary_weapon if slot_index == 0 else data.loadout_data.secondary_weapon
-	
-	# Update visual model and combat logic
-	var weapon_node = MODEL_CONTROLLER.equip_weapon(weapon_res)
-	COMBAT_CONTROLLER.register_active_weapon(weapon_node, weapon_res)
-
-func _update_input_mode() -> void:
-	if not _input_enabled: return
-
-	var is_aiming = Input.is_action_pressed("player_aim")
-	var is_shooting = Input.is_action_pressed("player_shoot")
-	
-	if is_aiming != _was_aiming:
-		_was_aiming = is_aiming
-		if is_aiming:
-			EventBus.publish(EventBus.PlayerEvent.AimStarted.new(EventBus.PlayerEvent.AimStarted.Type.HIP))
-		else:
-			EventBus.publish(EventBus.PlayerEvent.AimFinished.new())
-	
-	_input_mode = InputMode.ACTION if (is_aiming or is_shooting) else InputMode.ADVENTURE
-
-func _update_animations(delta: float) -> void:
-	if not STATE_MACHINE.state: return
-	ANIMATION_CONTROLLER.update(
-		delta, 
-		STATE_MACHINE.state.name, 
-		int(_input_mode), 
-		COMBAT_CONTROLLER.active_weapon_data, 
-		_was_aiming
-	)
+	var world_hit = space_state.intersect_ray(world_query)
+	if not world_hit.is_empty():
+		world_hit["layer"] = world_hit.collider.collision_layer
+		return world_hit
+		
+	return {}
 
 func get_minimap_forward() -> Vector3:
 	var cam_forward = -CAMERA_CONTROLLER.get_horizontal_basis().z
@@ -167,7 +134,6 @@ func spawn() -> void:
 	MODEL_CONTROLLER.reset_visuals()
 	MODEL_CONTROLLER.set_spawn_visuals(true)
 	
-	# 2. Animate the "Scanning" line from feet to head
 	var tween = create_tween()
 	tween.tween_method(
 		MODEL_CONTROLLER.update_spawn_visual, 
@@ -225,6 +191,95 @@ func is_grounded_cone() -> bool:
 
 func animation_callback_check_landing() -> void:
 	ANIMATION_CONTROLLER.request_landing_state()
+
+# ===
+# Private
+# ===
+
+func _publish_look_at_target() -> void:
+	# Use a reasonable interaction distance for the UI dot
+	var result = get_viewport_raycast_data(15.0) 
+	EventBus.publish(EventBus.PlayerEvent.LookAtTargetUpdated.new(result))
+
+func _attempt_interact() -> void:
+	var result = get_viewport_raycast_data()
+	if result and result.collider.has_method("handle_mouse_event"):
+		result.collider.handle_mouse_event(result.position)
+
+func _setup_loadout() -> void:
+	_swap_to_slot(0)
+
+func _update_minimap_icon() -> void:
+	if not MINIMAP_ICON: return
+	
+	var model_yaw = MODEL_CONTROLLER.global_rotation.y
+	MINIMAP_ICON.global_rotation.y = model_yaw + PI
+	
+func _handle_loadout_input() -> void:
+	if not _input_enabled: return
+	
+	if Input.is_action_just_pressed("player_draw_sheath"):
+		COMBAT_CONTROLLER.toggle_sheath()
+		MODEL_CONTROLLER.set_sheathed(
+			data.loadout_data.primary_weapon,
+			data.loadout_data.secondary_weapon,
+			COMBAT_CONTROLLER.is_sheathed,
+			COMBAT_CONTROLLER.current_slot
+		)
+	elif Input.is_action_just_pressed("player_primary_weapon"):
+		_swap_to_slot(0)
+	elif Input.is_action_just_pressed("player_secondary_weapon"):
+		_swap_to_slot(1)
+
+func _swap_to_slot(slot_index: int) -> void:
+	if not data.loadout_data: return
+	
+	if COMBAT_CONTROLLER.current_slot == slot_index and not COMBAT_CONTROLLER.is_sheathed:
+		COMBAT_CONTROLLER.toggle_sheath()
+	
+		MODEL_CONTROLLER.set_sheathed(
+			data.loadout_data.primary_weapon,
+			data.loadout_data.secondary_weapon,
+			COMBAT_CONTROLLER.is_sheathed,
+			COMBAT_CONTROLLER.current_slot
+		)
+		return
+	
+	var weapon_data: WeaponData = data.loadout_data.primary_weapon if slot_index == 0 else data.loadout_data.secondary_weapon
+	_current_weapon_data = weapon_data
+	
+	MODEL_CONTROLLER.update_full_loadout(
+		data.loadout_data.primary_weapon, 
+		data.loadout_data.secondary_weapon, 
+		slot_index
+	)
+	
+	COMBAT_CONTROLLER.register_active_weapon(MODEL_CONTROLLER._active_weapon_node, weapon_data, slot_index)
+
+func _update_input_mode() -> void:
+	if not _input_enabled: return
+
+	var is_aiming = Input.is_action_pressed("player_aim")
+	var is_shooting = Input.is_action_pressed("player_shoot")
+	
+	if is_aiming != _was_aiming:
+		_was_aiming = is_aiming
+		if is_aiming:
+			EventBus.publish(EventBus.PlayerEvent.AimStarted.new(EventBus.PlayerEvent.AimStarted.Type.HIP))
+		else:
+			EventBus.publish(EventBus.PlayerEvent.AimFinished.new())
+	
+	_input_mode = InputMode.ACTION if (is_aiming or is_shooting) else InputMode.ADVENTURE
+
+func _update_animations(delta: float) -> void:
+	if not STATE_MACHINE.state: return
+	ANIMATION_CONTROLLER.update(
+		delta, 
+		STATE_MACHINE.state.name, 
+		int(_input_mode), 
+		COMBAT_CONTROLLER.active_weapon_data, 
+		_was_aiming
+	)
 
 func _handle_dev_input():
 	if Input.is_action_just_pressed("dev_1"): spawn()

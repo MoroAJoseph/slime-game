@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bslkbecbij1fi" path="res://weapons/guns/data/classes/gun_frame_combat_data.gd" id="1_0viev"]
 [ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://weapons/guns/data/classes/gun_part_data.gd" id="2_0a7ya"]
 [ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://weapons/guns/data/classes/gun_part_visual_data.gd" id="3_m7r1g"]
-[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/transform_data.gd" id="4_5v84d"]
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://core/data/classes/transform_data.gd" id="4_5v84d"]
 
 [sub_resource type="Resource" id="Resource_a1voo"]
 script = ExtResource("1_0viev")
@@ -28,7 +28,7 @@ metadata/_custom_type_script = "uid://djoelq250kqg8"
 [sub_resource type="Resource" id="Resource_uwf6d"]
 script = ExtResource("3_m7r1g")
 mesh_path = "uid://davlexg2tcl58"
-color_red = Color(0.1866526, 0.7967305, 0, 1)
+color_red = Color(0.8, 0.4, 0, 1)
 socket_transforms = Dictionary[int, ExtResource("4_5v84d")]({
 1: SubResource("Resource_03cec"),
 2: SubResource("Resource_naefj"),

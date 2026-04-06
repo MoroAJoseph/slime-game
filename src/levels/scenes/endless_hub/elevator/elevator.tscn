@@ -6,18 +6,17 @@
 [ext_resource type="Script" uid="uid://m4cgpolmdrre" path="res://levels/scenes/endless_hub/elevator/states/endless_elevator_state_idle.gd" id="4_r83h1"]
 [ext_resource type="Script" uid="uid://c7x8u00esl6p1" path="res://levels/scenes/endless_hub/elevator/states/endless_elevator_state_transit.gd" id="5_hyogv"]
 [ext_resource type="Script" uid="uid://c0vkojtv1xg1g" path="res://levels/scenes/endless_hub/elevator/states/endless_elevator_state_arrived.gd" id="6_whcov"]
-[ext_resource type="Script" uid="uid://b6pot0yi2cc5n" path="res://levels/scenes/endless_hub/elevator/menu_3d.gd" id="7_gqsot"]
-[ext_resource type="PackedScene" uid="uid://c8oy3thayf0n7" path="res://levels/scenes/endless_hub/elevator/menu.tscn" id="8_idsle"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_v741y"]
-size = Vector3(7.5, 7.5, 7.5)
+[ext_resource type="PackedScene" uid="uid://cs83qxv6aw6bk" path="res://levels/components/menu_3D.tscn" id="8_ebdo1"]
+[ext_resource type="Script" uid="uid://b6pot0yi2cc5n" path="res://levels/scenes/endless_hub/elevator/menu_3D.gd" id="9_5voa8"]
+[ext_resource type="PackedScene" uid="uid://v3p4jf3d3wuv" path="res://entities/components/player_detector/player_detector.tscn" id="9_ebdo1"]
+[ext_resource type="PackedScene" uid="uid://jg7n0i3wsweb" path="res://ui/menus/endless/elevator_menu.tscn" id="10_5voa8"]
 
 [sub_resource type="Animation" id="Animation_7x7fn"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Elevator/Elevator/Door:position")
+tracks/0/path = NodePath("Model/Elevator/Door:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +31,7 @@ resource_name = "close_door"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Elevator/Elevator/Door:position")
+tracks/0/path = NodePath("Model/Elevator/Door:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +46,7 @@ resource_name = "open_door"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Elevator/Elevator/Door:position")
+tracks/0/path = NodePath("Model/Elevator/Door:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -64,57 +63,52 @@ _data = {
 &"open_door": SubResource("Animation_js7s5")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_js7s5"]
-viewport_path = NodePath("ElevatorMenu3D/SubViewport")
+[sub_resource type="BoxShape3D" id="BoxShape3D_v741y"]
+size = Vector3(7.5, 7.5, 7.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4p6wp"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_js7s5")
+[sub_resource type="ViewportTexture" id="ViewportTexture_5voa8"]
+viewport_path = NodePath("SubViewport")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_7x7fn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r83h1"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_4p6wp")
+albedo_texture = SubResource("ViewportTexture_5voa8")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hyogv"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_r83h1")
 size = Vector2(1, 1)
 orientation = 2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4p6wp"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_5voa8"]
 size = Vector3(1, 1, 0.01)
 
 [node name="Elevator" type="Node3D" unique_id=1943396077]
 script = ExtResource("1_4wjoi")
 
-[node name="PlayerDetector" type="Area3D" parent="." unique_id=1437762586]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.29999995, 0)
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector" unique_id=897379477]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100000024, 0)
-shape = SubResource("BoxShape3D_v741y")
-
-[node name="Elevator" type="Node3D" parent="." unique_id=1923238067]
+[node name="Model" type="Node3D" parent="." unique_id=1923238067]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.1499999, 0)
 
-[node name="Elevator" type="CSGCombiner3D" parent="Elevator" unique_id=1683076289]
+[node name="Elevator" type="CSGCombiner3D" parent="Model" unique_id=1683076289]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
 use_collision = true
 
-[node name="Walls" type="CSGCombiner3D" parent="Elevator/Elevator" unique_id=668345821]
+[node name="Walls" type="CSGCombiner3D" parent="Model/Elevator" unique_id=668345821]
 
-[node name="Shell" type="CSGBox3D" parent="Elevator/Elevator/Walls" unique_id=58609518]
+[node name="Shell" type="CSGBox3D" parent="Model/Elevator/Walls" unique_id=58609518]
 size = Vector3(8, 8, 8)
 material = ExtResource("2_ebdo1")
 
-[node name="Hollow" type="CSGBox3D" parent="Elevator/Elevator/Walls/Shell" unique_id=743551516]
+[node name="Hollow" type="CSGBox3D" parent="Model/Elevator/Walls/Shell" unique_id=743551516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999905, 0)
 operation = 2
 size = Vector3(7.5, 7.5, 7.5)
 
-[node name="Doorway" type="CSGBox3D" parent="Elevator/Elevator" unique_id=129351167]
+[node name="Doorway" type="CSGBox3D" parent="Model/Elevator" unique_id=129351167]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.35, -3.9)
 operation = 2
 size = Vector3(2, 3, 0.5)
 
-[node name="Door" type="CSGBox3D" parent="Elevator/Elevator" unique_id=1074759059]
+[node name="Door" type="CSGBox3D" parent="Model/Elevator" unique_id=1074759059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6999998, -3.8999999)
 size = Vector3(2.4, 3.1000001, 0.125)
 
@@ -137,24 +131,22 @@ metadata/_custom_type_script = "uid://cmoen1txvwv8e"
 script = ExtResource("6_whcov")
 metadata/_custom_type_script = "uid://cmoen1txvwv8e"
 
-[node name="ElevatorMenu3D" type="StaticBody3D" parent="." unique_id=566869356]
-transform = Transform3D(-2, 0, 1.7484555e-07, 0, 2, 0, -1.7484555e-07, 0, -2, 0, -1.8000002, 3.6999998)
-collision_layer = 128
-collision_mask = 0
-script = ExtResource("7_gqsot")
+[node name="PlayerDetector" parent="." unique_id=182500390 instance=ExtResource("9_ebdo1")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ElevatorMenu3D" unique_id=46866228]
-mesh = SubResource("PlaneMesh_7x7fn")
+[node name="CollisionShape3D" parent="PlayerDetector" index="0" unique_id=1180385177]
+shape = SubResource("BoxShape3D_v741y")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ElevatorMenu3D" unique_id=2144086018]
-shape = SubResource("BoxShape3D_4p6wp")
+[node name="Menu3D" parent="." unique_id=1013416801 instance=ExtResource("8_ebdo1")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.9999999, 3.7000003)
+script = ExtResource("9_5voa8")
 
-[node name="SubViewport" type="SubViewport" parent="ElevatorMenu3D" unique_id=490790145]
-render_target_update_mode = 4
+[node name="MeshInstance3D" parent="Menu3D" index="0" unique_id=1745783863]
+mesh = SubResource("PlaneMesh_hyogv")
 
-[node name="EndlessElevatorMenu" parent="ElevatorMenu3D/SubViewport" unique_id=1123192353 instance=ExtResource("8_idsle")]
-offset_right = 0.0
-offset_bottom = 0.0
+[node name="CollisionShape3D" parent="Menu3D" index="1" unique_id=1992051640]
+shape = SubResource("BoxShape3D_5voa8")
 
-[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
-[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
+[node name="EndlessElevatorMenu" parent="Menu3D/SubViewport" parent_id_path=PackedInt32Array(1013416801, 2042293445) index="0" unique_id=653173030 instance=ExtResource("10_5voa8")]
+
+[editable path="PlayerDetector"]
+[editable path="Menu3D"]

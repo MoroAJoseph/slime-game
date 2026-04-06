@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c42k2dj8mwnyx"]
+
+[ext_resource type="PackedScene" uid="uid://jqyom1ulbeie" path="res://ui/huds/common/minimap/minimap.tscn" id="1_av3dq"]
+[ext_resource type="PackedScene" uid="uid://d13j4kyr7jnam" path="res://ui/huds/common/ammo/ammo.tscn" id="2_bjvmh"]
+[ext_resource type="PackedScene" uid="uid://bckrhbnti7udm" path="res://ui/huds/common/interaction_circle/interaction_circle.tscn" id="2_kyffy"]
+[ext_resource type="PackedScene" uid="uid://de1xq5tsnhnf" path="res://ui/huds/common/reticle/reticle.tscn" id="3_kyffy"]
+
+[node name="EndlessHubHUD" type="Control" unique_id=838654013]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SafeArea" type="MarginContainer" parent="." unique_id=1838236595]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="Content" type="Control" parent="SafeArea" unique_id=2114730994]
+layout_mode = 2
+
+[node name="Minimap" parent="SafeArea/Content" unique_id=1358840063 instance=ExtResource("1_av3dq")]
+layout_mode = 1
+
+[node name="InteractionCircle" parent="SafeArea/Content" unique_id=1459703804 instance=ExtResource("2_kyffy")]
+layout_mode = 1
+
+[node name="RangeContent" type="Control" parent="SafeArea" unique_id=472245739]
+visible = false
+layout_mode = 2
+
+[node name="Ammo" parent="SafeArea/RangeContent" unique_id=839559408 instance=ExtResource("2_bjvmh")]
+layout_mode = 1
+
+[node name="Reticle" parent="SafeArea/RangeContent" unique_id=869070153 instance=ExtResource("3_kyffy")]
+layout_mode = 1

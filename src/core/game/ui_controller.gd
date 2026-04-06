@@ -1,12 +1,19 @@
 class_name UIController
 extends Node
 
+enum HUDType { ENDLESS_EXPEDITION, ENDLESS_HUB }
 enum MenuType { MAIN, PAUSE, ENDLESS_HUB, ENDLESS_INVENTORY_MENU }
 
-@onready var HUD_LAYER: HUD = $HUD
+# Layers
+@onready var HUD_LAYER: CanvasLayer = $HUD
 @onready var MENUS_LAYER: CanvasLayer = $Menus
 @onready var LOADING_LAYER: CanvasLayer = $Loading
 
+# HUDs
+@onready var ENDLESS_EXPEDITION_HUD: Control = %EndlessExpeditionHUD
+@onready var ENDLESS_HUB_HUD: Control = %EndlessHubHUD
+
+# Menus
 @onready var MAIN_MENU: Control = %MainMenu
 @onready var PAUSE_MENU: Control = %PauseMenu
 @onready var ENDLESS_HUB_MENU: Control = %EndlessHubMenu
@@ -27,8 +34,20 @@ func hide_all() -> void:
 	HUD_LAYER.hide()
 	MENUS_LAYER.hide()
 	LOADING_LAYER.hide()
+	_hide_all_huds()
 	_hide_all_menus()
 
+# HUD
+func has_open_huds() -> bool:
+	return ENDLESS_EXPEDITION_HUD.visible or ENDLESS_HUB_HUD.visible
+
+func is_hud_open(hud_type: HUDType) -> bool:
+	match hud_type:
+		HUDType.ENDLESS_EXPEDITION: return ENDLESS_EXPEDITION_HUD.visible
+		HUDType.ENDLESS_HUB: return ENDLESS_HUB_HUD.visible
+	return false
+
+# Menu
 func has_open_menus() -> bool:
 	return PAUSE_MENU.visible or ENDLESS_HUB_MENU.visible or ENDLESS_INVENTORY_MENU.visible
 
@@ -41,18 +60,25 @@ func is_menu_open(menu_type: MenuType) -> bool:
 
 # --- Transition Methods ---
 
-func toggle_hud(is_visible: bool) -> void:
-	HUD_LAYER.visible = is_visible
-
 func toggle_loading(is_visible: bool) -> void:
 	LOADING_LAYER.visible = is_visible
 
+# HUD
+func toggle_hud(is_visible: bool) -> void:
+	HUD_LAYER.visible = is_visible
+
+func toggle_endless_expedition_hud(is_visible: bool) -> void:
+	_toggle_hud_logic(ENDLESS_EXPEDITION_HUD, is_visible)
+
+func toggle_endless_hub_hud(is_visible: bool) -> void:
+	_toggle_hud_logic(ENDLESS_HUB_HUD, is_visible)
+
+# Menu
 func toggle_main_menu(is_visible: bool) -> void:
 	_toggle_menu_logic(MAIN_MENU, is_visible)
 
 func toggle_pause_menu(is_visible: bool) -> void:
 	_toggle_menu_logic(PAUSE_MENU, is_visible)
-	HUD_LAYER.visible = !is_visible # Hide HUD while paused
 
 func toggle_endless_hub_menu(is_visible: bool) -> void:
 	_toggle_menu_logic(ENDLESS_HUB_MENU, is_visible)
@@ -67,15 +93,24 @@ func close_all_menus() -> void:
 func toggle_menu(menu_type: MenuType, is_visible: bool) -> void:
 	var menu = _get_menu_control(menu_type)
 	_toggle_menu_logic(menu, is_visible)
-	
-	# Handle specific side effects
-	if menu_type == MenuType.PAUSE:
-		HUD_LAYER.visible = !is_visible
 
 # ===
 # Private
 # ===
 
+# HUD
+func _hide_all_huds() -> void:
+	ENDLESS_EXPEDITION_HUD.hide()
+	ENDLESS_HUB_HUD.hide()
+
+func _toggle_hud_logic(hud: Control, is_visible: bool) -> void:
+	if is_visible:
+		HUD_LAYER.show()
+		hud.show()
+	else:
+		hud.hide()
+
+# Menu
 func _get_menu_control(type: MenuType) -> Control:
 	match type:
 		MenuType.MAIN: return MAIN_MENU
@@ -98,13 +133,3 @@ func _toggle_menu_logic(menu: Control, is_visible: bool) -> void:
 		menu.hide()
 		if not has_open_menus():
 			MENUS_LAYER.hide()
-
-# ===
-# Events
-# ===
-
-func _on_event(event: EventBus.Event) -> void:
-	if event is EventBus.UIEvent.ToggleHud:
-		toggle_hud(event.is_visible)
-	elif event is EventBus.UIEvent.ToggleLoading:
-		toggle_loading(event.is_visible)

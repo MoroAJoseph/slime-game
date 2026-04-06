@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://c8pwto050uk05" path="res://core/game/world_controller.gd" id="2_risx7"]
 [ext_resource type="Script" uid="uid://d3us42bq0j7fb" path="res://core/game/ui_controller.gd" id="2_slpoq"]
 [ext_resource type="Script" uid="uid://b3x8nvbcmdko7" path="res://core/state_machine/state_machine.gd" id="3_risx7"]
-[ext_resource type="PackedScene" uid="uid://cfnxxyg8ripds" path="res://ui/hud/hud.tscn" id="4_xmhhf"]
+[ext_resource type="PackedScene" uid="uid://cfnxxyg8ripds" path="res://ui/huds/endless_expedition.tscn" id="4_xmhhf"]
+[ext_resource type="PackedScene" uid="uid://c42k2dj8mwnyx" path="res://ui/huds/endless_expedition_hub.tscn" id="5_0x3cr"]
 [ext_resource type="Script" uid="uid://4l0rfytdwrbr" path="res://core/game/states/game_state_title.gd" id="5_00x87"]
 [ext_resource type="PackedScene" uid="uid://0etvxeffgdta" path="res://ui/menus/main.tscn" id="5_camtn"]
 [ext_resource type="PackedScene" uid="uid://c8m22w661d0wi" path="res://ui/menus/pause.tscn" id="6_edoqx"]
@@ -41,7 +42,13 @@ process_mode = 1
 [node name="UIController" type="Node" parent="." unique_id=2127822112]
 script = ExtResource("2_slpoq")
 
-[node name="HUD" parent="UIController" unique_id=1267680416 instance=ExtResource("4_xmhhf")]
+[node name="HUD" type="CanvasLayer" parent="UIController" unique_id=1948301155]
+
+[node name="EndlessExpeditionHUD" parent="UIController/HUD" unique_id=1267680416 instance=ExtResource("4_xmhhf")]
+unique_name_in_owner = true
+
+[node name="EndlessHubHUD" parent="UIController/HUD" unique_id=838654013 instance=ExtResource("5_0x3cr")]
+unique_name_in_owner = true
 
 [node name="Menus" type="CanvasLayer" parent="UIController" unique_id=1606676291]
 layer = 2

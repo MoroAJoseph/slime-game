@@ -25,27 +25,43 @@ var _active_weapon_node: Node3D
 var _current_spawn_height: float = -0.5
 
 # ===
-# Public Interface
+# Public
 # ===
 
-## Updates the "scan line" position for all active shaders in world space
 func update_spawn_visual(height_offset: float) -> void:
-	# Keep the shader pinned to a specific height relative to the floor
 	_current_spawn_height = global_position.y + height_offset
 	_propagate_spawn_height(self)
 
-## Toggles the holographic spawn shader on/off for body and all weapon slots
 func set_spawn_visuals(active: bool) -> void:
-	# Apply to the base body meshes
 	for mesh in spawn_meshes:
 		_apply_spawn_material(mesh, active, player_spawn_shader)
 	
-	# Ensure all potential weapon slots are checked for meshes
 	var slots = [RIGHT_HAND, RIGHT_HIP, UPPER_BACK, LOWER_BACK ]
 	for slot in slots:
 		_recursive_mesh_apply(slot, active, weapon_spawn_shader)
 
-## Equips a weapon to the active hand (RIGHT_HAND)
+func update_full_loadout(primary: WeaponData, secondary: WeaponData, active_slot: int) -> void:
+	_clear_slot(RIGHT_HAND)
+	_clear_slot(RIGHT_HIP)
+	_clear_slot(UPPER_BACK)
+	_clear_slot(LOWER_BACK)
+
+	if active_slot == 0: # Primary in hand
+		equip_weapon(primary)
+		update_holster_visual(secondary, RIGHT_HIP)
+	elif active_slot == 1: # Secondary in hand
+		equip_weapon(secondary)
+		update_holster_visual(primary, UPPER_BACK)
+	else: # Both sheathed
+		update_holster_visual(primary, UPPER_BACK)
+		update_holster_visual(secondary, RIGHT_HIP)
+
+func set_sheathed(primary: WeaponData, secondary: WeaponData, is_sheathed: bool, last_slot: int) -> void:
+	if is_sheathed:
+		update_full_loadout(primary, secondary, -1)
+	else:
+		update_full_loadout(primary, secondary, last_slot)
+
 func equip_weapon(weapon_data: WeaponData) -> Node3D:
 	_clear_slot(RIGHT_HAND)
 	
@@ -57,11 +73,8 @@ func equip_weapon(weapon_data: WeaponData) -> Node3D:
 	if weapon_instance:
 		RIGHT_HAND.add_child(weapon_instance)
 		_active_weapon_node = weapon_instance
-		
-		# Apply hand-specific transform
 		_apply_transform(weapon_instance, weapon_data.right_hand_bone_transform)
 
-		# Ensure visual consistency if mid-spawn
 		if _is_spawn_effect_active():
 			_recursive_mesh_apply(weapon_instance, true, weapon_spawn_shader)
 
@@ -74,7 +87,7 @@ func update_holster_visual(weapon_data: WeaponData, slot: BoneAttachment3D) -> v
 	if weapon_data:
 		var holster_instance = _spawn_weapon_resource(weapon_data)
 		slot.add_child(holster_instance)
-		holster_instance.set_process(false) # Disable logic for holstered items
+		holster_instance.set_process(false)
 		
 		# Auto-select the correct transform from WeaponData based on the slot provided
 		var target_transform: TransformData = null
@@ -90,12 +103,16 @@ func update_holster_visual(weapon_data: WeaponData, slot: BoneAttachment3D) -> v
 		if _is_spawn_effect_active():
 			_recursive_mesh_apply(holster_instance, true, weapon_spawn_shader)
 
-## Clears all material overrides and resets visibility
 func reset_visuals() -> void:
 	set_spawn_visuals(false)
 	SKELETON.visible = true
 	if death_particles:
 		death_particles.emitting = false
+
+func trigger_death_visuals() -> void:
+	SKELETON.visible = false
+	if death_particles:
+		death_particles.emitting = true
 
 # ===
 # Private Helpers
@@ -106,8 +123,8 @@ func _clear_slot(slot: Node) -> void:
 		child.queue_free()
 
 func _apply_transform(node: Node3D, data: TransformData) -> void:
-	if not data:
-		return
+	if not data: return
+	
 	node.position = data.position
 	node.rotation_degrees = data.rotation
 	node.scale = data.scale

@@ -143,6 +143,9 @@ Veins."
 - **Dismantle Bench**: The station used for breaking down high-tier parts into
   Scrap and Blueprints.
 
+- **Builder Bench**: The station used for combining weapon parts into usable
+  weapons.
+
 - **Socketing Station**: A high-precision workbench used to "inject" biological
   Slime Cores into weapon parts.
 

@@ -1,14 +1,14 @@
 [gd_scene format=4 uid="uid://bwffd6a2wggjy"]
 
 [ext_resource type="Script" uid="uid://cje6y6x14m36a" path="res://entities/slimes/slime.gd" id="1_7cjxe"]
-[ext_resource type="Texture2D" uid="uid://dswmrf3yg80wg" path="res://ui/hud/minimap_icons/star_tiny.png" id="2_nfeis"]
-[ext_resource type="Script" uid="uid://bxf355wlcelu6" path="res://components/combat/hurtbox.gd" id="2_tsra4"]
+[ext_resource type="Texture2D" uid="uid://dswmrf3yg80wg" path="res://ui/huds/common/minimap/icons/star_tiny.png" id="2_nfeis"]
+[ext_resource type="Script" uid="uid://bxf355wlcelu6" path="res://entities/components/combat/hurtbox.gd" id="2_tsra4"]
 [ext_resource type="Script" uid="uid://b3x8nvbcmdko7" path="res://core/state_machine/state_machine.gd" id="3_18i6v"]
 [ext_resource type="Script" uid="uid://c4i1agfr08sr8" path="res://entities/slimes/slime_model_controller.gd" id="3_67mbt"]
 [ext_resource type="AnimationLibrary" uid="uid://befamrh84nwft" path="res://entities/slimes/slime_animation_library.res" id="3_k6ydr"]
 [ext_resource type="Script" uid="uid://8nm2i0g32w0s" path="res://entities/slimes/states/slime_state_dead.gd" id="4_tsra4"]
 [ext_resource type="Script" uid="uid://4ywsoncdbfgq" path="res://entities/slimes/states/slime_state_idle.gd" id="4_ulaw8"]
-[ext_resource type="PackedScene" uid="uid://bd7g52dqj8r5e" path="res://components/combat/health/health_bar_3d.tscn" id="6_8irtk"]
+[ext_resource type="PackedScene" uid="uid://bd7g52dqj8r5e" path="res://entities/components/combat/health/health_bar_3d.tscn" id="6_8irtk"]
 [ext_resource type="PackedScene" uid="uid://dnx0dx6dbanwt" path="res://entities/slimes/chunk/slime_chunk.tscn" id="7_i4800"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ulaw8"]

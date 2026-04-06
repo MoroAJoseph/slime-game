@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 
 
 # ===
-# Local
+# Public
 # ===
 
 func get_horizontal_basis() -> Basis:

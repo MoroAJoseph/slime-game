@@ -10,14 +10,12 @@ func enter(_prev_state_path: String, _data: Object) -> void:
 	EventBus.subscribe(_on_event)
 
 func handle_input(event: InputEvent) -> void:
-	# 
 	if event.is_action_pressed("menu"):
 		if _ui_controller.has_open_menus() or get_tree().paused:
 			_resume_game()
 		else:
 			_pause_game()
 	
-	# Inventory
 	elif event.is_action_pressed("menu_inventory"):
 		var type = _ui_controller.MenuType.ENDLESS_INVENTORY_MENU
 		var is_open = _ui_controller.is_menu_open(type)
@@ -51,7 +49,11 @@ func _resume_game() -> void:
 
 func _on_event(event: EventBus.Event) -> void:
 	if event is EventBus.PlayerEvent.Spawned:
-		_ui_controller.toggle_hud(true)
+		match Session.current_mode:
+			Session.GameMode.ENDLESS:
+				_ui_controller.toggle_endless_expedition_hud(true)
+			Session.GameMode.SANDBOX:
+				pass
 	elif event is EventBus.PlayerEvent.Died:
 		# Show a death menu
 		pass

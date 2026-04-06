@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bckrhbnti7udm"]
+
+[ext_resource type="Script" uid="uid://cboctn52gluxv" path="res://ui/huds/common/interaction_circle/interaction_circle.gd" id="1_8585h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qr8q"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="InteractionCircle" type="Panel" unique_id=1459703804]
+custom_minimum_size = Vector2(8, 8)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2qr8q")
+script = ExtResource("1_8585h")

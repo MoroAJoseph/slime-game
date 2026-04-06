@@ -15,7 +15,7 @@ func _on_quit_pressed() -> void:
 	_publish_action(EventBus.UIEvent.EndlessHubMenuAction.Action.QUIT)
 
 # ===
-# Local
+# Private
 # ===
 
 func _publish_action(action: EventBus.UIEvent.EndlessHubMenuAction.Action) -> void:

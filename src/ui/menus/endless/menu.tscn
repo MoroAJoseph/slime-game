@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dr4tlu08lqmap"]
 
-[ext_resource type="Script" uid="uid://cbabfd60me5bp" path="res://ui/menus/endless_hub_menu.gd" id="1_a8dck"]
+[ext_resource type="Script" uid="uid://cbabfd60me5bp" path="res://ui/menus/endless/menu.gd" id="1_a8dck"]
 
 [node name="EndlessHubMenu" type="Control" unique_id=653173030]
 layout_mode = 3

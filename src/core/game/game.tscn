@@ -6,13 +6,24 @@
 [ext_resource type="Script" uid="uid://b3x8nvbcmdko7" path="res://core/state_machine/state_machine.gd" id="3_risx7"]
 [ext_resource type="PackedScene" uid="uid://cfnxxyg8ripds" path="res://ui/hud/hud.tscn" id="4_xmhhf"]
 [ext_resource type="Script" uid="uid://4l0rfytdwrbr" path="res://core/game/states/game_state_title.gd" id="5_00x87"]
-[ext_resource type="PackedScene" uid="uid://0etvxeffgdta" path="res://ui/menus/main_menu.tscn" id="5_camtn"]
-[ext_resource type="PackedScene" uid="uid://c8m22w661d0wi" path="res://ui/menus/pause_menu.tscn" id="6_edoqx"]
+[ext_resource type="PackedScene" uid="uid://0etvxeffgdta" path="res://ui/menus/main.tscn" id="5_camtn"]
+[ext_resource type="PackedScene" uid="uid://c8m22w661d0wi" path="res://ui/menus/pause.tscn" id="6_edoqx"]
 [ext_resource type="Script" uid="uid://cxid8h0ln26lh" path="res://core/game/states/game_state_play.gd" id="6_xakte"]
-[ext_resource type="PackedScene" uid="uid://dr4tlu08lqmap" path="res://ui/menus/endless_hub_menu.tscn" id="7_o7dow"]
+[ext_resource type="PackedScene" uid="uid://dr4tlu08lqmap" path="res://ui/menus/endless/menu.tscn" id="7_o7dow"]
 [ext_resource type="Script" uid="uid://dg3b75vrpvkfd" path="res://core/game/states/game_state_load.gd" id="7_xmhhf"]
-[ext_resource type="PackedScene" uid="uid://bui6n5gymcwhb" path="res://ui/menus/backpack_menu.tscn" id="8_lnsb0"]
+[ext_resource type="PackedScene" uid="uid://bui6n5gymcwhb" path="res://ui/menus/endless/inventory.tscn" id="8_lnsb0"]
+[ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://weapons/guns/data/classes/gun_part_data.gd" id="9_cw71d"]
+[ext_resource type="Script" uid="uid://b25w17teh4gra" path="res://core/data/classes/endless_backpack_data.gd" id="10_0x3cr"]
 [ext_resource type="Script" uid="uid://sguc5df4brlo" path="res://core/game/game_state_expedition.gd" id="10_6fyre"]
+[ext_resource type="Script" uid="uid://d2fycj4pes8d6" path="res://entities/player/dataclasses/player_loadout_data.gd" id="11_4hqkx"]
+
+[sub_resource type="Resource" id="Resource_hyofc"]
+script = ExtResource("10_0x3cr")
+metadata/_custom_type_script = "uid://b25w17teh4gra"
+
+[sub_resource type="Resource" id="Resource_qqwj0"]
+script = ExtResource("11_4hqkx")
+metadata/_custom_type_script = "uid://d2fycj4pes8d6"
 
 [node name="Game" type="Node" unique_id=898484314]
 process_mode = 3
@@ -37,12 +48,18 @@ layer = 2
 follow_viewport_enabled = true
 
 [node name="MainMenu" parent="UIController/Menus" unique_id=482945197 instance=ExtResource("5_camtn")]
+unique_name_in_owner = true
 
 [node name="PauseMenu" parent="UIController/Menus" unique_id=669495035 instance=ExtResource("6_edoqx")]
+unique_name_in_owner = true
 
 [node name="EndlessHubMenu" parent="UIController/Menus" unique_id=653173030 instance=ExtResource("7_o7dow")]
+unique_name_in_owner = true
 
-[node name="BackpackMenu" parent="UIController/Menus" unique_id=685789889 instance=ExtResource("8_lnsb0")]
+[node name="EndlessInventoryMenu" parent="UIController/Menus" unique_id=685789889 instance=ExtResource("8_lnsb0")]
+unique_name_in_owner = true
+backpack_data = SubResource("Resource_hyofc")
+loadout_data = SubResource("Resource_qqwj0")
 
 [node name="Loading" type="CanvasLayer" parent="UIController" unique_id=1421524645]
 layer = 3

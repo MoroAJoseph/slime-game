@@ -119,6 +119,12 @@ class UIEvent:
 		var action: Action
 		func _init(_action: Action): 
 			action = _action
+	
+	class EndlessInventoryMenuAction extends Event:
+		enum Action { CLOSE }
+		var action: Action
+		func _init(_action: Action):
+			action = _action
 
 # ===
 # Logic

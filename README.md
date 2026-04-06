@@ -283,3 +283,7 @@ Avoiding the "Prestige" reset loop in favor of horizontal growth.
   high-tier Slime Cores.
 
 - **Co-op Extraction**: Tactical squad-based gameplay in the Endless loop.
+
+---
+
+## Notes

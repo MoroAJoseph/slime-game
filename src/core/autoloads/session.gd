@@ -6,10 +6,10 @@ var user_data: UserData
 var settings_data: SettingsData
 var endless_data: EndlessDataPersistent
 var last_save_time: float
-var last_save_path: String
 
 # File Paths
 const SAVE_DIR = "user://saves/"
+const BUILD_PATH = "user://saves/build.tres"
 const ENDLESS_PATH = "user://saves/endless.tres"
 const SETTINGS_PATH = "user://saves/settings.tres"
 const USER_PATH = "user://saves/user.tres"
@@ -22,19 +22,25 @@ func _ready() -> void:
 	if not DirAccess.dir_exists_absolute(SAVE_DIR):
 		DirAccess.make_dir_absolute(SAVE_DIR)
 	
-	load_data()
 	_init_build_data()
+	load_data()
 	
 # ===
 # Public
 # ===
 
 func save_data() -> void:
+	var err_build = ResourceSaver.save(build_data, BUILD_PATH)
 	var err_endless = ResourceSaver.save(endless_data, ENDLESS_PATH)
 	var err_settings = ResourceSaver.save(settings_data, SETTINGS_PATH)
 	var err_user = ResourceSaver.save(user_data, USER_PATH)
 	
-	if err_endless == OK and err_settings == OK and err_user == OK:
+	if (
+		err_build == Error.OK and 
+		err_endless == Error.OK and 
+		err_settings == Error.OK and 
+		err_user == Error.OK
+	):
 		last_save_time = Time.get_unix_time_from_system()
 		print("Session: Data persistent across all modules.")
 	else:
@@ -44,6 +50,7 @@ func load_data() -> void:
 	endless_data = _safe_load(ENDLESS_PATH, EndlessDataPersistent.new())
 	settings_data = _safe_load(SETTINGS_PATH, SettingsData.new())
 	user_data = _safe_load(USER_PATH, UserData.new())
+	save_data()
 	print("Session: Load complete.")
 
 # ===

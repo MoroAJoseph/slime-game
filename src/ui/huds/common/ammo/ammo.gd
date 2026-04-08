@@ -19,8 +19,10 @@ func _ready() -> void:
 # Events
 # ===
 
-func _on_event(event: EventBus.Event) -> void:
-	if event is EventBus.PlayerEvent.AmmoUpdated:
+func _on_event(event: Event) -> void:
+	
+	# Resource Update
+	if event is WeaponEvent.ResourceUpdated:
 		# Update text immediately for responsiveness
 		_current_node.text = str(event.current)
 		_maximum_node.text = str(event.maximum)
@@ -41,17 +43,25 @@ func _on_event(event: EventBus.Event) -> void:
 			.set_trans(Tween.TRANS_QUINT)\
 			.set_ease(Tween.EASE_OUT)
 	
-	elif event is EventBus.PlayerEvent.ReloadStarted:
-		_reloading_node.text = "Reloading"
-		
-		# Bonus: Animate the bar filling up over the actual reload time
-		if _ammo_tween and _ammo_tween.is_running():
-			_ammo_tween.kill()
+	# Reload Update
+	elif event is WeaponEvent.ReloadUpdated:
+		match event.state:
 			
-		_ammo_tween = create_tween()
-		# Set bar to 0 first if it's empty, then fill to 100
-		_ammo_tween.tween_property(_percentage_bar, "value", 100.0, event.duration)\
-			.set_trans(Tween.TRANS_LINEAR)
-	
-	elif event is EventBus.PlayerEvent.ReloadFinished:
-		_reloading_node.text = ""
+			# Started
+			WeaponEvent.ReloadState.STARTED:
+				_reloading_node.text = "Reloading"
+		
+				if _ammo_tween and _ammo_tween.is_running():
+					_ammo_tween.kill()
+					
+				_ammo_tween = create_tween()
+				_ammo_tween.tween_property(_percentage_bar, "value", 100.0, event.duration)\
+					.set_trans(Tween.TRANS_LINEAR)
+			
+			# Finished
+			WeaponEvent.ReloadState.FINISHED:
+				_reloading_node.text = ""
+			
+			# Interrupted
+			WeaponEvent.ReloadState.INTERRUPTED:
+				pass

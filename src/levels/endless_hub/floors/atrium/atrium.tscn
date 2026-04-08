@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bv7tgc04lf25p"]
+
+[ext_resource type="Script" uid="uid://brftijh70r4h7" path="res://levels/endless_hub/floors/atrium/atrium.gd" id="1_adi46"]
+[ext_resource type="Material" uid="uid://n6bklpjctmd7" path="res://_dev/level_design/prototyping_static.material" id="1_jqmkj"]
+[ext_resource type="PackedScene" uid="uid://cccdu0igjwcmw" path="res://levels/endless_hub/floors/atrium/jump_start_terminal/jump_start_terminal.tscn" id="2_dhhoc"]
+[ext_resource type="PackedScene" uid="uid://ci7tuwcjhpin4" path="res://levels/endless_hub/floors/atrium/holo_globe_console/holo_globe_console.tscn" id="3_4vjw8"]
+[ext_resource type="PackedScene" uid="uid://cgbdc4cpfx80b" path="res://levels/endless_hub/floors/atrium/transit_pod/transit_pod.tscn" id="3_lre06"]
+[ext_resource type="Script" uid="uid://dymjhyg7qdmeh" path="res://levels/endless_hub/floors/atrium/transit_pod/transit_pod.gd" id="4_jqgbd"]
+
+[node name="Atrium" type="Node3D" unique_id=1845428393]
+script = ExtResource("1_adi46")
+
+[node name="ElevatorTarget" type="Marker3D" parent="." unique_id=759172057]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15, 0)
+
+[node name="FloorLabel" type="Label3D" parent="." unique_id=328581551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 4.2, -10.5)
+billboard = 1
+text = "Atrium"
+font_size = 128
+
+[node name="Static" type="Node3D" parent="." unique_id=761921942]
+
+[node name="Floor" type="CSGBox3D" parent="Static" unique_id=158057628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6000006, -0.5, -19.400002)
+layers = 9
+use_collision = true
+size = Vector3(34.4, 1, 30.7)
+material = ExtResource("1_jqmkj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Static" unique_id=200766187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.45, 1.6500001, -3.7000003)
+use_collision = true
+size = Vector3(8.900001, 4.3, 0.5)
+material = ExtResource("1_jqmkj")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Static" unique_id=2016533718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.35, 1.6500001, -3.6000001)
+use_collision = true
+size = Vector3(8.900001, 4.3, 0.5)
+material = ExtResource("1_jqmkj")
+
+[node name="Stations" type="Node3D" parent="." unique_id=1125355001]
+
+[node name="TransitPod" parent="Stations" unique_id=414240154 instance=ExtResource("3_lre06")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6000004, 0, -30.599998)
+script = ExtResource("4_jqgbd")
+
+[node name="JumpStartTerminal" parent="Stations" unique_id=1933799629 instance=ExtResource("2_dhhoc")]
+unique_name_in_owner = true
+transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, 0.5999999, 0, -29.1)
+
+[node name="HoloGlobeConsole" parent="Stations" unique_id=1877649705 instance=ExtResource("3_4vjw8")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -18.6)
+
+[node name="LivingQuarters" type="Node3D" parent="Stations" unique_id=618384870]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.8, 0, -20.1)
+
+[node name="Label" type="Label3D" parent="Stations/LivingQuarters" unique_id=239872515]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 1.8999996)
+billboard = 1
+text = "Living Quarters"
+font_size = 128

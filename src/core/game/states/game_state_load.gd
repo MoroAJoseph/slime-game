@@ -16,11 +16,11 @@ func enter(_prev_state_path: String, data: Object) -> void:
 	_ui_controller.toggle_loading(true)
 	
 	if _enter_data.target_state == StateName.TITLE:
-		_world_controller.load_scene(_title_level_path)
+		_world_controller.load_scene(Constants.LEVEL_TITLE_SCENE_PATH)
 	else:
 		_world_controller.load_scene(_enter_data.level_path)
 	
-	# TODO: await the loading screen duration here
+	
 
 func exit() -> void:
 	_ui_controller.toggle_loading(false)
@@ -30,8 +30,9 @@ func exit() -> void:
 # Events
 # ===
 
-func _on_event(event: EventBus.Event) -> void:
-	if event is EventBus.GameplayEvent.TitleLoaded or event is EventBus.GameplayEvent.LevelLoaded:
+func _on_event(event: Event) -> void:
+	# Level Ready
+	if event is WorldEvent.LevelReady:
 		if _enter_data.target_state == StateName.HUB:
 			Session.save_data()
 		_transition_to(_enter_data.target_state, null)

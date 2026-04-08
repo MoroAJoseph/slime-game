@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bui6n5gymcwhb"]
 
 [ext_resource type="Script" uid="uid://c7qxc3m7u5yc4" path="res://ui/menus/endless/inventory.gd" id="1_thg5r"]
-[ext_resource type="ButtonGroup" uid="uid://cnufg1q55bcj1" path="res://ui/menus/endless/inventory_left_tab_buttons_group.tres" id="2_yotvy"]
+[ext_resource type="ButtonGroup" uid="uid://cnufg1q55bcj1" path="res://ui/menus/endless/hub/inventory_left_tab_buttons_group.tres" id="2_yotvy"]
 [ext_resource type="Theme" uid="uid://c66jl4w75yjqx" path="res://ui/themes/ui.theme" id="3_tnsfc"]
-[ext_resource type="ButtonGroup" uid="uid://pd8qp35gloq7" path="res://ui/menus/endless/inventory_right_tab_buttons_group.tres" id="4_ohelv"]
+[ext_resource type="ButtonGroup" uid="uid://pd8qp35gloq7" path="res://ui/menus/endless/hub/inventory_right_tab_buttons_group.tres" id="4_ohelv"]
 
 [node name="EndlessInventoryMenu" type="Control" unique_id=685789889]
 layout_mode = 3

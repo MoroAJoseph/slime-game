@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dsf0bu7i0kwhe"]
+
+[ext_resource type="Script" uid="uid://dcypnt1mc0wxe" path="res://levels/endless_hub/endless_hub.gd" id="1_usxov"]
+[ext_resource type="Script" uid="uid://chgp3untiddwc" path="res://entities/player/scenes/player_spawn_point.gd" id="2_usxov"]
+[ext_resource type="Resource" uid="uid://0qwga3covou3" path="res://_dev/dev_player_data.tres" id="4_v741y"]
+[ext_resource type="PackedScene" uid="uid://creif8ubgdbti" path="res://entities/player/model/player.glb" id="5_5hwib"]
+[ext_resource type="PackedScene" uid="uid://bv7tgc04lf25p" path="res://levels/endless_hub/floors/atrium/atrium.tscn" id="5_5mtnk"]
+[ext_resource type="PackedScene" uid="uid://dytq501qtud4g" path="res://levels/endless_hub/floors/forge/forge.tscn" id="6_dgvup"]
+[ext_resource type="PackedScene" uid="uid://byi6xfnpb36bp" path="res://levels/endless_hub/floors/bio_lab/bio_lab.tscn" id="7_3fka2"]
+[ext_resource type="Script" uid="uid://c8bph5mi105xw" path="res://levels/endless_hub/floors/forge/forge.gd" id="7_dgvup"]
+[ext_resource type="PackedScene" uid="uid://nn2moybug4vn" path="res://levels/endless_hub/elevator/elevator.tscn" id="7_elud6"]
+[ext_resource type="PackedScene" uid="uid://bvbfuvlvnvj5" path="res://levels/endless_hub/floors/range/range.tscn" id="8_0288c"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5rde0"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_5hwib"]
+sky_material = SubResource("ProceduralSkyMaterial_5rde0")
+
+[sub_resource type="Environment" id="Environment_ecllc"]
+background_mode = 2
+sky = SubResource("Sky_5hwib")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="EndlessHub" type="Node3D" unique_id=1337022952]
+script = ExtResource("1_usxov")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1063591831]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=308972779]
+environment = SubResource("Environment_ecllc")
+
+[node name="PlayerSpawnPoint" type="Marker3D" parent="." unique_id=1025290519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 498.34998, 1.1920929e-07, -10.099998)
+script = ExtResource("2_usxov")
+player_data = ExtResource("4_v741y")
+metadata/_custom_type_script = "uid://chgp3untiddwc"
+
+[node name="Entities" type="Node3D" parent="." unique_id=1972184509]
+
+[node name="Projectiles" type="Node3D" parent="." unique_id=2036332384 groups=["projectile_bucket"]]
+
+[node name="FX" type="Node3D" parent="." unique_id=1874106233]
+
+[node name="player" parent="." unique_id=179473384 instance=ExtResource("5_5hwib")]
+transform = Transform3D(0.2561545, 0, 0.9666358, 0, 1, 0, -0.9666358, 0, 0.2561545, 505.76108, -0.09989768, -14.069123)
+
+[node name="Floors" type="Node3D" parent="." unique_id=1341134902]
+
+[node name="Atrium" parent="Floors" unique_id=1845428393 instance=ExtResource("5_5mtnk")]
+
+[node name="Forge" parent="Floors" unique_id=728858892 instance=ExtResource("6_dgvup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 500, 0, 0)
+script = ExtResource("7_dgvup")
+
+[node name="BioLab" parent="Floors" unique_id=1203356282 instance=ExtResource("7_3fka2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0, 0)
+
+[node name="Range" parent="Floors" unique_id=1806323932 instance=ExtResource("8_0288c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1500, 0, 0)
+
+[node name="Elevator" parent="Floors" unique_id=1943396077 instance=ExtResource("7_elud6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15, 0)

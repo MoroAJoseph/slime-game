@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EventBus="*uid://oiid2hcmsi0u"
+EventBus="*uid://dohv7jlirucwc"
 Session="*uid://dwe2lkx0gn7lf"
 
 [display]
@@ -31,6 +31,15 @@ window/vsync/vsync_mode=0
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/kanban_tasks/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://core/": "green",
+"res://entities/": "red",
+"res://levels/": "orange",
+"res://ui/": "purple"
+}
 
 [filesystem]
 
@@ -172,16 +181,25 @@ dev_3={
 [layer_names]
 
 3d_render/layer_1="World"
-3d_render/layer_2="Character"
-3d_render/layer_3="FX"
+3d_render/layer_2="Player_Third"
+3d_render/layer_3="Player_First"
 3d_render/layer_4="Minimap"
+3d_render/layer_5="Enemy"
+3d_render/layer_6="Transparent"
+3d_render/layer_7="UI_3D"
+3d_render/layer_8="Occlusion"
+3d_render/layer_9="Outline_Highlight"
+3d_render/layer_10="FX_Primary"
+3d_render/layer_11="FX_Secondary"
 3d_physics/layer_1="World"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Enemy"
-3d_physics/layer_5="Projectile"
-3d_physics/layer_6="Hitbox"
-3d_physics/layer_7="Hurtbox"
-3d_physics/layer_8="World_UI"
+3d_physics/layer_4="Player_Projectile"
+3d_physics/layer_5="Enemy_Projectile"
+3d_physics/layer_6="Hit_Hurt"
+3d_physics/layer_7="Sensor"
+3d_physics/layer_8="Gaze"
+3d_physics/layer_9="Debris"
 
 [physics]
 

@@ -65,7 +65,7 @@ func reload() -> void:
 		return
 	
 	is_reloading = true
-	EventBus.publish(EventBus.PlayerEvent.ReloadStarted.new(_combat_data.reload_duration))
+	WeaponEvent.ReloadUpdated.new(WeaponEvent.ReloadState.STARTED, _combat_data.reload_duration)
 	
 	await get_tree().create_timer(_combat_data.reload_duration).timeout
 	
@@ -75,7 +75,7 @@ func reload() -> void:
 	current_ammo = _combat_data.ammo_capacity
 	is_reloading = false
 	_publish_ammo()
-	EventBus.publish(EventBus.PlayerEvent.ReloadFinished.new())
+	WeaponEvent.ReloadUpdated.new(WeaponEvent.ReloadState.FINISHED, 0.0)
 
 func _publish_ammo() -> void:
-	EventBus.publish(EventBus.PlayerEvent.AmmoUpdated.new(current_ammo, _combat_data.ammo_capacity))
+	WeaponEvent.ResourceUpdated.new(current_ammo, _combat_data.ammo_capacity)

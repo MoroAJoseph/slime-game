@@ -50,9 +50,6 @@ func _process(delta: float) -> void:
 # Private
 # ===
 
-func _assign_target(target: Node3D) -> void:
-	_target = target
-
 func _update_rotate(should_match: bool) -> void:
 	match_target_rotation = should_match
 
@@ -60,9 +57,10 @@ func _update_rotate(should_match: bool) -> void:
 # Events
 # ===
 
-func _on_event(event: EventBus.Event) -> void:
-	if event is EventBus.PlayerEvent.Spawned:
-		_assign_target(event.player)
-	
-	elif event is EventBus.UIEvent.ToggleMinimapRotation:
-		_update_rotate(event.value)
+func _on_event(event: Event) -> void:
+	# Entity Spawned
+	if event is WorldEvent.EntitySpawned:
+		
+		# Player
+		if event.node is Player:
+			_target = event.node

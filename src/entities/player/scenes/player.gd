@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export_range(0.01, 1.0) var _mouse_sensitivity: float = 0.15
 
 @onready var MINIMAP_ICON: Sprite3D = $MinimapIcon
+@onready var INTERACTOR_AREA: InteractorArea = $InteractorArea
 @onready var STATE_MACHINE: StateMachine = $StateMachine
 @onready var MODEL_CONTROLLER: PlayerModelController = $ModelController
 @onready var CAMERA_CONTROLLER: PlayerCameraController = $CameraController
@@ -21,6 +22,7 @@ var _input_mode: InputMode = InputMode.ADVENTURE
 var _was_aiming: bool = false
 var _hurt_enabled: bool = false
 var _input_enabled: bool = false
+var _current_hovered_sensor: GazeSensor = null
 
 # Grounding settings
 var _cone_ray_count: int = 8
@@ -32,6 +34,7 @@ var _cone_ray_length: float = 0.3
 
 func _ready() -> void:
 	EventBus.subscribe(_on_event)
+	INTERACTOR_AREA.overlaps_updated.connect(_on_interactor_area_overlaps_updated)
 	_setup_loadout()
 	spawn()
 
@@ -64,6 +67,7 @@ func _process(delta: float) -> void:
 	_handle_loadout_input()
 	_update_animations(delta)
 	_update_minimap_icon()
+	_publish_look_at_target()
 
 func _physics_process(_delta: float) -> void:
 	if not _input_enabled: 
@@ -73,8 +77,6 @@ func _physics_process(_delta: float) -> void:
 			"player_move_left", "player_move_right", 
 			"player_move_forward", "player_move_backward"
 		)
-	
-	_publish_look_at_target()
 
 # ===
 # Public
@@ -85,36 +87,36 @@ func get_viewport_raycast_data(max_dist: float = 15.0) -> Dictionary:
 	var camera = CAMERA_CONTROLLER.CAMERA
 	var screen_center = get_viewport().get_visible_rect().size / 2
 	
-	# 1. Get the direction from the camera through the center of the screen
 	var ray_origin = camera.project_ray_origin(screen_center)
 	var ray_dir = camera.project_ray_normal(screen_center)
+	var ray_end = ray_origin + (ray_dir * max_dist)
 	
-	# 2. Calculate the distance from the camera to the player
-	# This ensures the ray starts at the player's depth relative to the camera
-	var dist_to_player = ray_origin.distance_to(global_position)
+	# We tell the ray to ignore the player's physical body RID
+	var exclude_list: Array[RID] = [self.get_rid()]
 	
-	# 3. Shift the origin forward to the player's position + 0.5m padding
-	# This uses 'ray_origin' and 'ray_dir' to ensure we stay on the screen-center line
-	var shifted_origin = ray_origin + (ray_dir * (dist_to_player + 0.5))
-	var ray_end = shifted_origin + (ray_dir * max_dist)
+	# --- Sensor Check ---
+	var sensor_query = PhysicsRayQueryParameters3D.create(
+		ray_origin, 
+		ray_end, 
+		Constants.LAYER_PHYSICS_3D['Sensor'],
+		exclude_list
+	)
+	sensor_query.collide_with_areas = true
+	sensor_query.collide_with_bodies = false
 	
-	# --- Step A: Check Priority (Layers 8 & 3) ---
-	var priority_query = PhysicsRayQueryParameters3D.create(shifted_origin, ray_end, 132)
-	priority_query.collide_with_areas = true
-	priority_query.exclude = [self.get_rid()]
-	
-	var hit = space_state.intersect_ray(priority_query)
-	
-	# Visibility Check: Only return if the collider is actually visible
-	if not hit.is_empty():
-		var collider = hit.collider
-		if collider.is_visible_in_tree():
-			hit["layer"] = collider.collision_layer
-			return hit
+	var hit = space_state.intersect_ray(sensor_query)
+	if not hit.is_empty() and hit.collider is GazeSensor:
+		hit["layer"] = hit.collider.collision_layer
+		return hit
 
-	# --- Step B: Check World (Layer 1) ---
-	var world_query = PhysicsRayQueryParameters3D.create(shifted_origin, ray_end, 1)
-	world_query.exclude = [self.get_rid()]
+	# --- World Check ---
+	var world_query = PhysicsRayQueryParameters3D.create(
+		ray_origin, 
+		ray_end, 
+		Constants.LAYER_PHYSICS_3D['World'],
+		exclude_list
+	)
+	world_query.collide_with_bodies = true
 	
 	var world_hit = space_state.intersect_ray(world_query)
 	if not world_hit.is_empty():
@@ -146,7 +148,6 @@ func spawn() -> void:
 		func(): 
 			MODEL_CONTROLLER.set_spawn_visuals(false)
 			_hurt_enabled = true
-			EventBus.publish(EventBus.PlayerEvent.Spawned.new(self))
 	)
 
 func die() -> void:
@@ -155,7 +156,7 @@ func die() -> void:
 	STATE_MACHINE._transition_to_next_state("Dead")
 	MODEL_CONTROLLER.trigger_death_visuals()
 	await get_tree().create_timer(3.0).timeout
-	EventBus.publish(EventBus.PlayerEvent.Died.new())
+	WorldEvent.EntityDied.new(self)
 
 func apply_velocity(target_speed: float, delta: float) -> void:
 	var cam_basis = CAMERA_CONTROLLER.get_horizontal_basis()
@@ -196,15 +197,57 @@ func animation_callback_check_landing() -> void:
 # Private
 # ===
 
+func _on_interactor_area_overlaps_updated(data: Array[InteractableArea]) -> void:
+	var sorted_data = data.duplicate()
+	
+	sorted_data.sort_custom(func(a, b):
+		return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position)
+	)
+	
+	var names = sorted_data.map(func(area): return area.owner.name)
+	
+	print_debug("Interactables (Closest First): ", names)
+
 func _publish_look_at_target() -> void:
-	# Use a reasonable interaction distance for the UI dot
 	var result = get_viewport_raycast_data(15.0) 
-	EventBus.publish(EventBus.PlayerEvent.LookAtTargetUpdated.new(result))
+	var hit_collider = result.get("collider")
+	var new_sensor: GazeSensor = null
+	
+	# Validation
+	if hit_collider is GazeSensor:
+		var dist = global_position.distance_to(result.get("position", global_position))
+		if hit_collider.notify_hover(dist):
+			new_sensor = hit_collider
+
+	# State Management
+	if new_sensor != _current_hovered_sensor:
+		if _current_hovered_sensor: 
+			_current_hovered_sensor.notify_unhover()
+		_current_hovered_sensor = new_sensor
+
+	# Event Dispatch
+	if _current_hovered_sensor:
+		var gaze_target_data = GazeTargetData.new(
+			_current_hovered_sensor,
+			result.get("position"),
+			global_position.distance_to(result.get("position")),
+			_current_hovered_sensor.get_current_gaze_color()
+		)
+		PlayerEvent.GazeTargetUpdated.new(gaze_target_data)
+	else:
+		PlayerEvent.GazeTargetUpdated.new(null)
 
 func _attempt_interact() -> void:
-	var result = get_viewport_raycast_data()
-	if result and result.collider.has_method("handle_mouse_event"):
-		result.collider.handle_mouse_event(result.position)
+	# Precision Interaction 
+	if _current_hovered_sensor:
+		if _current_hovered_sensor.is_interactable:
+			var interaction_data = InteractionData.new(self, _current_hovered_sensor.owner)
+			WorldEvent.InteractionRequest.new(interaction_data)
+			return
+	
+	# Fallback to Proximity
+	if INTERACTOR_AREA:
+		INTERACTOR_AREA.interact()
 
 func _setup_loadout() -> void:
 	_swap_to_slot(0)
@@ -265,9 +308,9 @@ func _update_input_mode() -> void:
 	if is_aiming != _was_aiming:
 		_was_aiming = is_aiming
 		if is_aiming:
-			EventBus.publish(EventBus.PlayerEvent.AimStarted.new(EventBus.PlayerEvent.AimStarted.Type.HIP))
+			WeaponEvent.AimUpdated.new(WeaponEvent.AimState.STARTED)
 		else:
-			EventBus.publish(EventBus.PlayerEvent.AimFinished.new())
+			WeaponEvent.AimUpdated.new(WeaponEvent.AimState.FINISHED)
 	
 	_input_mode = InputMode.ACTION if (is_aiming or is_shooting) else InputMode.ADVENTURE
 
@@ -294,11 +337,15 @@ func _handle_dev_input():
 # Events
 # ===
 
-func _on_event(event: EventBus.Event) -> void:
-	if event is EventBus.PlayerEvent.Died:
-		STATE_MACHINE._transition_to_next_state("Idle")
-		spawn()
-	elif event is EventBus.PlayerEvent.InputToggled:
+func _on_event(event: Event) -> void:
+	# Player Died
+	if event is WorldEvent.EntityDied:
+		if event.node is Player:
+			STATE_MACHINE._transition_to_next_state("Idle")
+			spawn()
+	
+	# Input Toggle
+	elif event is PlayerEvent.InputToggled:
 		_input_enabled = event.value
 
 # ===

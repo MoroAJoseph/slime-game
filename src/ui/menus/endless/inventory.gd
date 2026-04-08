@@ -50,7 +50,7 @@ var _current_right_tab: RightTab = RightTab.LOADOUT:
 func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
 	
-	CLOSE_BUTTON.pressed.connect(func(): _publish_action(EventBus.UIEvent.EndlessInventoryMenuAction.Action.CLOSE))
+	CLOSE_BUTTON.pressed.connect(func(): UIEvent.EndlessHubInventory.new(UIEvent.EndlessHubInventoryAction.CLOSE))
 	
 	# Left Tabs
 	WEAPONS_TAB_BUTTON.pressed.connect(func(): _current_left_tab = LeftTab.WEAPONS)
@@ -130,9 +130,6 @@ func _populate_list(container: VBoxContainer, items: Array) -> void:
 		container.add_child(slot)
 		if slot.has_method("setup"):
 			slot.setup(item_data)
-
-func _publish_action(action: EventBus.UIEvent.EndlessInventoryMenuAction.Action) -> void:
-	EventBus.publish(EventBus.UIEvent.EndlessInventoryMenuAction.new(action))
 
 # ===
 # Public

@@ -19,7 +19,6 @@ func _ready() -> void:
 	_setup_lines()
 
 func _process(delta: float) -> void:
-	# Smoothly transition the spread
 	_current_spread = lerp(_current_spread, _target_spread, _lerp_speed * delta)
 	
 	# Update positions relative to the center
@@ -29,12 +28,10 @@ func _process(delta: float) -> void:
 	$Right.position = Vector2(_current_spread, 0)
 
 # ===
-# Local
+# Private
 # ===
 
 func _setup_lines() -> void:
-	# Define a small 10px line for each reticle segment
-	# We center the points so the Line2D's local (0,0) is its middle
 	var line_length = 10.0
 	$Top.points = [Vector2(0, -line_length), Vector2(0, 0)]
 	$Bottom.points = [Vector2(0, 0), Vector2(0, line_length)]
@@ -48,15 +45,34 @@ func _draw() -> void:
 # Events
 # ===
 
-func _on_event(event: EventBus.Event) -> void:
-	if event is EventBus.PlayerEvent.AimStarted:
-		match event.type:
-			event.Type.HIP:
+func _on_event(event: Event) -> void:
+	# Weapon Aim
+	if event is WeaponEvent.AimUpdated:
+		match event.state:
+			
+			# Started
+			WeaponEvent.AimState.STARTED:
 				_target_spread = _base_spread * 0.5
-			event.Type.SCOPE:
-				_target_spread = 0.0
-	elif event is EventBus.PlayerEvent.AimFinished:
-		_target_spread = _base_spread
-	elif event is EventBus.PlayerEvent.FiredGun:
-		_current_spread += 20.0 
-		_current_spread = clamp(_current_spread, 0, _max_spread)
+			
+			# Aiming
+			WeaponEvent.AimState.AIMING:
+				# aimed sway
+				pass
+			
+			# Stopping
+			WeaponEvent.AimState.STOPPING:
+				pass
+			
+			# Finished
+			WeaponEvent.AimState.FINISHED:
+				# hip sway
+				_target_spread = _base_spread
+	
+	# Weapon Action
+	elif event is WeaponEvent.Action:
+		match event.action:
+			
+			# Primary: Fire
+			WeaponEvent.ActionType.PRIMARY:
+				_current_spread += 20.0 
+				_current_spread = clamp(_current_spread, 0, _max_spread)

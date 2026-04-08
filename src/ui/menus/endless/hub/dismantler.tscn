@@ -1,0 +1,432 @@
+[gd_scene format=3 uid="uid://bjj512adhyu8g"]
+
+[ext_resource type="Script" uid="uid://d3akcht7xcvbv" path="res://ui/menus/endless/hub/dismantler.gd" id="1_4b36f"]
+[ext_resource type="Theme" uid="uid://c66jl4w75yjqx" path="res://ui/themes/ui.theme" id="1_qtbik"]
+
+[node name="EndlessHubDismantlerMenu" type="Control" unique_id=912336121]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4b36f")
+
+[node name="Backdrop" type="ColorRect" parent="." unique_id=480641153]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.19607843)
+
+[node name="SafeArea" type="MarginContainer" parent="." unique_id=1853397388]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 128
+theme_override_constants/margin_bottom = 128
+
+[node name="Content" type="Control" parent="SafeArea" unique_id=644792440]
+layout_mode = 2
+theme = ExtResource("1_qtbik")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeArea/Content" unique_id=1055427710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="PanelPrimary" type="Panel" parent="SafeArea/Content/VBoxContainer" unique_id=399576355]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"PanelPrimary"
+
+[node name="MarginPrimary" type="MarginContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary" unique_id=1020907537]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"MarginPrimary"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary" unique_id=1202870325]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="LabelTitle" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer" unique_id=447019920]
+layout_mode = 2
+theme_type_variation = &"LabelTitle"
+text = "Dismantler"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SplitView" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer" unique_id=1833103422]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="Left" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView" unique_id=876211213]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left" unique_id=1337785627]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Content" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer" unique_id=1556317265]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelSecondary" type="Panel" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content" unique_id=1647438006]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_type_variation = &"PanelSecondary"
+
+[node name="MarginSecondary" type="MarginContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary" unique_id=1824911451]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_type_variation = &"MarginSecondary"
+
+[node name="Views" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary" unique_id=1239540967]
+layout_mode = 2
+
+[node name="BackpackContent" type="VBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views" unique_id=1368471213]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent" unique_id=2055448683]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="TotalItems" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header" unique_id=475687111]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header/TotalItems" unique_id=186924769]
+layout_mode = 2
+text = "Total Items: "
+
+[node name="CurrentWeaponItemsCount" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header/TotalItems" unique_id=1003840399]
+unique_name_in_owner = true
+layout_mode = 2
+text = "20"
+
+[node name="_" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header" unique_id=711153083]
+layout_mode = 2
+text = "-"
+
+[node name="Weight" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header" unique_id=1011743802]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header/Weight" unique_id=1657565423]
+layout_mode = 2
+text = "Weight: "
+
+[node name="CurrentWeaponsWeight" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header/Weight" unique_id=1617464674]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0.0"
+
+[node name="_" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header/Weight" unique_id=1072068265]
+layout_mode = 2
+text = " / "
+
+[node name="MaxWeaponsWeight" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header/Weight" unique_id=1778632445]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10.0"
+
+[node name="Unit" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/Header/Weight" unique_id=619125789]
+layout_mode = 2
+text = "kg"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent" unique_id=1961158276]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="PanelPrimary" type="Panel" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer" unique_id=873656894]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"PanelPrimary"
+
+[node name="MarginPrimary" type="MarginContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary" unique_id=1469340126]
+layout_mode = 0
+offset_right = 766.0
+offset_bottom = 524.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"MarginPrimary"
+
+[node name="WeaponsList" type="VBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary" unique_id=2096785415]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="WeaponItem" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList" unique_id=902321884]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem" unique_id=1423733958]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Icon" type="ColorRect" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem/HBoxContainer" unique_id=1204822153]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+
+[node name="PartType" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem/HBoxContainer" unique_id=1389983117]
+layout_mode = 2
+text = "Frame"
+
+[node name="Name" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem/HBoxContainer" unique_id=1796492642]
+layout_mode = 2
+text = "Test Rifle Frame"
+
+[node name="Gap" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem" unique_id=62062074]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Weight2" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem" unique_id=2038323587]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="ColorRect" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem/Weight2" unique_id=172779479]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem/Weight2" unique_id=328050283]
+layout_mode = 2
+
+[node name="DismantleWeightAmount" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem/Weight2/HBoxContainer" unique_id=653939053]
+layout_mode = 2
+text = "1.0"
+
+[node name="Unit" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Left/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/BackpackContent/ScrollContainer/PanelPrimary/MarginPrimary/WeaponsList/WeaponItem/Weight2/HBoxContainer" unique_id=2110397616]
+layout_mode = 2
+text = "kg"
+
+[node name="Right" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView" unique_id=1954407857]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right" unique_id=1340084421]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Content" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer" unique_id=824632932]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PanelSecondary" type="Panel" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content" unique_id=902433016]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_type_variation = &"PanelSecondary"
+
+[node name="MarginSecondary" type="MarginContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary" unique_id=1128795862]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"MarginSecondary"
+
+[node name="Views" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary" unique_id=406405751]
+layout_mode = 2
+
+[node name="StagingContent" type="VBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views" unique_id=149978580]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent" unique_id=382396013]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="PanelPrimary" type="Panel" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer" unique_id=1908526155]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"PanelPrimary"
+
+[node name="MarginPrimary" type="MarginContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary" unique_id=1939027743]
+layout_mode = 0
+offset_right = 766.0
+offset_bottom = 524.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"MarginPrimary"
+
+[node name="StagedList" type="VBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary" unique_id=1602328229]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="WeaponScrapItem" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList" unique_id=284569359]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList/WeaponScrapItem" unique_id=2061661897]
+layout_mode = 2
+theme_override_constants/separation = 48
+
+[node name="Icon" type="ColorRect" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList/WeaponScrapItem/HBoxContainer" unique_id=788717244]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+
+[node name="PartType" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList/WeaponScrapItem/HBoxContainer" unique_id=238898569]
+layout_mode = 2
+text = "Frame"
+
+[node name="Name" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList/WeaponScrapItem/HBoxContainer" unique_id=570103004]
+layout_mode = 2
+text = "Test Rifle Frame"
+
+[node name="Gap" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList/WeaponScrapItem" unique_id=440814015]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Scrap" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList/WeaponScrapItem" unique_id=1112410536]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="ColorRect" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList/WeaponScrapItem/Scrap" unique_id=1237649559]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Amount" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/ScrollContainer/PanelPrimary/MarginPrimary/StagedList/WeaponScrapItem/Scrap" unique_id=468121171]
+layout_mode = 2
+text = "20"
+
+[node name="Footer" type="MarginContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent" unique_id=1018709422]
+layout_mode = 2
+theme_type_variation = &"MarginSecondary"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer" unique_id=1917623470]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="DismantleButton" type="Button" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer" unique_id=747240322]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ButtonPrimary"
+text = "Dismantle"
+
+[node name="Gap" type="Control" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer" unique_id=1063550356]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Amounts" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer" unique_id=223401553]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Items" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts" unique_id=1853714314]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="DismantleItemsAmount" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts/Items" unique_id=1536188425]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+
+[node name="Unit" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts/Items" unique_id=473426629]
+layout_mode = 2
+text = "Item(s)"
+
+[node name="Scrap" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts" unique_id=1059485454]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="ColorRect" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts/Scrap" unique_id=1064935065]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="DismantleScrapAmount" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts/Scrap" unique_id=1495206014]
+unique_name_in_owner = true
+layout_mode = 2
+text = "20"
+
+[node name="Weight" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts" unique_id=1153398664]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Icon" type="ColorRect" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts/Weight" unique_id=1215121676]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts/Weight" unique_id=218320600]
+layout_mode = 2
+
+[node name="DismantleWeightAmount" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts/Weight/HBoxContainer" unique_id=1384883804]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1.0"
+
+[node name="Unit" type="Label" parent="SafeArea/Content/VBoxContainer/PanelPrimary/MarginPrimary/VBoxContainer/SplitView/Right/VBoxContainer/Content/PanelSecondary/MarginSecondary/Views/StagingContent/Footer/HBoxContainer/Amounts/Weight/HBoxContainer" unique_id=600526288]
+layout_mode = 2
+text = "kg"
+
+[node name="CloseButton" type="Button" parent="SafeArea/Content/VBoxContainer" unique_id=597719832]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"ButtonDanger"
+theme_override_font_sizes/font_size = 32
+text = "Close"

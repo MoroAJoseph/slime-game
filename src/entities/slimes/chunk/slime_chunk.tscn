@@ -50,7 +50,7 @@ shadow_mesh = SubResource("ArrayMesh_pfbmq")
 radius = 0.25
 
 [node name="SlimeChunk" type="RigidBody3D" unique_id=1115613509]
-collision_layer = 8
+collision_layer = 256
 mass = 0.2
 physics_material_override = SubResource("PhysicsMaterial_2u71d")
 contact_monitor = true
@@ -62,7 +62,7 @@ splatter_scene = ExtResource("2_8d878")
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 
 [node name="Chunk" type="MeshInstance3D" parent="slime_chunk" unique_id=928606174]
-layers = 2
+layers = 16
 mesh = SubResource("ArrayMesh_x673m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2025946087]

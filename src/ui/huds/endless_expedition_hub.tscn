@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://jqyom1ulbeie" path="res://ui/huds/common/minimap/minimap.tscn" id="1_av3dq"]
 [ext_resource type="PackedScene" uid="uid://d13j4kyr7jnam" path="res://ui/huds/common/ammo/ammo.tscn" id="2_bjvmh"]
-[ext_resource type="PackedScene" uid="uid://bckrhbnti7udm" path="res://ui/huds/common/interaction_circle/interaction_circle.tscn" id="2_kyffy"]
+[ext_resource type="PackedScene" uid="uid://bckrhbnti7udm" path="res://ui/huds/common/interaction_selector/interaction_selector.tscn" id="2_kyffy"]
 [ext_resource type="PackedScene" uid="uid://de1xq5tsnhnf" path="res://ui/huds/common/reticle/reticle.tscn" id="3_kyffy"]
 
 [node name="EndlessHubHUD" type="Control" unique_id=838654013]

@@ -1,8 +1,20 @@
 class_name UIController
 extends Node
 
-enum HUDType { ENDLESS_EXPEDITION, ENDLESS_HUB }
-enum MenuType { MAIN, PAUSE, ENDLESS_HUB, ENDLESS_INVENTORY_MENU }
+enum HUDType { 
+	ENDLESS_EXPEDITION, 
+	ENDLESS_HUB, 
+	SANDBOX
+}
+enum MenuType { 
+	TITLE_MAIN, 
+	ENDLESS_INVENTORY, 
+	ENDLESS_HUB_MAIN, 
+	ENDLESS_HUB_DISMANTLER, 
+	ENDLESS_HUB_BUILDER_BENCH,
+	ENDLESS_HUB_PROVISIONER,
+	ENDLESS_EXPEDIION_PAUSE, 
+}
 
 # Layers
 @onready var HUD_LAYER: CanvasLayer = $HUD
@@ -14,10 +26,13 @@ enum MenuType { MAIN, PAUSE, ENDLESS_HUB, ENDLESS_INVENTORY_MENU }
 @onready var ENDLESS_HUB_HUD: Control = %EndlessHubHUD
 
 # Menus
-@onready var MAIN_MENU: Control = %MainMenu
-@onready var PAUSE_MENU: Control = %PauseMenu
-@onready var ENDLESS_HUB_MENU: Control = %EndlessHubMenu
+@onready var TITLE_MAIN_MENU: Control = %TitleMainMenu
 @onready var ENDLESS_INVENTORY_MENU: Control = %EndlessInventoryMenu
+@onready var ENDLESS_HUB_MAIN_MENU: Control = %EndlessHubMainMenu
+@onready var ENDLESS_HUB_DISMANTLER_MENU: Control = %EndlessHubDismantlerMenu
+@onready var ENDLESS_HUB_BUILDER_BENCH_MENU: Control = %EndlessHubBuilderBenchMenu
+@onready var ENDLESS_HUB_PROVISIONER_MENU: Control = %EndlessHubProvisionerMenu
+@onready var ENDLESS_EXPEDITION_PAUSE_MENU: Control = %EndlessExpeditionPauseMenu
 
 # ===
 # Built-In
@@ -31,41 +46,14 @@ func _ready() -> void:
 # ===
 
 func hide_all() -> void:
-	HUD_LAYER.hide()
-	MENUS_LAYER.hide()
 	LOADING_LAYER.hide()
 	_hide_all_huds()
 	_hide_all_menus()
 
-# HUD
+# --- HUD Logic ---
+
 func has_open_huds() -> bool:
 	return ENDLESS_EXPEDITION_HUD.visible or ENDLESS_HUB_HUD.visible
-
-func is_hud_open(hud_type: HUDType) -> bool:
-	match hud_type:
-		HUDType.ENDLESS_EXPEDITION: return ENDLESS_EXPEDITION_HUD.visible
-		HUDType.ENDLESS_HUB: return ENDLESS_HUB_HUD.visible
-	return false
-
-# Menu
-func has_open_menus() -> bool:
-	return PAUSE_MENU.visible or ENDLESS_HUB_MENU.visible or ENDLESS_INVENTORY_MENU.visible
-
-func is_menu_open(menu_type: MenuType) -> bool:
-	match menu_type:
-		MenuType.ENDLESS_INVENTORY_MENU: return ENDLESS_INVENTORY_MENU.visible
-		MenuType.ENDLESS_HUB: return ENDLESS_HUB_MENU.visible
-		MenuType.PAUSE: return PAUSE_MENU.visible
-	return false
-
-# --- Transition Methods ---
-
-func toggle_loading(is_visible: bool) -> void:
-	LOADING_LAYER.visible = is_visible
-
-# HUD
-func toggle_hud(is_visible: bool) -> void:
-	HUD_LAYER.visible = is_visible
 
 func toggle_endless_expedition_hud(is_visible: bool) -> void:
 	_toggle_hud_logic(ENDLESS_EXPEDITION_HUD, is_visible)
@@ -73,63 +61,70 @@ func toggle_endless_expedition_hud(is_visible: bool) -> void:
 func toggle_endless_hub_hud(is_visible: bool) -> void:
 	_toggle_hud_logic(ENDLESS_HUB_HUD, is_visible)
 
-# Menu
-func toggle_main_menu(is_visible: bool) -> void:
-	_toggle_menu_logic(MAIN_MENU, is_visible)
+# --- Menu Logic ---
 
-func toggle_pause_menu(is_visible: bool) -> void:
-	_toggle_menu_logic(PAUSE_MENU, is_visible)
+func has_open_menus() -> bool:
+	return _get_all_menus().any(func(m): return m.visible)
 
-func toggle_endless_hub_menu(is_visible: bool) -> void:
-	_toggle_menu_logic(ENDLESS_HUB_MENU, is_visible)
-
-func toggle_endless_inventory_menu(is_visible: bool) -> void:
-	_toggle_menu_logic(ENDLESS_INVENTORY_MENU, is_visible)
+func toggle_menu(type: MenuType, is_visible: bool) -> void:
+	var menu = _get_menu_control(type)
+	if menu:
+		_toggle_menu_logic(menu, is_visible)
 
 func close_all_menus() -> void:
 	_hide_all_menus()
-	MENUS_LAYER.hide()
 
-func toggle_menu(menu_type: MenuType, is_visible: bool) -> void:
-	var menu = _get_menu_control(menu_type)
-	_toggle_menu_logic(menu, is_visible)
+func toggle_loading(is_visible: bool) -> void:
+	LOADING_LAYER.visible = is_visible
 
 # ===
 # Private
 # ===
 
-# HUD
+func _toggle_hud_logic(hud: Control, is_visible: bool) -> void:
+	hud.visible = is_visible
+	HUD_LAYER.visible = has_open_huds()
+
+func _toggle_menu_logic(menu: Control, is_visible: bool) -> void:
+	menu.visible = is_visible
+	MENUS_LAYER.visible = has_open_menus()
+
+func _get_menu_control(type: MenuType) -> Control:
+	match type:
+		# Title
+		MenuType.TITLE_MAIN: return TITLE_MAIN_MENU
+		# Endless
+		MenuType.ENDLESS_INVENTORY: return ENDLESS_INVENTORY_MENU
+		# Endless Hub
+		MenuType.ENDLESS_HUB_MAIN: return ENDLESS_HUB_MAIN_MENU
+		MenuType.ENDLESS_HUB_DISMANTLER: return ENDLESS_HUB_DISMANTLER_MENU
+		MenuType.ENDLESS_HUB_BUILDER_BENCH: return ENDLESS_HUB_BUILDER_BENCH_MENU
+		MenuType.ENDLESS_HUB_PROVISIONER: return ENDLESS_HUB_PROVISIONER_MENU
+		# Endless Expedition
+		MenuType.ENDLESS_EXPEDIION_PAUSE: return ENDLESS_EXPEDITION_PAUSE_MENU
+	return null
+
+func _get_all_menus() -> Array[Control]:
+	return [
+		# Title
+		TITLE_MAIN_MENU, 
+		# Endless
+		ENDLESS_INVENTORY_MENU, 
+		# Endless Hub
+		ENDLESS_HUB_MAIN_MENU, 
+		ENDLESS_HUB_DISMANTLER_MENU,
+		ENDLESS_HUB_BUILDER_BENCH_MENU,
+		ENDLESS_HUB_PROVISIONER_MENU,
+		# Endless Expedition
+		ENDLESS_EXPEDITION_PAUSE_MENU, 
+	]
+
 func _hide_all_huds() -> void:
 	ENDLESS_EXPEDITION_HUD.hide()
 	ENDLESS_HUB_HUD.hide()
-
-func _toggle_hud_logic(hud: Control, is_visible: bool) -> void:
-	if is_visible:
-		HUD_LAYER.show()
-		hud.show()
-	else:
-		hud.hide()
-
-# Menu
-func _get_menu_control(type: MenuType) -> Control:
-	match type:
-		MenuType.MAIN: return MAIN_MENU
-		MenuType.PAUSE: return PAUSE_MENU
-		MenuType.ENDLESS_HUB: return ENDLESS_HUB_MENU
-		MenuType.ENDLESS_INVENTORY_MENU: return ENDLESS_INVENTORY_MENU
-	return null
+	HUD_LAYER.hide()
 
 func _hide_all_menus() -> void:
-	MAIN_MENU.hide()
-	PAUSE_MENU.hide()
-	ENDLESS_HUB_MENU.hide()
-	ENDLESS_INVENTORY_MENU.hide()
-
-func _toggle_menu_logic(menu: Control, is_visible: bool) -> void:
-	if is_visible:
-		MENUS_LAYER.show()
-		menu.show()
-	else:
+	for menu in _get_all_menus():
 		menu.hide()
-		if not has_open_menus():
-			MENUS_LAYER.hide()
+	MENUS_LAYER.hide()

@@ -23,11 +23,9 @@ func load_scene(path: String) -> void:
 	
 	if map_instance is Level:
 		_initialize_game_level(map_instance)
-		# We still publish this so the UI/Player knows the world is ready
-		EventBus.publish(EventBus.GameplayEvent.LevelLoaded.new(map_instance.data))
-	else:
-		# Title screen or non-gameplay scene
-		EventBus.publish(EventBus.GameplayEvent.TitleLoaded.new())
+	
+	WorldEvent.LevelReady.new(map_instance)
+
 
 # ===
 # Private

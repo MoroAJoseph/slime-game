@@ -58,15 +58,29 @@ func _handle_gun_input() -> void:
 		_execute_shot()
 
 func _execute_shot() -> void:
-	if not active_weapon_node.has_method("shoot"):
+	if not active_weapon_node or not active_weapon_node.has_method("shoot"):
 		return
 	
-	var bullet_target_position = player.get_viewport_raycast_data(1000).position
-	var bullet_spawn_position = active_weapon_node.global_position
+	# 1. Get the raycast dictionary
+	var ray_data = player.get_viewport_raycast_data(1000)
+	var bullet_target_position: Vector3
 	
+	# 2. Check if the ray hit something (is the dictionary NOT empty?)
+	if not ray_data.is_empty():
+		bullet_target_position = ray_data.position
+	else:
+		# Fallback: Aim at a point 1000m in front of the camera if nothing is hit
+		var camera = player.CAMERA_CONTROLLER.CAMERA
+		var screen_center = get_viewport().get_visible_rect().size / 2
+		var ray_dir = camera.project_ray_normal(screen_center)
+		bullet_target_position = camera.global_position + (ray_dir * 1000.0)
+	
+	# 3. Determine spawn point
+	var bullet_spawn_position = active_weapon_node.global_position
 	if "bullet_spawn_node" in active_weapon_node:
 		bullet_spawn_position = active_weapon_node.bullet_spawn_node.global_position
 	
+	# 4. Calculate direction and fire
 	var direction = (bullet_target_position - bullet_spawn_position).normalized()
 	active_weapon_node.shoot(direction)
 

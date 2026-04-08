@@ -39,7 +39,7 @@ func get_horizontal_basis() -> Basis:
 func rotate_camera(input: Vector2, _is_combat: bool, _delta: float) -> void:
 	PIVOT.rotate_y(deg_to_rad(-input.x))
 	PIVOT.rotation.x += deg_to_rad(input.y) 
-	PIVOT.rotation.x = clamp(PIVOT.rotation.x, deg_to_rad(-60), deg_to_rad(30))
+	PIVOT.rotation.x = clamp(PIVOT.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func get_aim_target() -> Vector3:
 	var space_state = get_world_3d().direct_space_state
@@ -60,9 +60,11 @@ func get_aim_target() -> Vector3:
 # Events
 # ===
 
-func _on_event(event: EventBus.Event) -> void:
-	if event is EventBus.PlayerEvent.AimStarted:
-		if event.type == event.Type.HIP:
-			_target_boom_length = _zoomed_boom_length
-	if event is EventBus.PlayerEvent.AimFinished:
-		_target_boom_length = _default_boom_length
+func _on_event(event: Event) -> void:
+	if event is WeaponEvent.AimUpdated:
+		match event.state:
+			WeaponEvent.AimState.STARTED:
+				_target_boom_length = _zoomed_boom_length
+			WeaponEvent.AimState.FINISHED:
+				_target_boom_length = _default_boom_length
+				

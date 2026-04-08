@@ -140,8 +140,8 @@ Veins."
 - **Blueprint Wall**: A glass-encased gallery of holographic wireframes. As
   players unlock Blueprints, these transition into solid, physical weapon parts.
 
-- **Dismantle Bench**: The station used for breaking down high-tier parts into
-  Scrap and Blueprints.
+- **Dismantler**: The station used for breaking down high-tier parts into Scrap
+  and Blueprints.
 
 - **Builder Bench**: The station used for combining weapon parts into usable
   weapons.

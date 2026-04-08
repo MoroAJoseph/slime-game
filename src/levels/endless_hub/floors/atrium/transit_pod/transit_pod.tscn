@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cgbdc4cpfx80b"]
 
 [ext_resource type="Script" uid="uid://dymjhyg7qdmeh" path="res://levels/endless_hub/floors/atrium/transit_pod/transit_pod.gd" id="1_an71x"]
-[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://entities/components/detectors/player_detector.tscn" id="2_r37xu"]
-[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://entities/components/sensors/gaze_sensor.tscn" id="3_2cfv1"]
+[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://common/components/detectors/player_detector.tscn" id="2_r37xu"]
+[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://common/components/sensors/gaze_sensor.tscn" id="3_2cfv1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6c60r"]
 radius = 1.8000001

@@ -9,23 +9,23 @@ func enter(_prev_state_path: String, _data: Object) -> void:
 	if _prev_state_path == "":
 		_animation_player.play("open_door")
 	
-	_interactable_area.area_entered.connect(_on_interactable_area_entered)
-	_interactable_area.area_exited.connect(_on_interactable_area_exited)
+	_player_detector.entered.connect(_on_player_entered)
+	_player_detector.exited.connect(_on_player_exited)
 	_menu.floor_selected.connect(_on_floor_selected)
 
 func exit() -> void:
-	_interactable_area.area_entered.disconnect(_on_interactable_area_entered)
-	_interactable_area.area_exited.disconnect(_on_interactable_area_exited)
+	_player_detector.entered.disconnect(_on_player_entered)
+	_player_detector.exited.disconnect(_on_player_exited)
 	_menu.floor_selected.disconnect(_on_floor_selected)
 
 # ===
 # Signals
 # ===
 
-func _on_interactable_area_entered(_area: Area3D) -> void:
+func _on_player_entered(_sensor: PlayerSensor) -> void:
 	_menu.show()
 
-func _on_interactable_area_exited(_area: Area3D) -> void:
+func _on_player_exited(__sensor: PlayerSensor) -> void:
 	_menu.hide()
 
 func _on_floor_selected(index: int) -> void:

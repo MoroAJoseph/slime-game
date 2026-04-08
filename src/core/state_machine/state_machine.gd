@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	state.physics_update(delta)
 
 # ===
-# Local 
+# Private 
 # ===
 
 func _get_initial_state() -> State:

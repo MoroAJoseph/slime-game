@@ -11,8 +11,8 @@ enum Floor { ATRIUM, FORGE, BIO_LAB, RANGE }
 
 @onready var STATE_MACHINE: StateMachine = $StateMachine
 @onready var ANIMATION_PLAYER: AnimationPlayer = $AnimationPlayer
+@onready var PLAYER_DETECTOR: PlayerDetector = $PlayerDetector
 @onready var MENU: ElevatorMenu3D = $Menu3D
-@onready var INTERACTABLE_AREA: InteractableArea = $InteractableArea
 @onready var FLOOR_MAP: Dictionary = {
 	Floor.ATRIUM: atrium_marker,
 	Floor.FORGE: forge_marker,

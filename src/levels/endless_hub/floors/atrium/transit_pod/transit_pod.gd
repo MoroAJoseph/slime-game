@@ -48,12 +48,12 @@ func _on_event(event: Event) -> void:
 # Signals
 # ===
 
-func _on_player_entered(_player: Player) -> void:
+func _on_player_entered(_sensor: PlayerSensor) -> void:
 	_is_player_nearby = true
 	if _is_gazing:
 		INTERACT_LABEL.show()
 
-func _on_player_exited(_player: Player) -> void:
+func _on_player_exited(_sensor: PlayerSensor) -> void:
 	_is_player_nearby = false
 	INTERACT_LABEL.hide()
 

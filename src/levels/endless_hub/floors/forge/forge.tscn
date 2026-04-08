@@ -5,6 +5,77 @@
 [ext_resource type="PackedScene" uid="uid://1l7qu568yopa" path="res://levels/endless_hub/floors/forge/builder_bench/builder_bench.tscn" id="2_hfcyf"]
 [ext_resource type="PackedScene" uid="uid://c41c4jkxfbulw" path="res://levels/endless_hub/floors/forge/provisioner/provisioner.tscn" id="3_mmxyu"]
 [ext_resource type="PackedScene" uid="uid://bv7yalcjqfla5" path="res://levels/endless_hub/floors/forge/dismantler/dismantler.tscn" id="4_b58eg"]
+[ext_resource type="PackedScene" uid="uid://b1q3t5c4hvfpx" path="res://entities/loot/dropped_loot.tscn" id="6_rbpfa"]
+[ext_resource type="Script" uid="uid://bc10j2xkxuktg" path="res://common/data/item_data.gd" id="7_rdwcl"]
+[ext_resource type="Script" uid="uid://1u7mwynfrr5l" path="res://common/data/inventory_data.gd" id="8_onjhm"]
+
+[sub_resource type="Resource" id="Resource_3hmpf"]
+script = ExtResource("7_rdwcl")
+rarity = 2
+metadata/_custom_type_script = "uid://bc10j2xkxuktg"
+
+[sub_resource type="Resource" id="Resource_k6em6"]
+script = ExtResource("8_onjhm")
+items = Array[ExtResource("7_rdwcl")]([SubResource("Resource_3hmpf")])
+metadata/_custom_type_script = "uid://1u7mwynfrr5l"
+
+[sub_resource type="Resource" id="Resource_kqrer"]
+script = ExtResource("7_rdwcl")
+rarity = 5
+metadata/_custom_type_script = "uid://bc10j2xkxuktg"
+
+[sub_resource type="Resource" id="Resource_n8k6n"]
+script = ExtResource("8_onjhm")
+items = Array[ExtResource("7_rdwcl")]([SubResource("Resource_kqrer")])
+metadata/_custom_type_script = "uid://1u7mwynfrr5l"
+
+[sub_resource type="Resource" id="Resource_x037q"]
+script = ExtResource("7_rdwcl")
+metadata/_custom_type_script = "uid://bc10j2xkxuktg"
+
+[sub_resource type="Resource" id="Resource_op0xs"]
+script = ExtResource("8_onjhm")
+items = Array[ExtResource("7_rdwcl")]([SubResource("Resource_x037q")])
+metadata/_custom_type_script = "uid://1u7mwynfrr5l"
+
+[sub_resource type="Resource" id="Resource_3bang"]
+script = ExtResource("7_rdwcl")
+metadata/_custom_type_script = "uid://bc10j2xkxuktg"
+
+[sub_resource type="Resource" id="Resource_ytjx1"]
+script = ExtResource("8_onjhm")
+items = Array[ExtResource("7_rdwcl")]([SubResource("Resource_3bang")])
+metadata/_custom_type_script = "uid://1u7mwynfrr5l"
+
+[sub_resource type="Resource" id="Resource_4vnkg"]
+script = ExtResource("7_rdwcl")
+rarity = 1
+metadata/_custom_type_script = "uid://bc10j2xkxuktg"
+
+[sub_resource type="Resource" id="Resource_slntt"]
+script = ExtResource("8_onjhm")
+items = Array[ExtResource("7_rdwcl")]([SubResource("Resource_4vnkg")])
+metadata/_custom_type_script = "uid://1u7mwynfrr5l"
+
+[sub_resource type="Resource" id="Resource_naknm"]
+script = ExtResource("7_rdwcl")
+rarity = 1
+metadata/_custom_type_script = "uid://bc10j2xkxuktg"
+
+[sub_resource type="Resource" id="Resource_cd5su"]
+script = ExtResource("8_onjhm")
+items = Array[ExtResource("7_rdwcl")]([SubResource("Resource_naknm")])
+metadata/_custom_type_script = "uid://1u7mwynfrr5l"
+
+[sub_resource type="Resource" id="Resource_onjhm"]
+script = ExtResource("7_rdwcl")
+rarity = 3
+metadata/_custom_type_script = "uid://bc10j2xkxuktg"
+
+[sub_resource type="Resource" id="Resource_rdwcl"]
+script = ExtResource("8_onjhm")
+items = Array[ExtResource("7_rdwcl")]([SubResource("Resource_onjhm")])
+metadata/_custom_type_script = "uid://1u7mwynfrr5l"
 
 [node name="Forge" type="Node3D" unique_id=728858892]
 script = ExtResource("1_djsrf")
@@ -70,3 +141,32 @@ font_size = 128
 [node name="Dismantler" parent="Stations" unique_id=675738636 instance=ExtResource("4_b58eg")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.149994, 0, -19.9)
+
+[node name="DroppedLoot" parent="." unique_id=1579715038 instance=ExtResource("6_rbpfa")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5.6, -1.4901161e-08, -11.75)
+inventory_data = SubResource("Resource_k6em6")
+
+[node name="DroppedLoot3" parent="." unique_id=1156952273 instance=ExtResource("6_rbpfa")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.8999999, -1.4901161e-08, -10.950001)
+inventory_data = SubResource("Resource_n8k6n")
+
+[node name="DroppedLoot4" parent="." unique_id=428864676 instance=ExtResource("6_rbpfa")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.50000024, -1.4901161e-08, -16.550001)
+inventory_data = SubResource("Resource_op0xs")
+
+[node name="DroppedLoot5" parent="." unique_id=183756891 instance=ExtResource("6_rbpfa")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.0499997, -1.4901161e-08, -15.550001)
+inventory_data = SubResource("Resource_ytjx1")
+
+[node name="DroppedLoot6" parent="." unique_id=892946239 instance=ExtResource("6_rbpfa")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.9499998, -1.4901161e-08, -13.450001)
+inventory_data = SubResource("Resource_slntt")
+
+[node name="DroppedLoot7" parent="." unique_id=326462514 instance=ExtResource("6_rbpfa")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -2.9499998, -1.4901161e-08, -17.900002)
+inventory_data = SubResource("Resource_cd5su")
+
+[node name="DroppedLoot2" parent="." unique_id=795666285 instance=ExtResource("6_rbpfa")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5.6, -1.4901161e-08, -9.4)
+inventory_data = SubResource("Resource_rdwcl")
+absorb_radius = 4.0

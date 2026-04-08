@@ -5,10 +5,18 @@ extends Node3D
 @onready var _body_highlight: MeshInstance3D = $SoftRig/GeneralSkeleton/Highlights
 @onready var _eyes: MeshInstance3D = $SoftRig/GeneralSkeleton/Eyes
 
+# ===
+# Public
+# ===
+
 func apply_slime_color(new_color: Color) -> void:
 	_set_mesh_color(_body_mesh, new_color)
 	_set_mesh_color(_body_highlight, new_color.lightened(0.3))
 	# _set_mesh_color(_eyes, Color.BLACK)
+
+# ===
+# Private
+# ===
 
 func _set_mesh_color(mesh_node: MeshInstance3D, color: Color) -> void:
 	if not mesh_node: return

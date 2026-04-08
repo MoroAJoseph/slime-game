@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bghk6m0m4ae5q"]
+
+[ext_resource type="Script" uid="uid://ca3vml74w2xr8" path="res://common/components/sensors/player_sensor.gd" id="1_gdqn3"]
+
+[node name="PlayerSensor" type="Area3D" unique_id=793422486]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_gdqn3")
+metadata/_custom_type_script = "uid://ca3vml74w2xr8"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=923974785]

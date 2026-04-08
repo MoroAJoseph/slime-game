@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bkmwp75u2mr5x"]
+
+[ext_resource type="Script" uid="uid://eghf6rhqkspq" path="res://common/components/detectors/damage_detector.gd" id="1_nh11i"]
+
+[node name="DamageDetector" type="Area3D" unique_id=1259094454]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_nh11i")
+metadata/_custom_type_script = "uid://eghf6rhqkspq"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=771497983]

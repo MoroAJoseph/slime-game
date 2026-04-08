@@ -2,8 +2,8 @@
 
 [ext_resource type="Material" uid="uid://n6bklpjctmd7" path="res://_dev/level_design/prototyping_static.material" id="1_6bceg"]
 [ext_resource type="Script" uid="uid://c5fqcuppfuear" path="res://levels/endless_hub/floors/forge/dismantler/dismantler.gd" id="1_tefv4"]
-[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://entities/components/detectors/player_detector.tscn" id="3_e5iqv"]
-[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://entities/components/sensors/gaze_sensor.tscn" id="4_e5kxa"]
+[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://common/components/detectors/player_detector.tscn" id="3_e5iqv"]
+[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://common/components/sensors/gaze_sensor.tscn" id="4_e5kxa"]
 
 [sub_resource type="Animation" id="Animation_6bceg"]
 length = 0.001

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ci7tuwcjhpin4"]
 
 [ext_resource type="Script" uid="uid://coq8o2tbq4q52" path="res://levels/endless_hub/floors/atrium/holo_globe_console/holo_globe_console.gd" id="1_bgehm"]
-[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://entities/components/detectors/player_detector.tscn" id="2_p13bu"]
-[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://entities/components/sensors/gaze_sensor.tscn" id="3_1mvgb"]
+[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://common/components/detectors/player_detector.tscn" id="2_p13bu"]
+[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://common/components/sensors/gaze_sensor.tscn" id="3_1mvgb"]
 
 [sub_resource type="Animation" id="Animation_1nqsa"]
 length = 0.001

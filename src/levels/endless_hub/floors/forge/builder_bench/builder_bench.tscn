@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://1l7qu568yopa"]
 
 [ext_resource type="Script" uid="uid://c2lkfbtunjvgi" path="res://levels/endless_hub/floors/forge/builder_bench/builder_bench.gd" id="1_bi2w0"]
-[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://entities/components/sensors/gaze_sensor.tscn" id="3_cd2fd"]
-[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://entities/components/detectors/player_detector.tscn" id="3_ltvmx"]
+[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://common/components/sensors/gaze_sensor.tscn" id="3_cd2fd"]
+[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://common/components/detectors/player_detector.tscn" id="3_ltvmx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cd2fd"]
 size = Vector3(2.8500001, 2.05, 1.85)

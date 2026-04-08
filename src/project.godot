@@ -35,8 +35,10 @@ enabled=PackedStringArray("res://addons/kanban_tasks/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://common/": "blue",
 "res://core/": "green",
 "res://entities/": "red",
+"res://fx/": "pink",
 "res://levels/": "orange",
 "res://ui/": "purple"
 }
@@ -50,6 +52,7 @@ import/blender/enabled=false
 projectile_bucket=""
 world_root=""
 Player=""
+dropped_loot=""
 
 [input]
 
@@ -196,10 +199,10 @@ dev_3={
 3d_physics/layer_3="Enemy"
 3d_physics/layer_4="Player_Projectile"
 3d_physics/layer_5="Enemy_Projectile"
-3d_physics/layer_6="Hit_Hurt"
-3d_physics/layer_7="Sensor"
-3d_physics/layer_8="Gaze"
+3d_physics/layer_6="Damage"
+3d_physics/layer_7="Interaction"
 3d_physics/layer_9="Debris"
+3d_physics/layer_10="Collectable"
 
 [physics]
 

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bd7g52dqj8r5e"]
+
+[ext_resource type="Script" uid="uid://ddc5lndg17yg0" path="res://common/components/combat/health/health_bar_3d.gd" id="1_r10yp"]
+[ext_resource type="Texture2D" uid="uid://b1h84mbgni51y" path="res://assets/Wenrexa Interface UI KIT #4/PNG/ProgressBar_06/BarV6_Bar.png" id="2_j4txm"]
+[ext_resource type="Texture2D" uid="uid://cxji4nmyp1165" path="res://assets/Wenrexa Interface UI KIT #4/PNG/ProgressBar_06/BarV6_ProgressBar.png" id="3_p8n6h"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ua1x"]
+texture = ExtResource("2_j4txm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k7vmd"]
+texture = ExtResource("3_p8n6h")
+
+[node name="HealthBar3D" type="Node3D" unique_id=685665725]
+script = ExtResource("1_r10yp")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=97095769]
+transparent_bg = true
+size = Vector2i(200, 20)
+render_target_update_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport" unique_id=1000800479]
+custom_minimum_size = Vector2(200, 20)
+offset_right = 200.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxTexture_7ua1x")
+theme_override_styles/fill = SubResource("StyleBoxTexture_k7vmd")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1166801545]
+billboard = 1

@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" uid="uid://dcbft48v4acct" path="res://levels/sandbox/sandbox.gd" id="1_pd2xf"]
 [ext_resource type="Script" uid="uid://b85edpjne8suq" path="res://levels/sandbox/sandbox_level_data.gd" id="2_lxnan"]
-[ext_resource type="PackedScene" uid="uid://ca75bth86vc77" path="res://entities/player/scenes/player.tscn" id="3_rb51v"]
+[ext_resource type="PackedScene" uid="uid://ca75bth86vc77" path="res://entities/player/player.tscn" id="3_rb51v"]
 [ext_resource type="PackedScene" uid="uid://bwffd6a2wggjy" path="res://entities/slimes/slime.tscn" id="4_kpg8c"]
 [ext_resource type="Material" uid="uid://n6bklpjctmd7" path="res://_dev/level_design/prototyping_static.material" id="5_feq11"]
-[ext_resource type="PackedScene" uid="uid://bb04srrhd30i" path="res://entities/slimes/slime_spawn_point.tscn" id="6_wwady"]
+[ext_resource type="PackedScene" uid="uid://bb04srrhd30i" path="res://entities/spawners/slime_spawn_point.tscn" id="6_wwady"]
 [ext_resource type="Script" uid="uid://dsx4gqqpbhhb1" path="res://entities/slimes/slime_data.gd" id="7_awn6y"]
-[ext_resource type="PackedScene" uid="uid://cdtuy1lnge7dh" path="res://entities/player/scenes/player_spawn_point.tscn" id="8_lpv70"]
+[ext_resource type="PackedScene" uid="uid://cdtuy1lnge7dh" path="res://entities/spawners/player_spawn_point.tscn" id="8_lpv70"]
 [ext_resource type="Resource" uid="uid://bqx047nin6pcg" path="res://_dev/test_gun_data.tres" id="9_p8xy7"]
-[ext_resource type="Script" uid="uid://d2fycj4pes8d6" path="res://entities/player/dataclasses/player_loadout_data.gd" id="10_ih8qp"]
-[ext_resource type="Script" uid="uid://b4qohxd871ki4" path="res://entities/player/dataclasses/player_data.gd" id="11_22iu5"]
+[ext_resource type="Script" uid="uid://d2fycj4pes8d6" path="res://common/data/player_loadout_data.gd" id="10_ih8qp"]
+[ext_resource type="Script" uid="uid://b4qohxd871ki4" path="res://entities/player/player_data.gd" id="11_22iu5"]
 
 [sub_resource type="Resource" id="Resource_gck8l"]
 script = ExtResource("2_lxnan")

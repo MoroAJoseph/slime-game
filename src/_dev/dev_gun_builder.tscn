@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bnf603i6ja8r5" path="res://_dev/dev_gun_builder.gd" id="1_uram3"]
 [ext_resource type="Resource" uid="uid://bqx047nin6pcg" path="res://_dev/test_gun_data.tres" id="2_u4je3"]
-[ext_resource type="PackedScene" uid="uid://b0nkncx3yda0n" path="res://weapons/guns/scenes/gun.tscn" id="7_kx1rr"]
+[ext_resource type="PackedScene" uid="uid://b0nkncx3yda0n" path="res://entities/weapons/guns/scenes/gun.tscn" id="7_kx1rr"]
 
 [node name="DevGunBuilder" type="Node3D" unique_id=1426428537]
 script = ExtResource("1_uram3")

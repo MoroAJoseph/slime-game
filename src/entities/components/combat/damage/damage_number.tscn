@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://dr2xhecqcqrwr"]
-
-[ext_resource type="Script" uid="uid://b61u1uqxjclj4" path="res://entities/components/combat/damage/damage_number.gd" id="1_j1qlm"]
-
-[node name="DamageNumber" type="Control" unique_id=106659546]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_j1qlm")

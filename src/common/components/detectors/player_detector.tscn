@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dbbvervbmpxfy"]
+
+[ext_resource type="Script" uid="uid://dt78tkj0um4a7" path="res://common/components/detectors/player_detector.gd" id="1_fn72i"]
+
+[node name="PlayerDetector" type="Area3D" unique_id=502684538]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_fn72i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=125383973]

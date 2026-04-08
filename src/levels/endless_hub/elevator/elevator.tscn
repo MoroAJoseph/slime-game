@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://nn2moybug4vn"]
 
 [ext_resource type="Script" uid="uid://2lfall4wetak" path="res://levels/endless_hub/elevator/elevator.gd" id="1_4wjoi"]
+[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://common/components/detectors/player_detector.tscn" id="2_cmup8"]
 [ext_resource type="Material" uid="uid://n6bklpjctmd7" path="res://_dev/level_design/prototyping_static.material" id="2_ebdo1"]
 [ext_resource type="Script" uid="uid://b3x8nvbcmdko7" path="res://core/state_machine/state_machine.gd" id="3_5voa8"]
 [ext_resource type="Script" uid="uid://m4cgpolmdrre" path="res://levels/endless_hub/elevator/states/endless_elevator_state_idle.gd" id="4_r83h1"]
@@ -9,10 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://cs83qxv6aw6bk" path="res://levels/components/menu_3D.tscn" id="8_ebdo1"]
 [ext_resource type="Script" uid="uid://b6pot0yi2cc5n" path="res://levels/endless_hub/elevator/menu_3D.gd" id="9_5voa8"]
 [ext_resource type="PackedScene" uid="uid://jg7n0i3wsweb" path="res://ui/menus/endless/hub/elevator.tscn" id="10_5voa8"]
-[ext_resource type="PackedScene" uid="uid://bm1ls4asmoxq3" path="res://entities/components/interaction/interactable_area.tscn" id="10_cmup8"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_575qg"]
-size = Vector3(7.36969, 7.165039, 7.273926)
+[sub_resource type="BoxShape3D" id="BoxShape3D_cmup8"]
+size = Vector3(7.3177185, 7.5218506, 7.5340576)
 
 [sub_resource type="Animation" id="Animation_7x7fn"]
 length = 0.001
@@ -66,16 +66,16 @@ _data = {
 &"open_door": SubResource("Animation_js7s5")
 }
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_iojsd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cmup8"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x76gj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iojsd"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_iojsd")
+albedo_texture = SubResource("ViewportTexture_cmup8")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_6j0tl"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_x76gj"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_x76gj")
+material = SubResource("StandardMaterial3D_iojsd")
 size = Vector2(1, 1)
 orientation = 2
 
@@ -85,11 +85,11 @@ size = Vector3(1, 1, 0.01)
 [node name="Elevator" type="Node3D" unique_id=1943396077]
 script = ExtResource("1_4wjoi")
 
-[node name="InteractableArea" parent="." unique_id=856794978 instance=ExtResource("10_cmup8")]
+[node name="PlayerDetector" parent="." unique_id=502684538 instance=ExtResource("2_cmup8")]
 
-[node name="CollisionShape3D" parent="InteractableArea" index="0" unique_id=1554320677]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.016937256, -0.5572958, -0.045654297)
-shape = SubResource("BoxShape3D_575qg")
+[node name="CollisionShape3D" parent="PlayerDetector" index="0" unique_id=125383973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01600647, -0.32208252, 0.046813965)
+shape = SubResource("BoxShape3D_cmup8")
 
 [node name="Model" type="Node3D" parent="." unique_id=1923238067]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.1499999, 0)
@@ -142,12 +142,12 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.9999999, 3.7000003)
 script = ExtResource("9_5voa8")
 
 [node name="MeshInstance3D" parent="Menu3D" index="0" unique_id=1745783863]
-mesh = SubResource("PlaneMesh_6j0tl")
+mesh = SubResource("PlaneMesh_x76gj")
 
 [node name="CollisionShape3D" parent="Menu3D" index="1" unique_id=1992051640]
 shape = SubResource("BoxShape3D_5voa8")
 
 [node name="EndlessElevatorMenu" parent="Menu3D/SubViewport" parent_id_path=PackedInt32Array(1013416801, 2042293445) index="0" unique_id=653173030 instance=ExtResource("10_5voa8")]
 
-[editable path="InteractableArea"]
+[editable path="PlayerDetector"]
 [editable path="Menu3D"]

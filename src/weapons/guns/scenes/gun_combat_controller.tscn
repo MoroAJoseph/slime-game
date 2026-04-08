@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://bu8wfu85gksv1"]
-
-[ext_resource type="Script" uid="uid://deaomf470adqn" path="res://weapons/guns/scenes/gun_combat_controller.gd" id="1_23yvt"]
-
-[node name="GunCombatController" type="Node3D" unique_id=1879925525]
-script = ExtResource("1_23yvt")
-metadata/_custom_type_script = "uid://deaomf470adqn"

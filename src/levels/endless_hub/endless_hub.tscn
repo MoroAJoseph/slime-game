@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://dsf0bu7i0kwhe"]
 
 [ext_resource type="Script" uid="uid://dcypnt1mc0wxe" path="res://levels/endless_hub/endless_hub.gd" id="1_usxov"]
-[ext_resource type="Script" uid="uid://chgp3untiddwc" path="res://entities/player/scenes/player_spawn_point.gd" id="2_usxov"]
+[ext_resource type="Script" uid="uid://chgp3untiddwc" path="res://entities/spawners/player_spawn_point.gd" id="2_usxov"]
 [ext_resource type="Resource" uid="uid://0qwga3covou3" path="res://_dev/dev_player_data.tres" id="4_v741y"]
-[ext_resource type="PackedScene" uid="uid://creif8ubgdbti" path="res://entities/player/model/player.glb" id="5_5hwib"]
+[ext_resource type="PackedScene" uid="uid://creif8ubgdbti" path="res://entities/player/models/player.glb" id="5_5hwib"]
 [ext_resource type="PackedScene" uid="uid://bv7tgc04lf25p" path="res://levels/endless_hub/floors/atrium/atrium.tscn" id="5_5mtnk"]
 [ext_resource type="PackedScene" uid="uid://dytq501qtud4g" path="res://levels/endless_hub/floors/forge/forge.tscn" id="6_dgvup"]
 [ext_resource type="PackedScene" uid="uid://byi6xfnpb36bp" path="res://levels/endless_hub/floors/bio_lab/bio_lab.tscn" id="7_3fka2"]

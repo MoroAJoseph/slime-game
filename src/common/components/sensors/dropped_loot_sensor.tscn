@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bqx4upgmdcxf"]
+
+[ext_resource type="Script" uid="uid://bl3y3db7jdraa" path="res://common/components/sensors/dropped_loot_sensor.gd" id="1_mqxj7"]
+
+[node name="DroppedLootSensor" type="Area3D" unique_id=1775400519]
+collision_layer = 512
+collision_mask = 0
+script = ExtResource("1_mqxj7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1537588002]

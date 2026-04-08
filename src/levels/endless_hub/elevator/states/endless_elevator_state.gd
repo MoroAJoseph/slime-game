@@ -6,7 +6,7 @@ enum StateName { IDLE, TRANSIT, ARRIVED }
 var _owner: EndlessHubElevator
 var _menu: ElevatorMenu3D
 var _animation_player: AnimationPlayer
-var _interactable_area: InteractableArea
+var _player_detector: PlayerDetector
 var _floor_map: Dictionary
 
 # ===
@@ -24,7 +24,7 @@ func setup(owning_node: EndlessHubElevator) -> void:
 	_owner = owning_node
 	_menu = owning_node.MENU
 	_animation_player = owning_node.ANIMATION_PLAYER
-	_interactable_area = owning_node.INTERACTABLE_AREA
+	_player_detector = owning_node.PLAYER_DETECTOR
 	_floor_map = owning_node.FLOOR_MAP
 
 func get_state_name(state: StateName) -> String:

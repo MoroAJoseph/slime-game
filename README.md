@@ -1,292 +1,448 @@
 # Slime Game
 
-## Core
+insert table of contents here
 
-The game is built on the tension between **Persistence** (what you own) and
-**Risk** (what you've found).
+## Table of Contents
 
-- **Primary Goal**: Levels are created using procedurally stitched "tiles"
-  (premade rooms that snap together). Each run has a primary goal: find the
-  Vacuum Vent (Exit).
+- [Core Concept & Pillars](#core-concept--pillars)
+- [Narrative & World-Building](#narrative--world-building)
+- [The Hub](#the-hub)
+- [Gameplay Modes](#gameplay-modes)
+- [Combat & Customization](#combat--customization)
+- [Economy & Resources](#economy--resources)
+- [Level Design & Biomes](#level-design--biomes)
+- [Objectives & Grading](#objectives--grading)
+- [Endgame & Explanation](#endgame--explanation)
+- [Future Roadmap](#future-roadmap)
 
-- **Optional Goals**: Every level contains two optional objectives:
-  Extermination (kill a specific % of slimes) and Scavenging (find all hidden
-  chests). Completing these grants massive point bonuses.
+## Core Concept & Pillars
 
-- **Timer**: A constant countdown. Reaching the exit before it hits zero is the
-  only way to "Win" the level. If the timer hits zero, the Hub turbines lose
-  pressure, the player is considered "Lost" in the veins, and the backpack is
-  wiped.
+### Logline
 
-- **Backpack**: A temporary inventory for loot found during a run.
-    - **Success**: Reaching the exit moves all loot to the Permanent Vault.
+High-octane extraction shooter. Reconstruct on collapsing planet Aura-5, harvest
+biological power from Slime, build modular weapons, and escape via Ark before
+planetary collapse.
 
-    - **Failure**: Death or Timer expiration destroys everything currently in
-      the backpack.
+### Design Pillars
 
-- **EZ-Pass**: Rare, one-time-use digital keys required for the Safety Hatch.
-  Earned via Bounties, rare chests, or high-cost point purchases.
+- **Upgrades, people, upgrades**: Every reward must give mechanical enhancement,
+  crafting material, or Hub upgrade. No useless items. Cosmetics only for
+  prestige.
 
-- **Recal Protocol (Keep Inventory)**: A world-creation toggle.
-    - **Hardcore**: Player loses everything on death and must restart.
+- **Purpose-Driven Arsenal**: Every weapon part solves a specific environmental
+  or tactical problem.
 
-    - **Standard (Softcore)**: Only the pilot is teleported on death; all gear
-      and backpack items are lost to the pressure veins.
-
-    - **Persistent (Casual)**: A "Quantum Tether" ensures the pilot and all
-      equipped/held items are snapped back to the Hub upon death.
-
----
-
-## Progression
-
-Traditional XP is replaced with a physical Point-Buy Hub system.
-
-- **Earning Points**: Points are volatile. Gained via kills, looting, and
-  objectives. If you die, carried points are reset to zero.
-
-- **Banking**: Players must return to the Hub to "Bank" points into the Hub's
-  upgrade systems.
-
-- **Hub Stations**: Physical interactable stations with multi-tier upgrade paths
-  (Level 1–5+).
+- **Risk-Managed Persistence**: Gamble between safe extraction and pushing
+  deeper for bigger rewards. Know when to Sync versus chase multipliers.
 
 ---
 
-## Combat
+## Narrative & World-Building
 
-Guns and other weapons are assembled from individual parts and enhanced by
-biological Slime Cores.
+### Setting
 
-- **Weapon Parts**: Components include Frames, Barrels, Magazines, Sights, and
-  Muzzles.
+Aura-5 was a corporate mining world of pneumatic Transit Veins and turbines.
+After the Resonance Breach, industrial lubricant (Slime) fused with power Cores,
+turning the planet into a living, aggressive organism that slowly consumes
+everything.
 
-- **Chest Tiers**: Chest size corresponds to part size. Small (Sights/Muzzles),
-  Medium (Barrels/Mags), Large (Frames/Stocks).
+### Conflict
 
-- **Scrap & Blueprints**: Dismantling a part gives "Scrap" (currency for
-  crafting). Dismantling a part multiple times eventually grants its
-  "Blueprint," allowing the player to craft that specific part anytime using
-  Scrap.
+You are the Prism Lab Caretaker — a human in cryostasis. You operate via printed
+Siphon Pilot chassis (stable carbon-material hybrid). The planet wants to digest
+you. You harvest Slime Cores to power hardware while the living Slime tries to
+purge intruders.
 
-- **Slime Cores**: Cores are not just slotted; they are permanently fused into a
-  part at the Socketing Station.
-    - **Infused Stats**: The part gains the core’s elemental "Flavor" and stat
-      buffs, becoming a new unique item (e.g., "Volt-Heavy Barrel").
-    - **3-Color Visual System**: Parts feature Primary (Camo/Shell), Secondary
-      (Slime/Veins), and Tertiary (Accents) color slots. The Secondary color is
-      overridden by the Infused Slime’s glow (e.g., Neon Yellow for Volt).
+### Key Lore Elements
 
-- **Part Mastery**: Successful extractions with specific parts grant permanent
-  stat buffs to those parts.
+- **The Neural Lattice (The Pilot)**: Printed chassis from stable lab material.
+  Consciousness uploaded from your cryo body each time. Destruction yanks
+  consciousness back to Hub via radio; chassis and gear left behind.
 
----
+- **The Outliner**: AI running Prism Lab. Prints bodies, defends Hub, mentors
+  via limited radio.
 
-## The "Slimiary"
+- **Planetary Purge**: Printed chassis resists normal damage but gets crushed by
+  full planetary purge waves (internals cannot handle the process). Gear left at
+  crash site is consumed if not recovered in time.
 
-Each slime type provides a predictable core effect, allowing players to "farm"
-specific "biomes" for their build.
+- **Biome Bosses**: The researchers attempted digital immortality by merging
+  with Slime-Cores. They mutated into towering slime monstrosities guarding Ark
+  Keys encoded in their Cores.
 
-- **Yellow (Volt)**: High speed. Drops cores for Fire Rate, Movement Speed, and
-  Reload Speed.
+- **Cores**: High-density minerals that channel raw power. Allow physical force
+  from biological energy.
 
-- **Blue (Bulwark)**: High health/armor. Drops cores for Magazine Size, Damage
-  Resistance, and Knockback.
+- **The Ark**: Interstellar courier ship in Hub sub-basement. Needs Stabilized
+  Points + 5 Keys to launch and escape the planet.
 
-- **Red (Magma)**: Aggressive/Explosive. Drops cores for AOE Radius and
-  Explosive Damage.
+- **Ark Stasis**: Your original human body in cryostasis on Floor 0. Final goal:
+  upload consciousness back into it and launch.
 
-- **Green (Caustic)**: Leaves trails of acid. Drops cores for Damage over Time
-  (DoT) and Armor Stripping.
+- **Symbiosis**: Slime provides muscle; Cores provide control. Slimes act as the
+  planet’s aggressive immune response.
 
-- **Purple (Phase)**: Teleports or blinks. Drops cores for Piercing and Bullet
-  Velocity.
-
----
-
-## Endless Mode
-
-The primary loop. Groups of 5 levels ending in a small Boss Arena. Difficulty
-and loot quality scale infinitely.
-
-### Hub
-
-A pressurized bunker connected to the planet via repurposed pneumatic "Transit
-Veins."
-
-#### Layout & Infrastructure
-
-**Floor 1: Atrium (Command & Prep)**
-
-- **Transit Pod (North Airlock)**: A reinforced glass and steel capsule. When a
-  run begins, the pod is pressurized and sucked UP into the planet's ceiling at
-  high velocity.
-
-- **Jump-Start Terminal**: Located next to the Pod. Allows players to
-  "Overclock" the Hub's turbines to bypass shallow Transit Veins, launching them
-  directly to deeper relay stations (e.g., Floor 10, 20, 50).
-
-- **Main Lift (Central)**: A heavy industrial elevator providing vertical access
-  between the Hub’s internal floors (Atrium, Forge, Bio-Lab).
-
-- **Holo-Globe Command (East)**: A tactical projection showing the current
-  Endless Floor progress, biome modifiers, and active Bounties.
-
-- **Living Quarters (West)**: A personal space for cosmetic customization (Skin
-  Locker) and a physical Trophy Shelf for boss-kill mementos.
-
-**Floor 2: Forge (Weapon Fabrication)**
-
-- **Blueprint Wall**: A glass-encased gallery of holographic wireframes. As
-  players unlock Blueprints, these transition into solid, physical weapon parts.
-
-- **Dismantler**: The station used for breaking down high-tier parts into Scrap
-  and Blueprints.
-
-- **Builder Bench**: The station used for combining weapon parts into usable
-  weapons.
-
-- **Socketing Station**: A high-precision workbench used to "inject" biological
-  Slime Cores into weapon parts.
-
-- **Loadout Terminal**: A physical UI station to save, name, and quickly swap
-  complex weapon configurations.
-
-- **Provisioner (Store)**: Located in the West Wing. A shop where players spend
-  banked Points on consumables (Grenades, Shields, Med-Stims), EZ-Passes, and
-  permanent utility upgrades like the Slime Core Satchel (a dedicated 1×1 grid
-  for cores).
-
-- **Standard Issue Terminal**: A fallback station that "prints" basic, zero-mod
-  starter weapon parts for free, ensuring players can always start a new run if
-  they lose their gear in Standard Mode.
-
-**Floor 3: Bio-Lab (Core Management)**
-
-- **The Central Vats**: Five massive glass cylinders (Volt, Bulwark, Magma,
-  Caustic, Phase). These act as a **Resource Reservoir**, filling with raw
-  "Liquid Essence" harvested from slimes during successful runs.
-
-- **Core-Printer (Pity System)**: A distillation terminal that allows players to
-  "burn" stored liquid essence to craft guaranteed Slime Cores.
-    - **Scaling Pity**: Spending more liquid in a single "print" raises the
-      minimum rarity of the resulting core (e.g., 500 units for a Random Core,
-      5000 units for a Guaranteed Legendary).
-
-- **Fusion Chamber**: A reinforced, high-energy centrifuge used to combine three
-  low-tier cores into a single higher-tier version.
-
-- **The Slimiary**: An interactive encyclopedia with 3D rotations of all
-  encountered slimes and their predictable drop tables.
-
-**Sub-Basement: Standardized Range (Tunnel)**
-
-- **Integrated Shooting Range**: A long, reinforced tunnel for testing weapon
-  builds in a zero-risk environment.
-
-- **Holographic Dummy Spawner**: Allows players to spawn specific slime types to
-  test elemental damage effectiveness and Armor Stripping.
-
-- **Ballistics Display:**: Real-time floating UI showing DPS, recoil patterns,
-  and elemental proc uptime.
-
-- **Rent-A-Weapon Station**: Create and "rent" a temporary weapon, fully
-  customized to your liking, to use at the range.
-
-#### Mechanics
-
-- **Pneumatic Extraction**: The "Exit" of every level is a roaring **Vacuum
-  Vent**. Jumping into this vent sucks the player and their loot back to the
-  Hub.
-
-- **Essence Harvesting**: Every slime killed is automatically harvested for raw
-  liquid essence via a vacuum attachment on the player’s weapon.
-
-- **Loot Pipe**: During the return trip (loading screen), the player can see
-  their backpack items flying through parallel transparent tubes alongside them.
-
-- **Banking & Loss**:
-    - **Risk**: In Standard Mode, all items in the Backpack and currently
-      equipped Weapon Slots are lost upon death or Pressure Failure (Timer
-      Zero).
-    - **Safe Zone**: Carried Points and Liquid Essence are only secured into the
-      Hub’s permanent systems once the player interacts with the Central Lift
-      console after a successful run.
-
-- **Visual Scaling**: As the player invests points into Hub Upgrades, the base
-  visually evolves from a "cluttered bunker" into a "high-tech research
-  facility" with better lighting, cleaner textures, and more robotic helpers.
-
-- **Upgradable Rig**: Players must purchase upgrades from the Provisioner to
-  unlock the Secondary Back-Harness and Tertiary Side-Holster weapon slots, as
-  well as expanded Backpack grid tiles.
-
-### Levels
-
-Every procedural level is connected by the planetary pneumatic network.
-
-#### Airbox (Entrance & Exit)
-
-Every level starts in a small, reinforced "Safe Zone" before the main combat
-area.
-
-- **Transit Pod (Retreat)**: Allows immediate return to the Hub with the current
-  backpack.
-
-- **Safety Hatch (insurance)**: A port next to the Pod. Requires an EZ-Pass.
-  Allows the player to "deposit" specific items directly into the Vault before
-  opening the blast door.
-
-- **Blast Door (Commit)**: Opening this door starts the Level Timer and begins
-  the mission.
-
-- **In-Field Management**: Players can swap parts between weapons in their
-  backpack while in the Airbox, but they cannot perform **Infusions** or
-  **Dismantling**. Those actions strictly require the industrial machinery of
-  the Hub's Forge.
-
-#### Surface & Junctions
-
-- **Surface Tiles**: Procedural areas contain an entrance and an exit.
-
-- **Junction Boss Arenas**: Every 5th level is a fortified structure that must
-  be cleared to restore transit pressure for the next 5 floors.
+- **The Paradox of Sanity**: Only the printed stable chassis can socket Cores
+  without mutating. Human biology cannot handle the load and became bosses.
 
 ---
 
-## Normal Mode
+## The Hub
 
-A curated, open-map experience with specific story beats (to be developed
-post-core polish).
+### Overview
+
+Physical vertical fortress protected by Outliner. Safe zone. Real-time but pause
+allowed inside.
+
+### Floor Breakdown
+
+- **Floor 4: Atrium (Command Center)**: Logistics & Strategy
+    - **Print Pad**: Primary spawn point where the Pilot’s chassis is rendered.
+
+    - **Jump-Start Terminal**: Select Story nodes or start an Endless Cycle.
+
+    - **Holo-Globe**: Real-time display that tracks biome collapse timers and
+      identifies active Lab frequencies.
+
+    - **Archive Terminal**: Accesses decrypted Caretaker logs.
+
+    - **Standard-Issue Terminal**: Prints basic core-less hardware for free if
+      bankrupt.
+
+- **Floor 3: Forge (Weaponry)**: Industrial Fabrication
+    - **Blueprint Lattice**: Gallery of weapon schematics.
+
+    - **Dismantler**: Recycles parts into Scrap.
+
+    - **Builder Bench**: Prints modular weapon components and assembles weapon
+      configurations.
+
+    - **Socket Station**: Hard-wires Slime Cores into hardware parts.
+
+- **Floor 2: Bio-Lab (Research)**: Alchemy & Evolution
+    - **Essence Vats**: Store liquified Core Essence.
+
+    - **Core Printer**: Renders new Slime Cores.
+
+    - **Fusion Chamber**: Combine low-tier cores into higher tiers.
+
+    - **Suit Rig**: Modifies Neural Lattice for core-driven movement and utility
+      abilities.
+    - **Drone Station**: Upgrades drone.
+
+- **Floor 1: Range (Testing Ground)**: Simulation
+    - **Rent-A-Weapon Station**: Test any weapon.
+
+    - **Target Simulation**: Spawns holographic slimes for DPS testing.
+
+    - **Analytics Overlay**: Shows spread, recoil, damage fall-off.
+
+- **Floor 0: Ark Hangar**: Final Goal
+    - **The Ark**: Interstellar courier ship in Deep Sleep.
+
+    - **Key Console**: Slot Ark Keys to prepare launch sequence.
 
 ---
 
-## End Game
+## Gmeplay Modes
 
-Avoiding the "Prestige" reset loop in favor of horizontal growth.
+### Story
 
-- **Relics**: Unique, game-changing parts (e.g., Ricocheting Barrels) found only
-  in deep Endless levels (Floor 100+).
+Structured Metroidvania-style experience focused on mapping the unknown.
 
-- **Point Infusion**: A permanent point sink. Invest millions of points into a
-  "Biome Infuser" to permanently increase the difficulty and loot rarity of that
-  specific world type.
+- **Goal**: Reach the Ark and escape the planet.
 
-- **Hub Completion**: Turning the solitary bunker into a maxed-out base with
-  trophy rooms and holographic displays of boss kills.
+- **Structure**: Print into a biome and locate a Sync Terminal (Sub-Station).
+  Activating it creates a permanent fast-travel/reprint point.
+
+- **Progression**: Discovery gated by hardware requirements and environmental
+  hazards that need specific Rig upgrades.
+
+### Endless
+
+Procedural high-intensity mode focused on resource farming and survival.
+
+- **Goal**: Maximum Siphon Yield.
+
+- **Collapse Mechanic**: Each biome has a shared collapse timer visible on the
+  Holo-Globe.
+
+- **Escalation**: Deeper runs increase risk and multipliers.
+
+- **Reprint Threshold**: Die without reaching a Sync Point and unsynced loot is
+  lost. Drone must physically return before timer expires or it is lost.
 
 ---
 
-## Future Expansion
+## Combat & Customization
 
-- **Multiplayer Hub**: The Hub becomes a multiplayer space where players can see
-  each other between runs.
+### Equipment System
 
-- **Player Trading**: A player-to-player economy for rare Blueprints and
-  high-tier Slime Cores.
+Modular hardware components that interface with your Neural Lattice.
 
-- **Co-op Extraction**: Tactical squad-based gameplay in the Endless loop.
+- **Guns**:
+    - **Frame**: Determines archetype and Core Sockets (1–3).
+
+    - **Barrel**: Projectile type, range, accuracy.
+
+    - **Muzzle**: Recoil and detection.
+
+    - **Stock**: Handling while moving.
+
+    - **Magazine**: Capacity, reload, ammo types.
+
+    - **Optics**: Zoom and weak-point highlighting.
+
+- **Swords**:
+    - **Handle**: Swing archetype and guard mechanic.
+
+    - **Blade**: Reach and special effects.
+
+### Drone System
+
+Physical tool to secure loot without returning to Hub. Spawn drone, load
+Scrap/Cores, send it back. You are vulnerable while it travels. It must
+physically return to you. Upgradable: max distance, fly speed, carry weight. Can
+be intercepted by Slimes. Must beat biome collapse timer.
+
+### Modification System
+
+- **Fusion Process**: At Socket Station — permanently hard-wire Slime Core into
+  a weapon part.
+
+- **Visual Feedback**: 3-color system. Secondary color overridden by Core’s
+  glow. Multiple same-type cores unlock synergy perks (e.g., 3 Volt Cores =
+  Chain Lightning).
+
+### Slimiary
+
+Slimes categorized by yield:
+
+- **Volt (Yellow)**: Fast skirmishers. Yields: **Fire Rate**, **Reload Speed**,
+  **Movement**.
+
+- **Bulwark (Blue)**: Tanky, shielded blockers. Yields: **Damage Resistance**,
+  **Mag Size**, **Knockback**.
+
+- **Magma (Red)**: Unstable area-denial units. Yields: **AOE Radius**,
+  **Explosive Damage**.
+
+- **Caustic (Green)**: Bio-hazard trail-layers. Yields: **DoT (Damage over
+  Time)**, **Armor-Melting**.
+
+- **Phase (Purple)**: Teleporting ambushers. Yields: **Piercing**, **Bullet
+  Velocity**.
+
+- **Prism (Rainbow)**: "Mimics" that are invisible until scanned or attacking.
+  Yields: **Evasion**, **Critical Hits**.
+
+### Core Utility Matrix
+
+| Element         | Environmental Key                    | Weapon Infusion           |
+| --------------- | ------------------------------------ | ------------------------- |
+| Volt (Yellow)   | Powers Dead Terminals / Elevators    | Fire Rate / Reload Speed  |
+| Bulwark (Blue)  | Resists High-Pressure Wind-Zones     | Mag Size / Knockback      |
+| Magma (Red)     | Melts Overgrowth / Vitrified Ice     | AOE / Splash Damage       |
+| Caustic (Green) | Neutralizes Alkali Fog / Melts Locks | Armor Strip / DoT         |
+| Phase (Purple)  | Shifts through Fans / Laser Grids    | Velocity / Piercing       |
+| Prism (Rainbow) | Bypasses Motion-Sensing Turrets      | Evasion / Critical Chance |
+
+### Character Progression
+
+The Siphon Pilot features 3 internal Rig Slots for core-driven upgrades:
+
+- **Movement**: Core-driven abilities.
+    - _Volt_: Speed Burst (Wall-run velocity).
+
+    - _Phase_: Warp Dash (Blink through obstacles like fans/grates).
+
+    - _Caustic_: Slide Trail (Damaging slick).
+
+- **Utility**: Passive survival.
+    - _Volt_: Scan Pulse (Highlights Mimics and hidden chests).
+
+    - _Magma_: Thermal Shield (Lava/Heat floor resistance).
+
+    - _Prism_: Optical Scrambler (Delays turret lock-on).
+
+- **Combat**: Suit-integrated weapons or overclocks.
+    - _Bulwark_: Armor Plating (Increased HP at the cost of speed).
+
+    - _Magma_: Heat Sink (Prevents weapon overheat).
+
+    - _Prism_: Critical Sync (Reveals Boss weak points in real-time).
 
 ---
 
-## Notes
+## Economy & Resources
+
+### Resource Tables
+
+| Resource          | Type       | Source                  | Purpose                                |
+| ----------------- | ---------- | ----------------------- | -------------------------------------- |
+| Liquid Essence    | Volatile   | Kills / Siphons         | Stabilization, Core printing           |
+| Scrap             | Persistent | Dismantling Parts       | Printing modules, upgrading blueprints |
+| Volatile Points   | Volatile   | Objectives / Loot       | Becomes Stabilized Points              |
+| Stabilized Points | Persistent | Banking Volatile Points | Hub evolution, Ark power               |
+| Cores             | Physical   | High-Tier Chests / Loot | Hardware infusion                      |
+
+### Risk vs. Reward
+
+- **Siphon Multiplier**: Deeper runs increase interference and Essence yield.
+
+- **Signal Stabilization (Safe Zones)**: Spend Essence in Repeater Shelters to
+  extend time before collapse.
+
+- **Volatile vs. Stabilized**: Carried resources lost on death until
+  successfully extracted at Hub lift.
+
+- **Penalty**: Death leaves chassis and equipped gear at Crash Site. Recover
+  before biome collapse timer or lost forever.
+
+- **Dead Zones**: No radio/HUD/drone support. Death here = permanent loss of
+  that chassis progress.
+
+- **Weight & Logistics**: Physical weight affects movement speed and stamina.
+  Drone has upgraded carry limits.
+
+- **The Death Penalty**: Body stays at Crash Site. Miss the biome timer =
+  consumed.
+
+---
+
+## Level Design & Biomes
+
+### Environmental Philosophy
+
+Dark subterranean expanse. Veins are claustrophobic shifting tunnels. Labs are
+fixed, color-coded industrial strongholds. Discovery peels back fog of war.
+
+- **Veins**: These act as the "Roads." They are dark, claustrophobic, and
+  shifting. Navigation is a survival mechanic; players must manage battery and
+  pressure while tracking "Resonance Pings" to find their destination.
+
+- **Labs**: These are the "Cities." Massive, hand-crafted industrial complexes
+  embedded in the rock. Discovering a lab is the reward for surviving the
+  tunnels. Each lab has a distinct monochromatic identity, a dedicated slime
+  species, and a Boss Arena.
+
+- **Visual Gating**: You don't "level up" to see new areas; you find them. The
+  planet is a fog of war that only peels back as you physically discover the
+  entrance to a colored bastion.
+
+### Biome Catalog
+
+- **Lab Yellow (The Kinetic Lab)**: A high-voltage power grid filled with
+  massive turbines and sparking capacitors.
+    - _Identity_: Loud, mechanical, buzzing.
+
+    - _Enemy_: Volt Slimes.
+
+    - _POI_: The Generator Core (Boss).
+
+- **Lab Blue (The Cryo Lab)**: A cooling array defined by frost-shattered glass,
+  liquid nitrogen vats, and vitrified floors.
+    - _Identity_: Silent, brittle, frozen.
+
+    - _Enemy_: Bulwark Slimes.
+
+    - _POI_: The Zero-Point Vat (Boss).
+
+- **Lab Red (The Thermal Lab)**: A deep-mantle siphon built into volcanic rock
+  with orange "heat-veins" and obsidian plating.
+    - _Identity_: Oppressive, glowing, industrial.
+
+    - _Enemy_: Magma Slimes.
+
+    - _POI_: The Mantle Drill (Boss).
+
+- **Lab Green (The Chemical Lab)**: A bio-processing plant where slimes were
+  first synthesized. Filled with emerald emergency lights and thick toxic fog.
+    - _Identity_: Wet, fluorescent, hazardous.
+
+    - _Enemy_: Caustic Slimes.
+
+    - _POI_: The Catalyst Tank (Boss).
+
+- **Lab Purple (The Resonance Vault)**: A high-tech laboratory where the
+  "Breach" occurred. Gravity is unstable, and architecture shifts out of phase.
+    - _Identity_: Eerie, shifting, violet.
+
+    - _Enemy_: Phase Slimes.
+
+    - _POI_: The Void Anchor (Boss).
+
+### Procedural Logic
+
+- **Spoke & Hub Generation**: The world generates "Labs" as fixed, high-detail
+  chunks. The generator then "spins" a web of procedurally generated tunnels
+  (The Veins) to connect them.
+
+- **Resonance Tracking**: Players carry a tracker that tunes into specific color
+  frequencies. The closer you get to Lab Red, the more the HUD flickers orange.
+
+- **Looping Shortcuts**: Clearing a Lab unlocks one-way transit pipe shortcuts.
+
+---
+
+## Objectives & Grading
+
+### Primary Objectives
+
+- **Lab Infiltration**: Locate and reach inner sanctum of a Lab.
+
+- **Key Extraction**: Defeat Researcher Boss to secure Ark Key.
+
+- **Siphon Defense**: Deploy extractor and defend while harvesting Essence.
+
+### Optional Goals
+
+- **Cartography**: Fully map a lab.
+
+- **Data Recovery**: Retrieve audio logs.
+
+- **Asset Recovery**: Recover lost pilot backpacks.
+
+### Reward Tiers
+
+- **Bronze**: Basic Volatile Points and Essence.
+
+- **Silver**: Bonus Scrap and random attachment.
+
+- **Gold**: High-tier Frame/Blade and Core Shard.
+
+- **Platinum** (S-Rank): Guaranteed Slime Core.
+
+---
+
+## Endgame & Explanation
+
+### Final Act
+
+Collect Ark Keys and enough Stabilized Points. Descend to Floor 0. Upload
+consciousness from printed chassis back into original human body in cryostasis.
+Board the Ark and launch, leaving the planet. Game ends.
+
+### Post-Game
+
+- **Optional**: After credits, you can spawn back in the Hub (Ark is gone) for
+  continued Endless play if desired. No further story progression.
+
+- **Play Again**: Choose to play again, but at a different difficulty level.
+
+## Future Roadmap
+
+- **Multiplayer Atrium**: The Atrium becomes a shared social space where you can
+  see other Pilots and their customized Rigs before heading out into the Veins.
+
+- **Co-op Expeditions**: Squad-based missions into "Mega-Veins" where the
+  environment requires two or more specific Core abilities (e.g., Phase and
+  Magma) to be activated simultaneously to progress.
+
+- **Rival Scavengers**: AI-controlled "Rogue Automata" appearing in the tunnels
+  during Endless runs, attempting to steal your backpack before you reach the
+  Vacuum Vent.
+
+- **Expansion Biome**: The Sub-Sea Pipes: A new subterranean ocean biome where
+  water-pressure mechanics and low-visibility "Deep-Dives" introduce the Aquatic
+  (Teal) Core.

@@ -4,8 +4,6 @@ extends State
 enum StateName { TITLE, HUB, EXPEDITION, LOAD }
 
 var _owner: Game
-var _world_controller: WorldController
-var _ui_controller: UIController
 
 # ===
 # Built-In
@@ -29,10 +27,6 @@ class LoadStateData extends RefCounted:
 
 func get_state_name(state: StateName) -> String:
 	return StateName.keys()[state].capitalize()
-
-func setup(game: Game) -> void:
-	_world_controller = game.WORLD_CONTROLLER
-	_ui_controller = game.UI_CONTROLLER
 
 # ===
 # Private

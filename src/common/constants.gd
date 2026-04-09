@@ -8,7 +8,7 @@ extends RefCounted
 # --- Levels ---
 const LEVEL_TITLE_SCENE_PATH: String = "res://levels/title/title.tscn"
 const LEVEL_SANDBOX_SCENE_PATH: String = "res://levels/sandbox/sandbox.tscn"
-const LEVEL_ENDLESS_HUB_SCENE_PATH: String = "res://levels/endless_hub/endless_hub.tscn"
+const LEVEL_HUB_SCENE_PATH: String = "res://levels/hub/hub.tscn"
 
 # --- Entities ---
 const ENTITY_PLAYER_SCENE_PATH: String = "res://entities/player/player.tscn"

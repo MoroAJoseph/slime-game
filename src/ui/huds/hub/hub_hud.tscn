@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://dmthf3tejyt56"]
+
+[ext_resource type="Script" uid="uid://d0v8e71wfdf18" path="res://ui/huds/hub/hub_hud.gd" id="1_4yk2u"]
+[ext_resource type="PackedScene" uid="uid://jqyom1ulbeie" path="res://ui/huds/common/minimap/minimap.tscn" id="2_b2e2f"]
+[ext_resource type="PackedScene" uid="uid://bckrhbnti7udm" path="res://ui/huds/common/gaze_indicator/gaze_indicator.tscn" id="3_s4hlq"]
+[ext_resource type="PackedScene" uid="uid://d13j4kyr7jnam" path="res://ui/huds/common/ammo/ammo.tscn" id="4_pmc8b"]
+
+[node name="HubHUD" type="Control" unique_id=334187088]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4yk2u")
+
+[node name="SafeArea" type="MarginContainer" parent="." unique_id=795109056]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="Content" type="Control" parent="SafeArea" unique_id=695910683]
+layout_mode = 2
+
+[node name="Minimap" parent="SafeArea/Content" unique_id=1358840063 instance=ExtResource("2_b2e2f")]
+layout_mode = 1
+
+[node name="InteractionCircle" parent="SafeArea/Content" unique_id=1459703804 instance=ExtResource("3_s4hlq")]
+layout_mode = 1
+
+[node name="Ammo" parent="SafeArea/Content" unique_id=839559408 instance=ExtResource("4_pmc8b")]
+layout_mode = 1

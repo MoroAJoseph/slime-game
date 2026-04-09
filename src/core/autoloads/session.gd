@@ -1,6 +1,6 @@
 extends Node
 
-enum GameMode { NONE, ENDLESS, SANDBOX }
+enum GameMode { NONE, STORY, ENDLESS, SANDBOX }
 
 # Persistent Resources
 var build_data: BuildData
@@ -8,7 +8,7 @@ var user_data: UserData
 var settings_data: SettingsData
 var endless_data: EndlessDataPersistent
 var last_save_time: float
-var current_mode: GameMode
+var current_mode: GameMode = GameMode.NONE
 
 # File Paths
 const SAVE_DIR = "user://saves/"

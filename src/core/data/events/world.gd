@@ -111,7 +111,7 @@ class EntityDied extends WorldEvent:
 
 enum InteractionState { STARTED, STOPPED }
 
-class InteractionRequest extends GameEvent: 
+class InteractionRequest extends WorldEvent: 
 	
 	var data: InteractionData
 	
@@ -119,7 +119,7 @@ class InteractionRequest extends GameEvent:
 		data = _data
 		emit()
 
-class InteractionResponse extends GameEvent:
+class InteractionResponse extends WorldEvent:
 	
 	var initial_request: InteractionRequest
 	var result: ResponseResult
@@ -131,7 +131,7 @@ class InteractionResponse extends GameEvent:
 		message = _message
 		emit()
 
-class InteractionInputUpdated extends GameEvent: 
+class InteractionInputUpdated extends WorldEvent: 
 	
 	var state: InteractionState
 	

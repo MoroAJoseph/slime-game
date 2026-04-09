@@ -18,73 +18,73 @@ class HUDToggle extends UIEvent:
 # ===
 
 # --- Main ---
-enum TitleMainAction { OPEN, CLOSE, SANDBOX, ENDLESS, EXIT, SETTINGS }
+enum MainMenuAction { OPEN, CLOSE, SANDBOX, PLAY, EXIT, SETTINGS }
 
-class TitleMain extends UIEvent:
+class MainMenu extends UIEvent:
 	
-	var action: TitleMainAction
+	var action: MainMenuAction
 	
-	func _init(_action: TitleMainAction) -> void:
+	func _init(_action: MainMenuAction) -> void:
 		action = _action
 		emit()
 
 
 # --- Settings ---
-enum TitleSettingsAction { OPEN, CLOSE, BACK }
+enum TitleSettingsMenuAction { OPEN, CLOSE, BACK }
 
-class TitleSettings extends UIEvent:
+class TitleSettingsMenu extends UIEvent:
 	
-	var action: TitleSettingsAction
+	var action: TitleSettingsMenuAction
 	
-	func _init(_action: TitleSettingsAction) -> void:
+	func _init(_action: TitleSettingsMenuAction) -> void:
 		action = _action
 		emit()
 
 # ===
-# Endless Hub
+# Hub
 # ===
-
-# --- Main ---
-enum EndlessHubMainAction { OPEN, CLOSE, EXIT, QUIT }
-
-class EndlessHubMain extends UIEvent:
-	
-	var action: EndlessHubMainAction
-	
-	func _init(_action: EndlessHubMainAction) -> void:
-		action = _action
-		emit()
 
 # --- Inventory ---
-enum EndlessHubInventoryAction { OPEN, CLOSE }
+enum InventoryMenuAction { OPEN, CLOSE }
 
-class EndlessHubInventory extends UIEvent:
+class InventoryMenu extends UIEvent:
 	
-	var action: EndlessHubInventoryAction
+	var action: InventoryMenuAction
 	
-	func _init(_action: EndlessHubInventoryAction) -> void:
+	func _init(_action: InventoryMenuAction) -> void:
 		action = _action
 		emit()
 
 # --- Dismantle ---
-enum EndlessHubDismantlerAction { OPEN, CLOSE, DISMANTLE }
+enum DismantlerMenuAction { OPEN, CLOSE, DISMANTLE }
 
-class EndlessHubDismantler extends UIEvent:
+class DismantlerMenu extends UIEvent:
 	
-	var action: EndlessHubDismantlerAction
+	var action: DismantlerMenuAction
 	
-	func _init(_action: EndlessHubDismantlerAction) -> void:
+	func _init(_action: DismantlerMenuAction) -> void:
+		action = _action
+		emit()
+
+# --- Builer Bench ---
+enum BuilderBenchMenuAction { OPEN, CLOSE }
+
+class BuilderBenchMenu extends UIEvent:
+	
+	var action: BuilderBenchMenuAction
+	
+	func _init(_action: BuilderBenchMenuAction) -> void:
 		action = _action
 		emit()
 
 # --- Provisioner ---
-enum EndlessHubProvisionerAction { OPEN, CLOSE, DISMANTLE }
+enum ProvisionerMenuAction { OPEN, CLOSE }
 
-class EndlessHubProvisioner extends UIEvent:
+class ProvisionerMenu extends UIEvent:
 	
-	var action: EndlessHubProvisionerAction
+	var action: ProvisionerMenuAction
 	
-	func _init(_action: EndlessHubProvisionerAction) -> void:
+	func _init(_action: ProvisionerMenuAction) -> void:
 		action = _action
 		emit()
 
@@ -93,12 +93,12 @@ class EndlessHubProvisioner extends UIEvent:
 # ===
 
 # --- Pause ---
-enum EndlessExpeditionPauseAction { OPEN, CLOSE, RESUME, SETTINGS, RESTART, EXIT, QUIT }
+enum PauseMenuAction { OPEN, CLOSE, RESUME, SETTINGS, EXIT, QUIT }
 
-class EndlessExpeditionPause extends UIEvent:
+class PauseMenu extends UIEvent:
 	
-	var action: EndlessExpeditionPauseAction
+	var action: PauseMenuAction
 	
-	func _init(_action: EndlessExpeditionPauseAction) -> void:
+	func _init(_action: PauseMenuAction) -> void:
 		action = _action
 		emit()

@@ -4,14 +4,14 @@ extends StaticBody3D
 @onready var viewport: SubViewport = $SubViewport
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D
 
-var ui_menu: Control 
+var _ui_menu: Control 
 
 # ===
 # Built-In
 # ===
 
 func _ready() -> void:
-	ui_menu = viewport.get_child(0)
+	_ui_menu = viewport.get_child(0)
 	_setup()
 
 # ===

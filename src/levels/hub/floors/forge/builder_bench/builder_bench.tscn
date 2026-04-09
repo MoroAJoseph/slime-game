@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://1l7qu568yopa"]
+
+[ext_resource type="Script" uid="uid://c2lkfbtunjvgi" path="res://levels/hub/floors/forge/builder_bench/builder_bench.gd" id="1_bi2w0"]
+[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://common/components/sensors/gaze_sensor.tscn" id="3_cd2fd"]
+[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://common/components/detectors/player_detector.tscn" id="3_ltvmx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cd2fd"]
+size = Vector3(2.8500001, 2.05, 1.85)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltvmx"]
+size = Vector3(2.25, 1.0500001, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2w3hn"]
+size = Vector3(1.4, 2.5, 0.1)
+
+[node name="BuilderBench" type="Node3D" unique_id=188448576]
+script = ExtResource("1_bi2w0")
+
+[node name="Label" type="Label3D" parent="." unique_id=478850998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.1, 0)
+billboard = 1
+text = "Builder Bench"
+font_size = 128
+
+[node name="InteractLabel" type="Label3D" parent="." unique_id=1404435291]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 1.4499999, 0.25)
+billboard = 1
+text = "Use (E)"
+
+[node name="Model" type="Node3D" parent="." unique_id=1716698826]
+
+[node name="Table" type="CSGCombiner3D" parent="Model" unique_id=853730064]
+use_collision = true
+collision_mask = 0
+
+[node name="FrontPanel" type="CSGBox3D" parent="Model/Table" unique_id=1303137526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8244307, 0.70000076)
+size = Vector3(2, 0.3, 0.1)
+
+[node name="BackPanel" type="CSGBox3D" parent="Model/Table" unique_id=1309463942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8244307, -0.29999924)
+size = Vector3(2, 0.3, 0.1)
+
+[node name="LeftPanel" type="CSGBox3D" parent="Model/Table" unique_id=1278939847]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 0.8244307, 0.20000076)
+size = Vector3(1, 0.3, 0.1)
+
+[node name="RightPanel" type="CSGBox3D" parent="Model/Table" unique_id=1960409137]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 0.8244307, 0.20000076)
+size = Vector3(1, 0.3, 0.1)
+
+[node name="TableTop" type="CSGBox3D" parent="Model/Table" unique_id=41927362]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.9744308, 0.20000076)
+size = Vector3(2.2, 1.2, 0.1)
+
+[node name="FrontLeftLeg" type="CSGBox3D" parent="Model/Table" unique_id=609836248]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.47443074, 0.70000076)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="BackLeftLeg" type="CSGBox3D" parent="Model/Table" unique_id=1290964926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.47443068, -0.29999924)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="BackRightLeg" type="CSGBox3D" parent="Model/Table" unique_id=890770569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.47443068, -0.29999924)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="FrontRightLeg" type="CSGBox3D" parent="Model/Table" unique_id=1473218409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.47443068, 0.70000076)
+size = Vector3(0.1, 1, 0.1)
+
+[node name="TopBackPanel" type="CSGCombiner3D" parent="Model/Table" unique_id=158843785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07556927, 0.05000019)
+
+[node name="Bottom" type="CSGBox3D" parent="Model/Table/TopBackPanel" unique_id=1134012713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3999999, -0.39999962)
+size = Vector3(2.2, 0.8, 0.1)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Model/Table/TopBackPanel/Bottom" unique_id=1358696113]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.0864868, 0.5, 0.024999619)
+operation = 2
+radius = 0.8
+height = 0.15
+sides = 24
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/Table/TopBackPanel" unique_id=960451778]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.3999939, 1.8000001, -0.40000057)
+radius = 0.7
+height = 0.1
+sides = 24
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Model/Table/TopBackPanel" unique_id=2113297161]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.3999939, 1.8000001, -0.40000057)
+operation = 2
+radius = 0.2
+height = 0.2
+
+[node name="Vise" type="CSGCombiner3D" parent="Model/Table" unique_id=1462075895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6744307, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model/Table/Vise" unique_id=1489345396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1000061, -0.65000004, 0.5)
+size = Vector3(0.1, 0.1, 0.4)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model/Table/Vise" unique_id=1148126490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3250122, -0.65000004, 0.5)
+size = Vector3(0.05, 0.1, 0.4)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/Table/Vise" unique_id=1907750485]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.2874756, -0.6904841, 0.5)
+radius = 0.005
+height = 0.375
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Model/Table/Vise" unique_id=148434472]
+transform = Transform3D(-1, 2.9802322e-08, 0, -2.5809568e-08, -0.8660254, 0.5, 1.4901161e-08, 0.5, 0.8660254, -1.4743958, -0.6967341, 0.5042076)
+radius = 0.01
+height = 0.1375
+
+[node name="Mallet" type="CSGCombiner3D" parent="Model" unique_id=1345158408]
+transform = Transform3D(0.8660254, 0.5, 2.1855694e-08, 0, -4.371139e-08, 1, 0.5, -0.8660254, -3.7855173e-08, 0.08660889, 0.37443072, 1.0000029)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/Mallet" unique_id=859694681]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63750005, 0.6999998)
+radius = 0.01
+height = 0.22500001
+sides = 16
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Model/Mallet" unique_id=1870825864]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0.75, 0.6999998)
+radius = 0.05
+height = 0.1
+sides = 16
+
+[node name="PlayerDetector" parent="." unique_id=502684538 instance=ExtResource("3_ltvmx")]
+
+[node name="CollisionShape3D" parent="PlayerDetector" index="0" unique_id=125383973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12499997, 1.025, 0.625)
+shape = SubResource("BoxShape3D_cd2fd")
+
+[node name="GazeSensor" parent="." unique_id=2111519322 instance=ExtResource("3_cd2fd")]
+
+[node name="CollisionShape3D" parent="GazeSensor" index="0" unique_id=1453199656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.024999946, 0.52500004, 0.19999999)
+shape = SubResource("BoxShape3D_ltvmx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="GazeSensor" unique_id=1504915370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.40000004, 1.2, -0.3)
+shape = SubResource("BoxShape3D_2w3hn")
+
+[editable path="PlayerDetector"]
+[editable path="GazeSensor"]

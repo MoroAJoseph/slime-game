@@ -4,7 +4,7 @@ extends GameState
 var _enter_data: LoadStateData
 
 # ===
-# Parent
+# Public
 # ===
 
 func enter(_prev_state_path: String, data: Object) -> void:
@@ -13,17 +13,17 @@ func enter(_prev_state_path: String, data: Object) -> void:
 		return
 	
 	EventBus.subscribe(_on_event)
-	_ui_controller.toggle_loading(true)
+	_owner._ui_controller.toggle_loading(true)
 	
 	if _enter_data.target_state == StateName.TITLE:
-		_world_controller.load_scene(Constants.LEVEL_TITLE_SCENE_PATH)
+		_owner._world_controller.load_scene(Constants.LEVEL_TITLE_SCENE_PATH)
 	else:
-		_world_controller.load_scene(_enter_data.level_path)
+		_owner._world_controller.load_scene(_enter_data.level_path)
 	
 	
 
 func exit() -> void:
-	_ui_controller.toggle_loading(false)
+	_owner._ui_controller.toggle_loading(false)
 	EventBus.unsubscribe(_on_event)
 
 # ===

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cgbdc4cpfx80b"]
+
+[ext_resource type="Script" uid="uid://dymjhyg7qdmeh" path="res://levels/hub/floors/atrium/transit_pod/transit_pod.gd" id="1_an71x"]
+[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://common/components/detectors/player_detector.tscn" id="2_r37xu"]
+[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://common/components/sensors/gaze_sensor.tscn" id="3_2cfv1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6c60r"]
+radius = 1.8000001
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_or01i"]
+size = Vector3(1, 1.0500001, 0.75)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ktehx"]
+size = Vector3(0.6, 0.45000002, 0.5)
+
+[node name="TransitPod" type="Node3D" unique_id=414240154]
+script = ExtResource("1_an71x")
+
+[node name="Label" type="Label3D" parent="." unique_id=1449238445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+billboard = 1
+text = "Transit Pod"
+font_size = 128
+
+[node name="InteractLabel" type="Label3D" parent="." unique_id=42471853]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+billboard = 1
+text = "Use (E)"
+font_size = 128
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1535470584]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=883699575]
+
+[node name="Model" type="Node3D" parent="." unique_id=1050909515]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Model" unique_id=1660267304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/CSGCombiner3D" unique_id=408162760]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+radius = 1.2
+height = 4.5
+sides = 16
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/CSGCombiner3D/CSGCylinder3D" unique_id=130915847]
+operation = 2
+radius = 1.0
+height = 4.0
+sides = 16
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model/CSGCombiner3D" unique_id=1220736483]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39999998, 1)
+operation = 2
+size = Vector3(1, 2, 0.6)
+
+[node name="PlayerDetector" parent="." unique_id=502684538 instance=ExtResource("2_r37xu")]
+
+[node name="CollisionShape3D" parent="PlayerDetector" index="0" unique_id=125383973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_6c60r")
+
+[node name="GazeSensor" parent="." unique_id=2111519322 instance=ExtResource("3_2cfv1")]
+
+[node name="CollisionShape3D" parent="GazeSensor" index="0" unique_id=1453199656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4901161e-08, 0.50000006, -0.14999998)
+shape = SubResource("BoxShape3D_or01i")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="GazeSensor" unique_id=70368785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9802322e-08, 1.2, 0)
+shape = SubResource("BoxShape3D_ktehx")
+
+[editable path="PlayerDetector"]
+[editable path="GazeSensor"]

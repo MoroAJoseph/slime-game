@@ -5,6 +5,10 @@ extends Node3D
 @onready var combat_controller: GunCombatController = $GunCombatController
 @onready var model_controller: GunModelController = $GunModelController
 
+# ===
+# Public
+# ===
+
 func set_data(data: GunData) -> void:
 	if !model_controller: model_controller = get_node_or_null("GunModelController")
 	if !combat_controller: combat_controller = get_node_or_null("GunCombatController")
@@ -12,14 +16,17 @@ func set_data(data: GunData) -> void:
 	if model_controller: 
 		model_controller.rebuild(data)
 	
-	# Only run combat logic if we are actually playing the game
 	if combat_controller and not Engine.is_editor_hint():
 		combat_controller.initialize(data)
 
-func shoot(direction: Vector3) -> void:
-	if model_controller and combat_controller:
-		var projectile_spawn: Transform3D = model_controller.get_projectile_spawn()
-		combat_controller.shoot(direction, projectile_spawn)
+func request_fire(is_just_pressed: bool, is_held: bool, direction: Vector3, spawn_transform: Transform3D) -> void:
+	if combat_controller:
+		combat_controller.handle_fire_input(is_just_pressed, is_held, direction, spawn_transform)
+
+func get_projectile_spawn() -> Transform3D:
+	if model_controller:
+		return model_controller.get_projectile_spawn()
+	return global_transform
 
 func reload() -> void:
 	if combat_controller:

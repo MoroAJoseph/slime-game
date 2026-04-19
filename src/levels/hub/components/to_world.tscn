@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://djr4ul8ohpiwi"]
+
+[ext_resource type="Script" uid="uid://co0gf6ekuadey" path="res://levels/hub/components/to_world.gd" id="1_sxkot"]
+[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://common/components/sensors/gaze_sensor.tscn" id="2_uohxr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ncjev"]
+
+[node name="ToWorld" type="Node3D" unique_id=258046734]
+script = ExtResource("1_sxkot")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1217716615]
+use_collision = true
+collision_mask = 0
+
+[node name="InteractLabel" type="Label3D" parent="." unique_id=1346853367]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.9, 0.05000019)
+billboard = 1
+text = "Go to World (E)"
+font_size = 24
+
+[node name="GazeSensor" parent="." unique_id=2111519322 instance=ExtResource("2_uohxr")]
+
+[node name="CollisionShape3D" parent="GazeSensor" index="0" unique_id=1453199656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1920929e-07, -4.7683716e-07)
+shape = SubResource("BoxShape3D_ncjev")
+
+[editable path="GazeSensor"]

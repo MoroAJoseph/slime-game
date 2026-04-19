@@ -1,2 +1,2 @@
-class_name EndlessHubData
+class_name HubData
 extends LevelData

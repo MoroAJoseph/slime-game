@@ -15,4 +15,4 @@ extends EntityData
 @export var gravity: float = -30.0
 
 @export_group("Equipment")
-@export var loadout_data: PlayerLoadoutData = PlayerLoadoutData.new()
+@export var loadout_data: LoadoutData = LoadoutData.new()

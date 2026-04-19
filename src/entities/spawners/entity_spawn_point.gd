@@ -61,10 +61,10 @@ func _setup_editor_visuals() -> void:
 	_arrow_mesh.mesh = prism
 	
 	# Rotation: X - Lay Flat, Y - Point Forward
-	_arrow_mesh.rotation_degrees = Vector3(90, -180, 0)
+	_arrow_mesh.rotation_degrees = Vector3(90, 0, 0)
 	
 	# Position
-	_arrow_mesh.position = Vector3(0, 0.03, -0.6) 
+	_arrow_mesh.position = Vector3(0, 0.03, disc.top_radius) 
 	
 	var arrow_mat = StandardMaterial3D.new()
 	arrow_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED

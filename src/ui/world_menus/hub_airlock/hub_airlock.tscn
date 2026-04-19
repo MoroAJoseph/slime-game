@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ckx8g2707efdc"]
+
+[ext_resource type="Theme" uid="uid://c66jl4w75yjqx" path="res://ui/themes/ui.theme" id="1_ibrs4"]
+[ext_resource type="Script" uid="uid://blf544x5u4yow" path="res://ui/world_menus/hub_airlock/hub_airlock.gd" id="2_avs8h"]
+
+[node name="HubAirlockMenu" type="Control" unique_id=451867257]
+custom_minimum_size = Vector2(512, 512)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+offset_bottom = 512.0
+theme = ExtResource("1_ibrs4")
+script = ExtResource("2_avs8h")
+
+[node name="Panel" type="Panel" parent="." unique_id=888119371]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelPrimary"
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=971514330]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"MarginPrimary"
+
+[node name="Buttons" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=310625863]
+layout_mode = 2
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="Activate" type="Button" parent="Panel/MarginContainer/Buttons" unique_id=1177711243]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"ButtonPrimary"
+theme_override_font_sizes/font_size = 48
+text = "Activate"

@@ -38,9 +38,13 @@ func _initialize_game_level(level_node: Level) -> void:
 		level_data = LevelData.new()
 		level_data.name = "Sandbox"
 		
-	elif level_node is EndlessHub:
-		level_data = EndlessHubData.new()
-		level_data.name = "Endless Hub"
+	elif level_node is Hub:
+		level_data = HubData.new()
+		level_data.name = "Hub"
+	
+	elif level_node is World:
+		level_data = WorldData.new()
+		level_data.name = "World"
 		
 	else:
 		level_data = LevelData.new()

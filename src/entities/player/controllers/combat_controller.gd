@@ -70,17 +70,17 @@ func _execute_shot() -> void:
 		bullet_target_position = ray_data.position
 	else:
 		# Fallback: Aim at a point 1000m in front of the camera if nothing is hit
-		var camera = player.CAMERA_CONTROLLER.CAMERA
+		var camera = get_viewport().get_camera_3d()
 		var screen_center = get_viewport().get_visible_rect().size / 2
 		var ray_dir = camera.project_ray_normal(screen_center)
 		bullet_target_position = camera.global_position + (ray_dir * 1000.0)
 	
-	# 3. Determine spawn point
+	# Bullet Spawn
 	var bullet_spawn_position = active_weapon_node.global_position
 	if "bullet_spawn_node" in active_weapon_node:
 		bullet_spawn_position = active_weapon_node.bullet_spawn_node.global_position
 	
-	# 4. Calculate direction and fire
+	# Direction & Fire
 	var direction = (bullet_target_position - bullet_spawn_position).normalized()
 	active_weapon_node.shoot(direction)
 

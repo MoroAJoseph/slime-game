@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c7nabfn8kry80"]
+
+[ext_resource type="Script" uid="uid://ddsuiy46i3ggv" path="res://entities/drone/drone.gd" id="1_5tqai"]
+[ext_resource type="Material" uid="uid://gwbq88i4tj4v" path="res://entities/drone/assets/body.material" id="2_ptych"]
+[ext_resource type="Material" uid="uid://bcsyu0f6rqwqc" path="res://entities/drone/assets/eye.material" id="3_esnw3"]
+[ext_resource type="Script" uid="uid://b3x8nvbcmdko7" path="res://core/state_machine/state_machine.gd" id="4_esnw3"]
+[ext_resource type="Script" uid="uid://cvgm3wv42qmhx" path="res://entities/drone/state/drone_state_idle.gd" id="5_esnw3"]
+[ext_resource type="Script" uid="uid://givi0anwelv4" path="res://entities/drone/drone_state_move.gd" id="6_pjmop"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pjmop"]
+
+[sub_resource type="Animation" id="Animation_x3nbi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Model:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wmbqa"]
+_data = {
+&"RESET": SubResource("Animation_x3nbi")
+}
+
+[node name="Drone" type="CharacterBody3D" unique_id=1976331315]
+collision_layer = 128
+script = ExtResource("1_5tqai")
+
+[node name="Pushbox" type="CollisionShape3D" parent="." unique_id=750840471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_pjmop")
+
+[node name="Model" type="Node3D" parent="." unique_id=1917166769]
+
+[node name="Body" type="CSGSphere3D" parent="Model" unique_id=263939765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+layers = 6
+radial_segments = 24
+rings = 24
+material = ExtResource("2_ptych")
+
+[node name="Eye" type="CSGSphere3D" parent="Model" unique_id=245088868]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49999997, 0.45)
+radius = 0.1
+material = ExtResource("3_esnw3")
+
+[node name="AnimationController" type="Node" parent="." unique_id=381328578]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationController" unique_id=1359756283]
+libraries/ = SubResource("AnimationLibrary_wmbqa")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1788396482]
+script = ExtResource("4_esnw3")
+metadata/_custom_type_script = "uid://b3x8nvbcmdko7"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1360114954]
+script = ExtResource("5_esnw3")
+metadata/_custom_type_script = "uid://nnxcfq5hm6qi"
+
+[node name="Move" type="Node" parent="StateMachine" unique_id=1552765362]
+script = ExtResource("6_pjmop")
+metadata/_custom_type_script = "uid://dkubx50efiwij"

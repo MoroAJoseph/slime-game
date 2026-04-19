@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://j5kfgrwdu104"]
+
+[ext_resource type="Script" uid="uid://c82kpy668j51l" path="res://levels/components/menu_3D.gd" id="1_uxjqs"]
+
+[node name="Menu3d" type="StaticBody3D" unique_id=1518154951]
+script = ExtResource("1_uxjqs")
+metadata/_custom_type_script = "uid://c82kpy668j51l"

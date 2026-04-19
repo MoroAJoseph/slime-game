@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 func get_horizontal_basis() -> Basis:
 	return PIVOT.global_basis
 
-func rotate_camera(input: Vector2, _is_combat: bool, _delta: float) -> void:
+func rotate_camera(input: Vector2) -> void:
 	PIVOT.rotate_y(deg_to_rad(-input.x))
 	PIVOT.rotation.x += deg_to_rad(input.y) 
 	PIVOT.rotation.x = clamp(PIVOT.rotation.x, deg_to_rad(-89), deg_to_rad(89))

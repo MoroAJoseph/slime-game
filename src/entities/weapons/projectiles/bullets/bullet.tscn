@@ -15,7 +15,7 @@ _damage_number_scene = ExtResource("2_kolp2")
 radius = 0.02
 
 [node name="DamageDetector" type="Area3D" parent="." unique_id=1545769750]
-collision_layer = 32
+collision_layer = 0
 collision_mask = 32
 script = ExtResource("2_k0gmc")
 

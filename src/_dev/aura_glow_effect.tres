@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" format=3 uid="uid://v8yn1b70kj2c"]
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_dk6oq"]
-size = Vector2(944.00006, 497.00003)
+size = Vector2(976, 497)
 title = "Blink"
 tint_color = Color(0.4921875, 0.4921875, 0.4921875, 0.75)
 attached_nodes = PackedInt32Array(7, 6, 5, 8, 14)

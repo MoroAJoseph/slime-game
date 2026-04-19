@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://d00y4oeqm86s7"]
+
+[ext_resource type="Script" uid="uid://dfwxtcs2rmy4a" path="res://levels/world/to_hub.gd" id="1_8hhu4"]
+[ext_resource type="PackedScene" uid="uid://b3gkumlqjnlqe" path="res://common/components/sensors/gaze_sensor.tscn" id="2_y0aib"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hhu4"]
+albedo_color = Color(0.5516501, 0.6636825, 1, 1)
+emission_enabled = true
+emission = Color(0.3665946, 0.3665946, 0.36659458, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h0il2"]
+
+[node name="ToHub" type="Node3D" unique_id=550446081]
+script = ExtResource("1_8hhu4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1691736958]
+use_collision = true
+collision_mask = 0
+material = SubResource("StandardMaterial3D_8hhu4")
+
+[node name="InteractLabel" type="Label3D" parent="." unique_id=1231272525]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.9, 0.05000019)
+billboard = 1
+text = "Go to Hub (E)"
+font_size = 24
+
+[node name="GazeSensor" parent="." unique_id=2111519322 instance=ExtResource("2_y0aib")]
+
+[node name="CollisionShape3D" parent="GazeSensor" index="0" unique_id=1453199656]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1920929e-07, -4.7683716e-07)
+shape = SubResource("BoxShape3D_h0il2")
+
+[editable path="GazeSensor"]

@@ -9,11 +9,11 @@ func enter(_prev_state_path: String, _data: Object) -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	Session.current_mode = Session.GameMode.NONE
 	EventBus.subscribe(_on_event)
-	_owner._world_controller.load_scene(Constants.LEVEL_TITLE_SCENE_PATH)
-	_owner._ui_controller.toggle_menu(_owner._ui_controller.MenuType.MAIN, true)
+	_world_controller.load_scene(Constants.LEVEL_TITLE_SCENE_PATH)
+	_ui_controller.toggle_menu(UIController.MenuType.MAIN, true)
 
 func exit() -> void:
-	_owner._ui_controller.hide_all()
+	_ui_controller.hide_all()
 	EventBus.unsubscribe(_on_event)
 
 # ===

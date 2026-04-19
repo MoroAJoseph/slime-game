@@ -11,7 +11,7 @@ var _current_weapon_data: WeaponData:
 	set(v):
 		_current_weapon_data = v
 		
-		# If null or sheathed, we are Unarmed
+		# If null or sheathed: Unarmed
 		if not v or not (v is GunData):
 			_current_weapon_subtype_string = "Unarmed"
 		

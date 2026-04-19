@@ -21,16 +21,16 @@ enum MenuType {
 @onready var LOADING_LAYER: CanvasLayer = $Loading
 
 # HUDs
-@onready var EXPEDITION_HUD: Control = %ExpeditionHUD
 @onready var HUB_HUD: Control = %HubHUD
+@onready var EXPEDITION_HUD: Control = %ExpeditionHUD
 
 # Menus
 @onready var MAIN_MENU: Control = %MainMenu
 @onready var INVENTORY_MENU: Control = %InventoryMenu
+@onready var PAUSE_MENU: Control = %PauseMenu
 @onready var DISMANTLER_MENU: Control = %DismantlerMenu
 @onready var BUILDER_BENCH_MENU: Control = %BuilderBenchMenu
 @onready var PROVISIONER_MENU: Control = %ProvisionerMenu
-@onready var PAUSE_MENU: Control = %PauseMenu
 
 # ===
 # Built-In
@@ -59,7 +59,13 @@ func toggle_hud(type: HUDType, is_visible: bool) -> void:
 
 # --- Menu ---
 func has_open_menus() -> bool:
-	return _get_all_menus().any(func(m): return m.visible)
+	return _get_all_menus().any(
+		func(menu: Control): 
+			return menu.visible
+	)
+
+func is_menu_open(type: MenuType) -> bool:
+	return _get_menu_control(type).visible
 
 func toggle_menu(type: MenuType, is_visible: bool) -> void:
 	var control = _get_menu_control(type)

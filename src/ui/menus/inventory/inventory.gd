@@ -3,8 +3,8 @@ extends Control
 enum LeftTab { WEAPONS, CORES }
 enum RightTab { LOADOUT, PREVIEW }
 
-@export var backpack_data: EndlessBackpackData
-@export var loadout_data: PlayerLoadoutData
+@export var backpack_data: BackpackData
+@export var loadout_data: LoadoutData
 @export var item_slot_scene: PackedScene
 
 @onready var CLOSE_BUTTON: Button = %CloseButton
@@ -105,8 +105,8 @@ func _hide_all_right_tabs() -> void:
 	PREVIEW_TAB_CONTENT.hide()
 
 func _update_weight_display() -> void:
-	var current: float = backpack_data.get_total_weapons_weight()
-	var maximum: float = backpack_data.max_weapons_weight
+	var current: float = backpack_data.get_current_carry_weight()
+	var maximum: float = backpack_data.max_carry_weight
 	
 	# Update the Weight Labels
 	CURRENT_WEAPONS_WEIGHT_LABEL.text = str(current)

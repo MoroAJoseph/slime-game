@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://bqx047nin6pcg" path="res://_dev/test_gun_data.tres" id="1_d8uw3"]
 [ext_resource type="Script" uid="uid://b4qohxd871ki4" path="res://entities/player/player_data.gd" id="1_wcs8b"]
-[ext_resource type="Script" uid="uid://d2fycj4pes8d6" path="res://common/data/player_loadout_data.gd" id="2_6hwkl"]
+[ext_resource type="Script" uid="uid://d2fycj4pes8d6" path="res://common/data/loadout_data.gd" id="2_6hwkl"]
 [ext_resource type="Resource" uid="uid://c2vinrfrn5ygo" path="res://_dev/test_gun_data_2.tres" id="3_6hwkl"]
 
 [sub_resource type="Resource" id="Resource_qe6mq"]
@@ -13,5 +13,6 @@ metadata/_custom_type_script = "uid://d2fycj4pes8d6"
 
 [resource]
 script = ExtResource("1_wcs8b")
+jump_force = 13.0
 loadout_data = SubResource("Resource_qe6mq")
 metadata/_custom_type_script = "uid://b4qohxd871ki4"

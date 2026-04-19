@@ -1,37 +1,33 @@
-class_name EndlessHub
+class_name Hub
 extends Level
 
-var data: EndlessHubData
+var data: HubData
 
-@onready var _player_scene = preload(Constants.ENTITY_PLAYER_SCENE_PATH)
-
-@onready var PLAYER_SPAWN_POINT: PlayerSpawnPoint = $PlayerSpawnPoint
-@onready var ENTITIES_CONTAINER: Node3D = $Entities
-@onready var PROJECTILES_CONTAINER: Node3D = $Projectiles
+@onready var _player_spawn_point: PlayerSpawnPoint = $PlayerSpawnPoint
+@onready var _entities_container: Node3D = $Entities
 
 # === 
 # Built-In
 # ===
 
 func _ready() -> void:
-	_spawn_player.call_deferred()
 	EventBus.subscribe(_on_event)
+	_spawn_player.call_deferred()
 
 # ===
 # Private
 # ===
 
 func _spawn_player() -> void:
-	if not PLAYER_SPAWN_POINT: return
+	if not _player_spawn_point: return
 	
-	var player_data: PlayerData = PLAYER_SPAWN_POINT.player_data
-	var player = _player_scene.instantiate() as Player
+	var player_data: PlayerData = _player_spawn_point.player_data
+	var player = load(Constants.ENTITY_PLAYER_SCENE_PATH).instantiate() as Player
 	
 	player.data = player_data
+	player.global_transform = _player_spawn_point.global_transform
 	
-	ENTITIES_CONTAINER.add_child(player)
-	
-	player.global_transform = PLAYER_SPAWN_POINT.global_transform
+	_entities_container.add_child(player)
 	
 	WorldEvent.EntitySpawned.new(player)
 

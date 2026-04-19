@@ -32,9 +32,9 @@ class InputToggled extends PlayerEvent:
 
 class LoadoutRequest extends PlayerEvent: 
 	
-	var loadout_data: PlayerLoadoutData 
+	var loadout_data: LoadoutData 
 	
-	func _init(_loadout_data: PlayerLoadoutData):
+	func _init(_loadout_data: LoadoutData):
 		loadout_data = _loadout_data
 		emit()
 

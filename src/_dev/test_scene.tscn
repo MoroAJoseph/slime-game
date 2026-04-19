@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7fek6i06da61"]
 
 [ext_resource type="Material" uid="uid://n6bklpjctmd7" path="res://_dev/level_design/prototyping_static.material" id="1_bwm1k"]
-[ext_resource type="Script" uid="uid://bc10j2xkxuktg" path="res://common/data/item_data.gd" id="3_7us73"]
+[ext_resource type="Script" uid="uid://bc10j2xkxuktg" path="res://common/data/items/item_data.gd" id="3_7us73"]
 [ext_resource type="PackedScene" uid="uid://b1q3t5c4hvfpx" path="res://entities/loot/dropped_loot.tscn" id="4_efphf"]
 [ext_resource type="Script" uid="uid://1u7mwynfrr5l" path="res://common/data/inventory_data.gd" id="5_r7tm7"]
 

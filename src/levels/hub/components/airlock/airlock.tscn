@@ -1,0 +1,208 @@
+[gd_scene format=3 uid="uid://cgbdc4cpfx80b"]
+
+[ext_resource type="Script" uid="uid://dymjhyg7qdmeh" path="res://levels/hub/components/airlock/airlock.gd" id="1_1y7cf"]
+[ext_resource type="PackedScene" uid="uid://dbbvervbmpxfy" path="res://common/components/detectors/player_detector.tscn" id="2_ytweu"]
+[ext_resource type="PackedScene" uid="uid://cs83qxv6aw6bk" path="res://levels/components/menu_3D.tscn" id="3_ippml"]
+[ext_resource type="PackedScene" uid="uid://ckx8g2707efdc" path="res://ui/world_menus/hub_airlock/hub_airlock.tscn" id="4_0848y"]
+[ext_resource type="Script" uid="uid://b3x8nvbcmdko7" path="res://core/state_machine/state_machine.gd" id="5_ippml"]
+[ext_resource type="Script" uid="uid://dje0ym76hy3rv" path="res://levels/hub/components/airlock/states/hub_airlock_state_idle.gd" id="6_6iaov"]
+[ext_resource type="Script" uid="uid://c4kqex3yfbq8b" path="res://levels/hub/components/airlock/states/hub_airlock_state_transit.gd" id="7_wh8kx"]
+[ext_resource type="Script" uid="uid://cpumxy1a5m3nw" path="res://levels/hub/components/airlock/states/hub_airlock_state_arrived.gd" id="8_pumia"]
+[ext_resource type="Script" uid="uid://csrg5ynt3ejr6" path="res://levels/hub/components/airlock/airlock_menu.gd" id="8_wh8kx"]
+
+[sub_resource type="Animation" id="Animation_rgjor"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/CSGCombiner3D/Door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_77op6"]
+resource_name = "close_door"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/CSGCombiner3D/Door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 3.1415925, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s7ttm"]
+resource_name = "open_door"
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model/CSGCombiner3D/Door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 3.1415925, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy430"]
+_data = {
+&"RESET": SubResource("Animation_rgjor"),
+&"close_door": SubResource("Animation_77op6"),
+&"open_door": SubResource("Animation_s7ttm")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0e60w"]
+albedo_color = Color(0.32544088, 0.3254409, 0.32544088, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q8u2d"]
+height = 2.5187502
+radius = 1.65
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wh8kx"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pumia"]
+resource_local_to_scene = true
+albedo_color = Color(1, 1, 1, 0)
+albedo_texture = SubResource("ViewportTexture_wh8kx")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2guyn"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_pumia")
+size = Vector2(1, 1)
+orientation = 2
+
+[node name="HubAirlock" type="Node3D" unique_id=414240154]
+script = ExtResource("1_1y7cf")
+
+[node name="Label" type="Label3D" parent="." unique_id=1449238445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+billboard = 1
+text = "Hub Airlock"
+font_size = 128
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=883699575]
+libraries/ = SubResource("AnimationLibrary_wy430")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1363138447]
+script = ExtResource("5_ippml")
+metadata/_custom_type_script = "uid://b3x8nvbcmdko7"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1808370626]
+script = ExtResource("6_6iaov")
+metadata/_custom_type_script = "uid://dhi2qhs5eg5he"
+
+[node name="Transit" type="Node" parent="StateMachine" unique_id=2128287665]
+script = ExtResource("7_wh8kx")
+metadata/_custom_type_script = "uid://dhi2qhs5eg5he"
+
+[node name="Arrived" type="Node" parent="StateMachine" unique_id=243210010]
+script = ExtResource("8_pumia")
+metadata/_custom_type_script = "uid://dhi2qhs5eg5he"
+
+[node name="Model" type="Node3D" parent="." unique_id=1050909515]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Model" unique_id=1942335717]
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/CSGCombiner3D" unique_id=1088698741]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+radius = 2.0
+height = 3.0
+sides = 24
+material = SubResource("StandardMaterial3D_0e60w")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/CSGCombiner3D/CSGCylinder3D" unique_id=586276027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1920929e-07, 0)
+operation = 2
+radius = 1.8
+height = 2.8
+sides = 24
+
+[node name="Doorway" type="CSGCylinder3D" parent="Model/CSGCombiner3D/CSGCylinder3D" unique_id=1617510194]
+operation = 2
+radius = 2.1
+height = 3.0
+sides = 24
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/CSGCombiner3D/CSGCylinder3D/Doorway" unique_id=461184944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1920929e-07, 0)
+operation = 2
+radius = 1.8
+height = 2.8
+sides = 24
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model/CSGCombiner3D/CSGCylinder3D/Doorway" unique_id=625401167]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6500001)
+operation = 2
+size = Vector3(4.2000003, 3, 2.9)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model/CSGCombiner3D/CSGCylinder3D/Doorway" unique_id=1108907842]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, -1.3999999)
+operation = 2
+size = Vector3(4, 0.1, 1.2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Model/CSGCombiner3D/CSGCylinder3D/Doorway" unique_id=470943920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.45, -1.4)
+operation = 2
+size = Vector3(4, 0.11, 1.3)
+
+[node name="Door" type="CSGCylinder3D" parent="Model/CSGCombiner3D" unique_id=636962195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+radius = 1.9
+height = 3.0
+sides = 24
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Model/CSGCombiner3D/Door" unique_id=132418470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1920929e-07, 0)
+operation = 2
+radius = 1.8
+height = 2.8
+sides = 24
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Model/CSGCombiner3D/Door" unique_id=900544341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.6)
+operation = 2
+size = Vector3(4, 3, 2.8)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Model/CSGCombiner3D/Door" unique_id=379348632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45, -1.3999999)
+operation = 2
+size = Vector3(4, 0.1, 1.2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Model/CSGCombiner3D/Door" unique_id=1762458161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.45, -1.4)
+operation = 2
+size = Vector3(4, 0.11, 1.3)
+
+[node name="PlayerDetector" parent="." unique_id=502684538 instance=ExtResource("2_ytweu")]
+
+[node name="CollisionShape3D" parent="PlayerDetector" index="0" unique_id=125383973]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4156249, 0)
+shape = SubResource("CylinderShape3D_q8u2d")
+
+[node name="Menu3D" parent="." unique_id=1013416801 instance=ExtResource("3_ippml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 1.7)
+collision_layer = 64
+script = ExtResource("8_wh8kx")
+
+[node name="MeshInstance3D" parent="Menu3D" index="0" unique_id=1745783863]
+mesh = SubResource("PlaneMesh_2guyn")
+
+[node name="HubAirlockMenu" parent="Menu3D/SubViewport" parent_id_path=PackedInt32Array(1013416801, 2042293445) index="0" unique_id=451867257 instance=ExtResource("4_0848y")]
+
+[editable path="PlayerDetector"]
+[editable path="Menu3D"]

@@ -6,14 +6,12 @@ enum GameMode { NONE, STORY, ENDLESS, SANDBOX }
 var build_data: BuildData
 var user_data: UserData
 var settings_data: SettingsData
-var endless_data: EndlessDataPersistent
 var last_save_time: float
 var current_mode: GameMode = GameMode.NONE
 
 # File Paths
 const SAVE_DIR = "user://saves/"
 const BUILD_PATH = "user://saves/build.tres"
-const ENDLESS_PATH = "user://saves/endless.tres"
 const SETTINGS_PATH = "user://saves/settings.tres"
 const USER_PATH = "user://saves/user.tres"
 
@@ -34,27 +32,22 @@ func _ready() -> void:
 
 func save_data() -> void:
 	var err_build = ResourceSaver.save(build_data, BUILD_PATH)
-	var err_endless = ResourceSaver.save(endless_data, ENDLESS_PATH)
 	var err_settings = ResourceSaver.save(settings_data, SETTINGS_PATH)
 	var err_user = ResourceSaver.save(user_data, USER_PATH)
 	
 	if (
 		err_build == Error.OK and 
-		err_endless == Error.OK and 
 		err_settings == Error.OK and 
 		err_user == Error.OK
 	):
 		last_save_time = Time.get_unix_time_from_system()
-		print("Session: Data persistent across all modules.")
 	else:
 		push_error("Session: Failed to save one or more data modules.")
 
 func load_data() -> void:
-	endless_data = _safe_load(ENDLESS_PATH, EndlessDataPersistent.new())
 	settings_data = _safe_load(SETTINGS_PATH, SettingsData.new())
 	user_data = _safe_load(USER_PATH, UserData.new())
 	save_data()
-	print("Session: Load complete.")
 
 # ===
 # Private
@@ -63,10 +56,8 @@ func load_data() -> void:
 func _init_build_data() -> void:
 	build_data = BuildData.new()
 	if not build_data.is_dummy:
-		# TODO: get real values from a toml, yaml, or some manifest file.
-		build_data.version = ProjectSettings.get_setting("application/config/version")
-		build_data.build_type = BuildData.BuildType.DEVELOPMENT
-		build_data.build_date = Time.get_unix_time_from_system()
+		build_data.type = BuildData.Type.DEVELOPMENT
+		build_data.date = Time.get_unix_time_from_system()
 
 func _safe_load(path: String, default: Resource) -> Resource:
 	if ResourceLoader.exists(path):

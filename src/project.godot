@@ -201,6 +201,7 @@ dev_3={
 3d_physics/layer_5="Enemy_Projectile"
 3d_physics/layer_6="Damage"
 3d_physics/layer_7="Interaction"
+3d_physics/layer_8="Drone"
 3d_physics/layer_9="Debris"
 3d_physics/layer_10="Collectable"
 

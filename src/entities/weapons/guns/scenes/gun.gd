@@ -5,7 +5,7 @@ extends Node3D
 @onready var combat_controller: GunCombatController = $GunCombatController
 @onready var model_controller: GunModelController = $GunModelController
 
-func set_gun_data(data: GunData) -> void:
+func set_data(data: GunData) -> void:
 	if !model_controller: model_controller = get_node_or_null("GunModelController")
 	if !combat_controller: combat_controller = get_node_or_null("GunCombatController")
 	

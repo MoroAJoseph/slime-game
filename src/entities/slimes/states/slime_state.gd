@@ -13,8 +13,9 @@ var _owner_data: SlimeData
 func _ready() -> void:
 	await owner.ready
 	_owner = owner as Slime
-	_owner_data = owner.data as SlimeData
 	assert(_owner != null, _get_assert_message("SlimeState", "Slime"))
+	
+	_owner_data = owner.data
 
 # ===
 # Local

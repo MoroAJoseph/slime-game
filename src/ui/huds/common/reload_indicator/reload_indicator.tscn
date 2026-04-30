@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cemcl8j0psv6x"]
+
+[ext_resource type="Script" uid="uid://dvftbjfdtki60" path="res://ui/huds/common/reload_indicator/reload_indicator.gd" id="1_2d5jo"]
+
+[node name="ReloadIndicator" type="CenterContainer" unique_id=22764293]
+script = ExtResource("1_2d5jo")

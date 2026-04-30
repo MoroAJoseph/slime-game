@@ -11,19 +11,11 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ctkx4")
-
-[node name="Top" type="Line2D" parent="." unique_id=1137423761]
-points = PackedVector2Array(0, -5, 0, -15)
-width = 2.0
-
-[node name="Bottom" type="Line2D" parent="." unique_id=667545398]
-points = PackedVector2Array(0, 5, 0, 15)
-width = 2.0
-
-[node name="Left" type="Line2D" parent="." unique_id=1029797385]
-points = PackedVector2Array(-5, 0, -15, 0)
-width = 2.0
-
-[node name="Right" type="Line2D" parent="." unique_id=958578413]
-points = PackedVector2Array(5, 0, 15, 0)
-width = 2.0
+_style = null
+_dot_radius = null
+_color = null
+_lerp_speed = null
+_base_spread = null
+_zoomed_spread = null
+_max_spread = null
+_max_spin_angle = null

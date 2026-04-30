@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bckrhbnti7udm" path="res://ui/huds/common/gaze_indicator/gaze_indicator.tscn" id="3_hvosw"]
 [ext_resource type="PackedScene" uid="uid://d13j4kyr7jnam" path="res://ui/huds/common/ammo/ammo.tscn" id="4_tk6j5"]
 [ext_resource type="PackedScene" uid="uid://de1xq5tsnhnf" path="res://ui/huds/common/reticle/reticle.tscn" id="5_hvosw"]
+[ext_resource type="PackedScene" uid="uid://cemcl8j0psv6x" path="res://ui/huds/common/reload_indicator/reload_indicator.tscn" id="6_tk6j5"]
+[ext_resource type="PackedScene" uid="uid://dsyidso7j5b47" path="res://ui/huds/common/player_health_bar/player_health_bar.tscn" id="7_on0du"]
 
 [node name="ExpeditionHUD" type="Control" unique_id=1477110089]
 layout_mode = 3
@@ -41,3 +43,36 @@ layout_mode = 1
 
 [node name="Reticle" parent="SafeArea/Content" unique_id=869070153 instance=ExtResource("5_hvosw")]
 layout_mode = 1
+_style = 2
+_dot_radius = 1.5
+_color = Color(1, 1, 1, 1)
+_lerp_speed = 12.0
+_base_spread = 20.0
+_zoomed_spread = 8.0
+_max_spread = 60.0
+_max_spin_angle = 90.0
+
+[node name="ReloadIndicator" parent="SafeArea/Content" unique_id=22764293 instance=ExtResource("6_tk6j5")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayerHealthBar" parent="SafeArea/Content" unique_id=1593096704 instance=ExtResource("7_on0du")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -212.0
+offset_top = -134.0
+offset_right = 148.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -1.5707964

@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://b0nkncx3yda0n"]
+
+[ext_resource type="Script" uid="uid://dp3xhh4hdnkyo" path="res://entities/weapons/gun/gun.gd" id="1_yilug"]
+[ext_resource type="Script" uid="uid://dujr0cq6wwi7o" path="res://entities/weapons/gun/gun_model_controller.gd" id="2_q1yot"]
+[ext_resource type="Script" uid="uid://deaomf470adqn" path="res://entities/weapons/gun/gun_combat_controller.gd" id="3_rijep"]
+[ext_resource type="Script" uid="uid://b3x8nvbcmdko7" path="res://core/state_machine/state_machine.gd" id="4_fo3rf"]
+[ext_resource type="Script" uid="uid://db0ojl301ercc" path="res://entities/weapons/gun/state/gun_state_ready.gd" id="5_ttx31"]
+[ext_resource type="Script" uid="uid://v0wa1eq17xos" path="res://entities/weapons/gun/state/gun_state_fire.gd" id="6_c5s54"]
+[ext_resource type="Script" uid="uid://ra5pn11utgkm" path="res://entities/weapons/gun/state/gun_state_reload.gd" id="7_lefti"]
+
+[node name="Gun" type="Node3D" unique_id=963538918]
+script = ExtResource("1_yilug")
+
+[node name="ModelController" type="Node3D" parent="." unique_id=351060332]
+script = ExtResource("2_q1yot")
+metadata/_custom_type_script = "uid://dujr0cq6wwi7o"
+
+[node name="CombatController" type="Node" parent="." unique_id=1744053956]
+script = ExtResource("3_rijep")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1012207770 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_fo3rf")
+initial_state = NodePath("Ready")
+metadata/_custom_type_script = "uid://b3x8nvbcmdko7"
+
+[node name="Ready" type="Node" parent="StateMachine" unique_id=2014988159]
+script = ExtResource("5_ttx31")
+metadata/_custom_type_script = "uid://h3ocb8xfimcn"
+
+[node name="Fire" type="Node" parent="StateMachine" unique_id=847617886]
+script = ExtResource("6_c5s54")
+metadata/_custom_type_script = "uid://h3ocb8xfimcn"
+
+[node name="Reload" type="Node" parent="StateMachine" unique_id=1750670645]
+script = ExtResource("7_lefti")
+metadata/_custom_type_script = "uid://h3ocb8xfimcn"

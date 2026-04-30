@@ -1,0 +1,2 @@
+class_name PlayerInputController
+extends Node

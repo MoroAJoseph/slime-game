@@ -8,6 +8,7 @@ extends RefCounted
 # --- Core ---
 const BOOTSPLASH_SCENE_PATH: String = "res://core/bootsplash/bootsplash.tscn"
 const GAME_SCENE_PATH: String = "res://core/game/game.tscn"
+const MESH_VISUAL_SCENE_PATH: String = "res://core/mesh/mesh_visual.tscn"
 
 # --- Levels ---
 const LEVEL_TITLE_SCENE_PATH: String = "res://levels/title/title.tscn"
@@ -18,9 +19,11 @@ const LEVEL_WORLD_SCENE_PATH: String = "res://levels/world/world.tscn"
 # --- Entities ---
 const ENTITY_PLAYER_SCENE_PATH: String = "res://entities/player/player.tscn"
 const ENTITY_SLIME_SCENE_PATH: String = "res://entities/slimes/slime.tscn"
+const ENTITY_BULLET_SCENE_PATH: String = "res://entities/projectiles/bullet/bullet.tscn"
+const ENTITY_GUN_SCENE_PATH: String = "res://entities/weapons/gun/gun.tscn"
 
 # --- Utils ---
-const GUN_SCENE_PATH: String = "res://entities/weapons/guns/scenes/gun.tscn"
+const WEAPON_MATERIAL_PATH: String = "res://entities/weapons/base/weapon_rgb_material.res"
 
 # ===
 # FX

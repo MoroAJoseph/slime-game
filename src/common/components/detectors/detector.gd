@@ -4,7 +4,7 @@ extends Area3D
 signal entered(sensor: Sensor)
 signal exited(sensor: Sensor)
 
-@export var blacklist: Array[Sensor] = []
+@export var _blacklist: Array[Sensor] = []
 
 var _overlapping_sensors: Array[Sensor] = []
 
@@ -19,6 +19,9 @@ func _ready() -> void:
 # ===
 # Public
 # ===
+
+func add_to_blacklist(sensor: Sensor) -> void:
+	_blacklist.append(sensor)
 
 func get_overlapping_sensors() -> Array[Sensor]:
 	return _overlapping_sensors
@@ -36,7 +39,7 @@ func _should_detect(_sensor: Sensor) -> bool:
 
 func _on_area_entered(area: Area3D) -> void:
 	if area is Sensor and area.is_active:
-		if area in blacklist or not area.is_active:
+		if area in _blacklist or not area.is_active:
 			return
 		if _should_detect(area):
 			_overlapping_sensors.append(area)

@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="GunPartData" format=3 uid="uid://dhx7sgo7xnwfx"]
+
+[ext_resource type="Script" uid="uid://bslkbecbij1fi" path="res://entities/weapons/gun/dataclasses/gun_frame_combat_data.gd" id="1_ouwqe"]
+[ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://entities/weapons/gun/dataclasses/gun_part_data.gd" id="2_no4ct"]
+[ext_resource type="Script" uid="uid://c1aht68om0gag" path="res://entities/weapons/gun/dataclasses/gun_part_visual_data.gd" id="3_fnurq"]
+[ext_resource type="Script" uid="uid://djoelq250kqg8" path="res://common/data/transform_data.gd" id="4_q2olv"]
+
+[sub_resource type="Resource" id="Resource_a1voo"]
+script = ExtResource("1_ouwqe")
+metadata/_custom_type_script = "uid://bslkbecbij1fi"
+
+[sub_resource type="Resource" id="Resource_03cec"]
+script = ExtResource("4_q2olv")
+position = Vector3(0, 0.35, 0.4)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[sub_resource type="Resource" id="Resource_naefj"]
+script = ExtResource("4_q2olv")
+position = Vector3(0, -0.08, -0.43)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[sub_resource type="Resource" id="Resource_pxfxp"]
+script = ExtResource("4_q2olv")
+position = Vector3(0, 0.205, -1.265)
+metadata/_custom_type_script = "uid://djoelq250kqg8"
+
+[sub_resource type="Resource" id="Resource_uwf6d"]
+script = ExtResource("3_fnurq")
+mesh_path = "uid://davlexg2tcl58"
+color_red = Color(0, 0.8, 0.10666676, 1)
+socket_transforms = Dictionary[int, ExtResource("4_q2olv")]({
+1: SubResource("Resource_03cec"),
+2: SubResource("Resource_naefj"),
+3: SubResource("Resource_pxfxp")
+})
+metadata/_custom_type_script = "uid://c1aht68om0gag"
+
+[resource]
+script = ExtResource("2_no4ct")
+item_name = "Test Rifle Frame"
+visual_data = SubResource("Resource_uwf6d")
+combat_data = SubResource("Resource_a1voo")
+metadata/_custom_type_script = "uid://bnjaolcgppm3v"

@@ -60,4 +60,7 @@ func _spawn_slimes() -> void:
 # ===
 
 func _on_event(event: Event) -> void:
-	pass
+	if event is WorldEvent.EntityDied:
+		if event.node is Slime:
+			var position: Vector3 = event.node.global_position
+			print_debug(randi_range(0, 100))

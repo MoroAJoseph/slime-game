@@ -42,7 +42,7 @@ metadata/_custom_type_script = "uid://chgp3untiddwc"
 
 [node name="Entities" type="Node3D" parent="." unique_id=1972184509]
 
-[node name="Projectiles" type="Node3D" parent="." unique_id=2036332384 groups=["projectile_bucket"]]
+[node name="Projectiles" type="Node3D" parent="." unique_id=2036332384 groups=["Projectiles"]]
 
 [node name="FX" type="Node3D" parent="." unique_id=1874106233]
 

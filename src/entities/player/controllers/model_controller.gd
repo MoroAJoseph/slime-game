@@ -114,6 +114,7 @@ func trigger_death_visuals() -> void:
 
 func _clear_slot(slot: Node) -> void:
 	for child in slot.get_children():
+		slot.remove_child(child)
 		child.queue_free()
 
 func _apply_transform(node: Node3D, data: TransformData) -> void:
@@ -125,22 +126,27 @@ func _apply_transform(node: Node3D, data: TransformData) -> void:
 
 func _apply_spawn_material(mesh: MeshInstance3D, active: bool, shader_res: Shader) -> void:
 	if active:
+		if shader_res == null:
+			mesh.material_override = null
+			return
+			
 		var original_mat = mesh.get_active_material(0)
 		var new_mat = ShaderMaterial.new()
+		
 		new_mat.shader = shader_res
 		
-		# Inherit properties from the original material (textures/colors)
-		if original_mat is ShaderMaterial:
-			var params = ["red_color", "green_color", "blue_color", "albedo", "texture_albedo"]
-			for p in params:
-				var val = original_mat.get_shader_parameter(p)
-				if val != null:
-					new_mat.set_shader_parameter(p, val)
-		elif original_mat is StandardMaterial3D:
-			new_mat.set_shader_parameter("albedo", original_mat.albedo_color)
-			new_mat.set_shader_parameter("texture_albedo", original_mat.albedo_texture)
+		if original_mat:
+			if original_mat is ShaderMaterial:
+				var params = ["red_color", "green_color", "blue_color", "albedo", "texture_albedo"]
+				for param in params:
+					var val = original_mat.get_shader_parameter(param)
+					if val != null: new_mat.set_shader_parameter(param, val)
+			elif original_mat is StandardMaterial3D:
+				new_mat.set_shader_parameter("albedo", original_mat.albedo_color)
+				new_mat.set_shader_parameter("texture_albedo", original_mat.albedo_texture)
 		
 		new_mat.set_shader_parameter("spawn_height", _current_spawn_height)
+		
 		mesh.material_override = new_mat
 	else:
 		mesh.material_override = null
@@ -159,7 +165,7 @@ func _propagate_spawn_height(node: Node) -> void:
 
 func _spawn_weapon(weapon_data: WeaponData) -> Node3D:
 	if weapon_data is GunData:
-		var gun = load(Constants.GUN_SCENE_PATH).instantiate() as Gun
+		var gun = load(Constants.ENTITY_GUN_SCENE_PATH).instantiate() as Gun
 		gun.set_data(weapon_data)
 		return gun
 	

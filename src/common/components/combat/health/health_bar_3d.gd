@@ -1,34 +1,34 @@
 class_name HealthBar3D
 extends Node3D
 
-@onready var viewport = $SubViewport
-@onready var sprite = $Sprite3D
-@onready var progress_bar = $SubViewport/ProgressBar
+@export var _vertical_offset: float = 2.5
+@export var _bar_scale: float = 1.0
 
-@export var vertical_offset: float = 2.5
-@export var bar_scale: float = 1.0
+@onready var _sub_viewport = $SubViewport
+@onready var _sprite = $Sprite3D
+@onready var _bar = $SubViewport/ProgressBar
 
 # ===
 # Built-In
 # ===
 
 func _process(_delta: float) -> void:
-	sprite.position.y = vertical_offset
-	sprite.scale = Vector3.ONE * bar_scale
+	_sprite.position.y = _vertical_offset
+	_sprite.scale = Vector3.ONE * _bar_scale
 
 # ===
 # Local
 # ===
 
 func setup(max_health: float) -> void:
-	progress_bar.max_value = max_health
-	progress_bar.value = max_health
+	_bar.max_value = max_health
+	_bar.value = max_health
 	
-	sprite.texture = viewport.get_texture()
+	_sprite.texture = _sub_viewport.get_texture()
 	
-	sprite.scale = Vector3.ONE * bar_scale
-	sprite.position.y = vertical_offset
+	_sprite.position.y = _vertical_offset
+	_sprite.scale = Vector3.ONE * _bar_scale
 
 func update_health(current_health: float) -> void:
 	var tween = create_tween()
-	tween.tween_property(progress_bar, "value", current_health, 0.2).set_ease(Tween.EASE_OUT)
+	tween.tween_property(_bar, "value", current_health, 0.2).set_ease(Tween.EASE_OUT)

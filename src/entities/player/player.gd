@@ -89,7 +89,7 @@ func get_drone_follow_target() -> Marker3D:
 
 func get_viewport_raycast_data(max_dist: float = 15.0) -> Dictionary:
 	var space_state = get_world_3d().direct_space_state
-	var camera = _camera_controller.CAMERA
+	var camera = get_viewport().get_camera_3d()
 	var screen_center = get_viewport().get_visible_rect().size / 2
 	
 	var ray_origin = camera.project_ray_origin(screen_center)

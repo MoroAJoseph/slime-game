@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d13j4kyr7jnam"]
 
 [ext_resource type="Script" uid="uid://clbv4oiqestku" path="res://ui/huds/common/ammo/ammo.gd" id="1_7tjta"]
-[ext_resource type="Texture2D" uid="uid://mieifh544why" path="res://assets/2. More UI Hologram Interface Wenrexa/ProgressBar/ProgressBar Background.png" id="2_4k8uu"]
-[ext_resource type="Texture2D" uid="uid://c4hj6xnmqpvjw" path="res://assets/2. More UI Hologram Interface Wenrexa/ProgressBar/ProgressBarForeground.png" id="3_x7vk0"]
+[ext_resource type="Texture2D" uid="uid://mieifh544why" path="res://assets/_dev/2. More UI Hologram Interface Wenrexa/ProgressBar/ProgressBar Background.png" id="2_4k8uu"]
+[ext_resource type="Texture2D" uid="uid://c4hj6xnmqpvjw" path="res://assets/_dev/2. More UI Hologram Interface Wenrexa/ProgressBar/ProgressBarForeground.png" id="3_x7vk0"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5uuaq"]
 texture = ExtResource("2_4k8uu")

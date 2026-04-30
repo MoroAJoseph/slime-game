@@ -1,8 +1,6 @@
 class_name Slime
 extends CharacterBody3D
 
-signal died
-
 @onready var _model_controller: SlimeModelController = $ModelController
 @onready var _health_bar_3D: HealthBar3D = $HealthBar3D
 @onready var _damage_sensor: DamageSensor = $DamageSensor
@@ -34,7 +32,7 @@ func die() -> void:
 	if is_dead: return
 	
 	is_dead = true
-	died.emit()
+	WorldEvent.EntityDied.new(self)
 	queue_free()
 
 # ===

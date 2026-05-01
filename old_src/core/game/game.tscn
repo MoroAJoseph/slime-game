@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dwax50gm4bjg3"]
+
+[ext_resource type="Script" uid="uid://18of0vyfnbqe" path="res://core/game/game.gd" id="1_4gkfv"]
+[ext_resource type="Script" uid="uid://c8pwto050uk05" path="res://core/game/world_controller.gd" id="2_risx7"]
+[ext_resource type="Script" uid="uid://d3us42bq0j7fb" path="res://core/game/ui_controller.gd" id="2_slpoq"]
+[ext_resource type="Script" uid="uid://b3x8nvbcmdko7" path="res://core/state_machine/state_machine.gd" id="3_risx7"]
+[ext_resource type="PackedScene" uid="uid://dmthf3tejyt56" path="res://ui/huds/hub/hub_hud.tscn" id="4_hyofc"]
+[ext_resource type="Script" uid="uid://4l0rfytdwrbr" path="res://core/game/state/game_state_title.gd" id="5_00x87"]
+[ext_resource type="PackedScene" uid="uid://0etvxeffgdta" path="res://ui/menus/main/main.tscn" id="5_camtn"]
+[ext_resource type="PackedScene" uid="uid://bwj5ha1ibcmak" path="res://ui/huds/expedition/expedition_hud.tscn" id="5_qqwj0"]
+[ext_resource type="PackedScene" uid="uid://c8m22w661d0wi" path="res://ui/menus/pause/pause.tscn" id="6_edoqx"]
+[ext_resource type="Script" uid="uid://cxid8h0ln26lh" path="res://core/game/state/game_state_hub.gd" id="6_xakte"]
+[ext_resource type="Script" uid="uid://dg3b75vrpvkfd" path="res://core/game/state/game_state_load.gd" id="7_xmhhf"]
+[ext_resource type="PackedScene" uid="uid://bui6n5gymcwhb" path="res://ui/menus/inventory/inventory.tscn" id="8_lnsb0"]
+[ext_resource type="Script" uid="uid://bnjaolcgppm3v" path="res://entities/weapons/gun/dataclasses/gun_part_data.gd" id="9_cw71d"]
+[ext_resource type="Script" uid="uid://bxrubfyqf0s6f" path="res://entities/weapons/gun/dataclasses/gun_data.gd" id="9_qqwj0"]
+[ext_resource type="Script" uid="uid://b25w17teh4gra" path="res://common/data/backpack_data.gd" id="10_0x3cr"]
+[ext_resource type="Script" uid="uid://sguc5df4brlo" path="res://core/game/state/game_state_expedition.gd" id="10_6fyre"]
+[ext_resource type="Script" uid="uid://d2fycj4pes8d6" path="res://common/data/loadout_data.gd" id="11_4hqkx"]
+[ext_resource type="PackedScene" uid="uid://bjj512adhyu8g" path="res://ui/menus/dismantler/dismantler.tscn" id="13_4hqkx"]
+[ext_resource type="PackedScene" uid="uid://csu22laew1id3" path="res://ui/menus/builder_bench/builder_bench.tscn" id="13_qqwj0"]
+[ext_resource type="PackedScene" uid="uid://cvn6fudu7f510" path="res://ui/menus/provisioner/provisioner.tscn" id="14_ofays"]
+
+[sub_resource type="Resource" id="Resource_hyofc"]
+script = ExtResource("10_0x3cr")
+metadata/_custom_type_script = "uid://b25w17teh4gra"
+
+[sub_resource type="Resource" id="Resource_qqwj0"]
+script = ExtResource("11_4hqkx")
+metadata/_custom_type_script = "uid://d2fycj4pes8d6"
+
+[node name="Game" type="Node" unique_id=898484314]
+process_mode = 3
+script = ExtResource("1_4gkfv")
+
+[node name="WorldController" type="Node" parent="." unique_id=1530627212]
+script = ExtResource("2_risx7")
+
+[node name="World" type="Node3D" parent="WorldController" unique_id=1072822466 groups=["world_root"]]
+process_mode = 1
+
+[node name="UIController" type="Node" parent="." unique_id=2127822112]
+script = ExtResource("2_slpoq")
+
+[node name="HUD" type="CanvasLayer" parent="UIController" unique_id=1948301155]
+
+[node name="HubHUD" parent="UIController/HUD" unique_id=334187088 instance=ExtResource("4_hyofc")]
+unique_name_in_owner = true
+
+[node name="ExpeditionHUD" parent="UIController/HUD" unique_id=1477110089 instance=ExtResource("5_qqwj0")]
+unique_name_in_owner = true
+
+[node name="Menus" type="CanvasLayer" parent="UIController" unique_id=1606676291]
+layer = 2
+follow_viewport_enabled = true
+
+[node name="MainMenu" parent="UIController/Menus" unique_id=482945197 instance=ExtResource("5_camtn")]
+unique_name_in_owner = true
+
+[node name="InventoryMenu" parent="UIController/Menus" unique_id=685789889 instance=ExtResource("8_lnsb0")]
+unique_name_in_owner = true
+backpack_data = SubResource("Resource_hyofc")
+loadout_data = SubResource("Resource_qqwj0")
+
+[node name="PauseMenu" parent="UIController/Menus" unique_id=669495035 instance=ExtResource("6_edoqx")]
+unique_name_in_owner = true
+
+[node name="DismantlerMenu" parent="UIController/Menus" unique_id=912336121 instance=ExtResource("13_4hqkx")]
+unique_name_in_owner = true
+
+[node name="BuilderBenchMenu" parent="UIController/Menus" unique_id=1358947900 instance=ExtResource("13_qqwj0")]
+unique_name_in_owner = true
+
+[node name="ProvisionerMenu" parent="UIController/Menus" unique_id=956077929 instance=ExtResource("14_ofays")]
+unique_name_in_owner = true
+
+[node name="Loading" type="CanvasLayer" parent="UIController" unique_id=1421524645]
+layer = 3
+
+[node name="StateMachine" type="Node" parent="." unique_id=723252709 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_risx7")
+initial_state = NodePath("Title")
+
+[node name="Title" type="Node" parent="StateMachine" unique_id=1450245938]
+script = ExtResource("5_00x87")
+
+[node name="Hub" type="Node" parent="StateMachine" unique_id=1801488272]
+script = ExtResource("6_xakte")
+
+[node name="Expedition" type="Node" parent="StateMachine" unique_id=743476941]
+script = ExtResource("10_6fyre")
+metadata/_custom_type_script = "uid://bopo7k4hhvfvg"
+
+[node name="Load" type="Node" parent="StateMachine" unique_id=1383355484]
+script = ExtResource("7_xmhhf")

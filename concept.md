@@ -1421,38 +1421,55 @@ Mines develop semi-persistent player familiarity:
 
 This creates _structured farming identity inside unstable systems_.
 
-# Development Roadmap
+---
 
-## Prototype
+# Development Priorities
 
-- Core player systems only
-- Movement (mass/energy), melee siphoning, Overdrive, basic Heat
-- One ranged weapon, one melee weapon, one Slime type, simple Instability cycle
-- Death + resource drop/recovery
-- **Goal:** Validate tense 5-minute systemic loop
+## High
 
-## Vertical Slice
+- Player Movement (walk, sprint, Overdrive)
+- Energy System + Low Power Mode
+- Heat System + Thermal Lockdown
+- Mass System (basic carry weight)
+- Melee Siphoning + basic ranged combat
+- Instability Cycle (basic timer version)
+- Death & Resource Recovery
+- One Slime type (Magma) + simple hazard
+- Minimal Hub (recharge only)
+- Basic player input & controller feel
 
-- Fully tuned player loop (sprint, flashlight, combat)
-- 2 Slime types
-- One Lab zone + Terrain segment
-- Basic Hub (recharge only)
-- Minimal progression (1-2 Suit Cores)
-- **Goal:** Complete, polished 15-minute run showing core identity
+## Medium
 
-## Alpha
+- Flashlight
+- Empowerment mechanic
+- Two additional Slimes (Volt, Caustic)
+- Suit Cores (3-4 basic)
+- Weapon Shards (2-3)
+- Expanded zones (Lab + small Mine + Terrain)
+- Resource pickups and Mass interaction
+- Improved UI bars and feedback
 
-- Mines zone with mixed Slimes
-- All 6 Slime types + full Instability Phase
-- Drone added (start with Loot + Wait modes)
-- Basic recovery loop + multiple Labs
-- Expanded Suit Cores and Weapon Shards
-- **Goal:** End-to-end playable build with meaningful tradeoffs
+## Low
 
-## MVP
+- Full Mass + route optimization depth
+- Enhanced Instability Phase effects
+- Connected zone traversal
+- Expanded Suit Cores / Shards
+- Basic persistence between runs
+- Refined player controller
 
-- Full Drone (all modes + Transit)
-- Hub upgrades and crafting
-- 3-4 connected zones with repeatable routes
-- Polish, balance, and basic UI
-- **Goal:** Minimum shippable version with strong replayability
+## Post
+
+- Drone (all modes)
+- Remaining 3 Slimes
+- Advanced Thermal interactions
+- Narrative elements (genetic keys, Ark)
+- Full crafting / Field Core Extractor
+- Polish-heavy audio & visuals
+
+## Audio
+
+- Core action sounds (melee siphon, Overdrive, Heat buildup) → Prototype
+- Ambient + tension audio (rising Heat hum, Instability) → Vertical Slice
+- Background music + full SFX set → Alpha
+- Audio refinement & mixing → Beta

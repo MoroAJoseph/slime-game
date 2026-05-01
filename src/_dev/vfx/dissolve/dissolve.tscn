@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://55asf8ffpfe7"]
+
+[ext_resource type="Script" uid="uid://bnopklpw37yhs" path="res://_dev/vfx/dissolve/dissolve.gd" id="1_0af0l"]
+[ext_resource type="Shader" uid="uid://dlkafopkhpymr" path="res://_dev/vfx/dissolve/dissolve.gdshader" id="2_b16yc"]
+
+[sub_resource type="Gradient" id="Gradient_0af0l"]
+colors = PackedColorArray(1, 0.5019608, 0.08235294, 1, 0.7529412, 0, 0.09803922, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b16yc"]
+gradient = SubResource("Gradient_0af0l")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0af0l"]
+noise_type = 2
+frequency = 0.0184
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_b16yc"]
+width = 128
+height = 128
+depth = 128
+noise = SubResource("FastNoiseLite_0af0l")
+seamless = true
+invert = true
+seamless_blend_skirt = 0.25
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ty60e"]
+render_priority = 0
+shader = ExtResource("2_b16yc")
+shader_parameter/albedo = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/use_albedo_texture = false
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.0
+shader_parameter/dissolve_direction = Vector3(0, 1, 0)
+shader_parameter/dissolve_amount = 0.646000030685
+shader_parameter/object_min = -1.0
+shader_parameter/object_max = 1.0
+shader_parameter/invert_direction = false
+shader_parameter/noise_texture = SubResource("NoiseTexture3D_b16yc")
+shader_parameter/noise_scale = 1.0
+shader_parameter/noise_strength = 0.25
+shader_parameter/edge_color_primary = Color(1, 0.5019608, 0.08235294, 1)
+shader_parameter/edge_color_secondary = Color(0.7510945, 0, 0.097412564, 1)
+shader_parameter/edge_width = 0.05
+shader_parameter/emission_intensity = 5.0
+shader_parameter/use_noise_emission = false
+shader_parameter/noise_emission_gradient = SubResource("GradientTexture1D_b16yc")
+shader_parameter/noise_emission_scale = 10.0
+shader_parameter/noise_emission_intensity = 1.0
+shader_parameter/noise_emission_threshold = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlksx"]
+albedo_color = Color(0.30588236, 0.44313726, 1, 1)
+
+[node name="Dissolve" type="Node3D" unique_id=1771604092]
+script = ExtResource("1_0af0l")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1100100104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material_override = SubResource("ShaderMaterial_ty60e")
+material = SubResource("StandardMaterial3D_dlksx")

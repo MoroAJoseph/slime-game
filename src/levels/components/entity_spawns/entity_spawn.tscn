@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2b87ch7d4ofj"]
+
+[ext_resource type="Script" uid="uid://c2ivlsv83nnfg" path="res://levels/components/entity_spawns/entity_spawn.gd" id="1_ch8vy"]
+
+[node name="EntitySpawn" type="Marker3D" unique_id=1862235546]
+script = ExtResource("1_ch8vy")

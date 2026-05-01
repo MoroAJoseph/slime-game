@@ -1,0 +1,727 @@
+[gd_resource type="AnimationNodeStateMachine" format=3 uid="uid://dbq6h02c6wnlr"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3wlsy"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_j3ovn"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_j3ovn"]
+input_0/name = "Airborne"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Land"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_afbqv"]
+input_0/name = "Locomotion"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Jump"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gx6sm"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_yqrof"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Moving"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_3wlsy"]
+input_0/name = "Walk"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b2kln"]
+animation = &"Rifle/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_we0b7"]
+animation = &"Rifle/run_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mtric"]
+animation = &"Rifle/run_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eyb6c"]
+animation = &"Rifle/run_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_221hk"]
+animation = &"Rifle/run_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghoj8"]
+animation = &"Rifle/run_forward_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuv6x"]
+animation = &"Rifle/run_backward_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qpopc"]
+animation = &"Rifle/run_backward_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_24ehl"]
+animation = &"Rifle/run_forward_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bwdx1"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_b2kln")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_we0b7")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_mtric")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_eyb6c")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_221hk")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_ghoj8")
+blend_point_5/pos = Vector2(1, 1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_wuv6x")
+blend_point_6/pos = Vector2(1, -1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_qpopc")
+blend_point_7/pos = Vector2(-1, -1)
+blend_point_8/node = SubResource("AnimationNodeAnimation_24ehl")
+blend_point_8/pos = Vector2(-1, 1)
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_b2kln"]
+input_0/name = "Ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Air"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ttr27"]
+animation = &"Rifle/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_13wue"]
+animation = &"Rifle/walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wy7bt"]
+animation = &"Rifle/walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_geky7"]
+animation = &"Rifle/walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwspa"]
+animation = &"Rifle/walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r633c"]
+animation = &"Rifle/walk_forward_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pacje"]
+animation = &"Rifle/walk_backward_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2h0qb"]
+animation = &"Rifle/walk_backward_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mmk7k"]
+animation = &"Rifle/walk_forward_left"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_g3pa7"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ttr27")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_13wue")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_wy7bt")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_geky7")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_qwspa")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_r633c")
+blend_point_5/pos = Vector2(1, 1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_pacje")
+blend_point_6/pos = Vector2(1, -1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_2h0qb")
+blend_point_7/pos = Vector2(-1, -1)
+blend_point_8/node = SubResource("AnimationNodeAnimation_mmk7k")
+blend_point_8/pos = Vector2(-1, 1)
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_we0b7"]
+input_0/name = "Airborne"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Land"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_mtric"]
+input_0/name = "Locomotion"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Jump"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_eyb6c"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_221hk"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ghoj8"]
+input_0/name = "Walk"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t1t22"]
+animation = &"Rifle/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_50fht"]
+animation = &"Rifle/run_forward"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_wuv6x"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_t1t22")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_50fht")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_qpopc"]
+input_0/name = "Ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Air"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wq0jh"]
+animation = &"Rifle/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gt4e4"]
+animation = &"Rifle/walk_forward"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_24ehl"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_wq0jh")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_gt4e4")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_7otdo"]
+filter_enabled = true
+filters = ["%GeneralSkeleton:Chest", "%GeneralSkeleton:Head", "%GeneralSkeleton:LeftHand", "%GeneralSkeleton:LeftIndexDistal", "%GeneralSkeleton:LeftIndexIntermediate", "%GeneralSkeleton:LeftIndexProximal", "%GeneralSkeleton:LeftLittleDistal", "%GeneralSkeleton:LeftLittleIntermediate", "%GeneralSkeleton:LeftLittleProximal", "%GeneralSkeleton:LeftLowerArm", "%GeneralSkeleton:LeftMiddleDistal", "%GeneralSkeleton:LeftMiddleIntermediate", "%GeneralSkeleton:LeftMiddleProximal", "%GeneralSkeleton:LeftRingDistal", "%GeneralSkeleton:LeftRingIntermediate", "%GeneralSkeleton:LeftRingProximal", "%GeneralSkeleton:LeftShoulder", "%GeneralSkeleton:LeftThumbDistal", "%GeneralSkeleton:LeftThumbMetacarpal", "%GeneralSkeleton:LeftThumbProximal", "%GeneralSkeleton:LeftUpperArm", "%GeneralSkeleton:Neck", "%GeneralSkeleton:RightHand", "%GeneralSkeleton:RightIndexDistal", "%GeneralSkeleton:RightIndexIntermediate", "%GeneralSkeleton:RightIndexProximal", "%GeneralSkeleton:RightLittleDistal", "%GeneralSkeleton:RightLittleIntermediate", "%GeneralSkeleton:RightLittleProximal", "%GeneralSkeleton:RightLowerArm", "%GeneralSkeleton:RightMiddleDistal", "%GeneralSkeleton:RightMiddleIntermediate", "%GeneralSkeleton:RightMiddleProximal", "%GeneralSkeleton:RightRingDistal", "%GeneralSkeleton:RightRingIntermediate", "%GeneralSkeleton:RightRingProximal", "%GeneralSkeleton:RightShoulder", "%GeneralSkeleton:RightThumbDistal", "%GeneralSkeleton:RightThumbMetacarpal", "%GeneralSkeleton:RightThumbProximal", "%GeneralSkeleton:RightUpperArm", "%GeneralSkeleton:UpperChest", "%GeneralSkeleton:handthumb4.L", "%GeneralSkeleton:handthumb4.R"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_c112w"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_bwdx1"]
+input_0/name = "Adventure"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Action"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_u37te"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ssgi7"]
+animation = &"Rifle/jump_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a2brg"]
+animation = &"Rifle/jump_forward_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rtlkk"]
+animation = &"Rifle/jump_in_place_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_arp52"]
+animation = &"Rifle/jump_in_place_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jjk8f"]
+animation = &"Rifle/jump_forward_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vewsg"]
+animation = &"Rifle/jump_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8q4fm"]
+animation = &"Rifle/jump_forward_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2soq1"]
+animation = &"Rifle/jump_in_place_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0eo6o"]
+animation = &"Rifle/jump_forward_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_np63p"]
+animation = &"Rifle/jump_in_place_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cnswy"]
+animation = &"Rifle/idle_aiming"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q5bfg"]
+animation = &"Rifle/draw_back_upper"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p22ii"]
+animation = &"Rifle/sheath_back_upper"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_afbqv"]
+graph_offset = Vector2(-1430.4944, -683.7814)
+nodes/output/position = Vector2(1480, 860)
+nodes/Mode_Select/node = SubResource("AnimationNodeTransition_bwdx1")
+nodes/Mode_Select/position = Vector2(440, 860)
+nodes/Adventure_Select/node = SubResource("AnimationNodeTransition_qpopc")
+nodes/Adventure_Select/position = Vector2(-140, -140)
+nodes/Action_Select/node = SubResource("AnimationNodeTransition_b2kln")
+nodes/Action_Select/position = Vector2(-120, 1740)
+nodes/Adventure_Ground_Select/node = SubResource("AnimationNodeTransition_mtric")
+nodes/Adventure_Ground_Select/position = Vector2(-560, -540)
+nodes/Adventure_Jump_Select/node = SubResource("AnimationNodeTransition_eyb6c")
+nodes/Adventure_Jump_Select/position = Vector2(-880, -280)
+nodes/Adventure_Walk/node = SubResource("AnimationNodeBlendSpace1D_24ehl")
+nodes/Adventure_Walk/position = Vector2(-1220, -940)
+nodes/Adventure_Run/node = SubResource("AnimationNodeBlendSpace1D_wuv6x")
+nodes/Adventure_Run/position = Vector2(-1220, -660)
+nodes/Adventure_Locomotion_Select/node = SubResource("AnimationNodeTransition_ghoj8")
+nodes/Adventure_Locomotion_Select/position = Vector2(-900, -800)
+nodes/adventure_jump_in_place/node = SubResource("AnimationNodeAnimation_2soq1")
+nodes/adventure_jump_in_place/position = Vector2(-1260, -380)
+nodes/adventure_jump_in_motion/node = SubResource("AnimationNodeAnimation_8q4fm")
+nodes/adventure_jump_in_motion/position = Vector2(-1280, -80)
+nodes/adventure_airborne/node = SubResource("AnimationNodeAnimation_vewsg")
+nodes/adventure_airborne/position = Vector2(-800, 280)
+nodes/Adventure_Air_Select/node = SubResource("AnimationNodeTransition_we0b7")
+nodes/Adventure_Air_Select/position = Vector2(-500, 320)
+nodes/Adventure_Land_Select/node = SubResource("AnimationNodeTransition_221hk")
+nodes/Adventure_Land_Select/position = Vector2(-820, 580)
+nodes/adventure_land_in_place/node = SubResource("AnimationNodeAnimation_np63p")
+nodes/adventure_land_in_place/position = Vector2(-1220, 480)
+nodes/adventure_land_in_motion/node = SubResource("AnimationNodeAnimation_0eo6o")
+nodes/adventure_land_in_motion/position = Vector2(-1220, 780)
+nodes/Action_Ground_Select/node = SubResource("AnimationNodeTransition_afbqv")
+nodes/Action_Ground_Select/position = Vector2(-480, 1460)
+nodes/Action_Air_Select/node = SubResource("AnimationNodeTransition_j3ovn")
+nodes/Action_Air_Select/position = Vector2(-460, 2240)
+nodes/Action_Locomotion_Select/node = SubResource("AnimationNodeTransition_3wlsy")
+nodes/Action_Locomotion_Select/position = Vector2(-900, 1140)
+nodes/Action_Walk/node = SubResource("AnimationNodeBlendSpace2D_g3pa7")
+nodes/Action_Walk/position = Vector2(-1160, 1040)
+nodes/Action_Run/node = SubResource("AnimationNodeBlendSpace2D_bwdx1")
+nodes/Action_Run/position = Vector2(-1160, 1320)
+nodes/Action_Jump_Select/node = SubResource("AnimationNodeTransition_gx6sm")
+nodes/Action_Jump_Select/position = Vector2(-840, 1700)
+nodes/action_jump_in_place/node = SubResource("AnimationNodeAnimation_rtlkk")
+nodes/action_jump_in_place/position = Vector2(-1180, 1660)
+nodes/action_jump_in_motion/node = SubResource("AnimationNodeAnimation_a2brg")
+nodes/action_jump_in_motion/position = Vector2(-1180, 1880)
+nodes/action_airborne/node = SubResource("AnimationNodeAnimation_ssgi7")
+nodes/action_airborne/position = Vector2(-840, 2180)
+nodes/action_land_in_place/node = SubResource("AnimationNodeAnimation_arp52")
+nodes/action_land_in_place/position = Vector2(-1200, 2400)
+nodes/Action_Land_Select/node = SubResource("AnimationNodeTransition_yqrof")
+nodes/Action_Land_Select/position = Vector2(-820, 2520)
+nodes/action_land_moving/node = SubResource("AnimationNodeAnimation_jjk8f")
+nodes/action_land_moving/position = Vector2(-1200, 2740)
+nodes/Aim_Blend/node = SubResource("AnimationNodeBlend2_7otdo")
+nodes/Aim_Blend/position = Vector2(880, 840)
+nodes/aiming/node = SubResource("AnimationNodeAnimation_cnswy")
+nodes/aiming/position = Vector2(700, 1060)
+nodes/Draw_Shot/node = SubResource("AnimationNodeOneShot_c112w")
+nodes/Draw_Shot/position = Vector2(1133.4216, 1128.409)
+nodes/Sheath_Shot/node = SubResource("AnimationNodeOneShot_u37te")
+nodes/Sheath_Shot/position = Vector2(1800, 1080)
+nodes/draw/node = SubResource("AnimationNodeAnimation_q5bfg")
+nodes/draw/position = Vector2(900, 1420)
+nodes/sheath/node = SubResource("AnimationNodeAnimation_p22ii")
+nodes/sheath/position = Vector2(1560, 1360)
+node_connections = [&"output", 0, &"Aim_Blend", &"Mode_Select", 0, &"Adventure_Select", &"Mode_Select", 1, &"Action_Select", &"Adventure_Select", 0, &"Adventure_Ground_Select", &"Adventure_Select", 1, &"Adventure_Air_Select", &"Action_Select", 0, &"Action_Ground_Select", &"Action_Select", 1, &"Action_Air_Select", &"Adventure_Ground_Select", 0, &"Adventure_Locomotion_Select", &"Adventure_Ground_Select", 1, &"Adventure_Jump_Select", &"Adventure_Jump_Select", 0, &"adventure_jump_in_place", &"Adventure_Jump_Select", 1, &"adventure_jump_in_motion", &"Adventure_Locomotion_Select", 0, &"Adventure_Walk", &"Adventure_Locomotion_Select", 1, &"Adventure_Run", &"Adventure_Air_Select", 0, &"adventure_airborne", &"Adventure_Air_Select", 1, &"Adventure_Land_Select", &"Adventure_Land_Select", 0, &"adventure_land_in_place", &"Adventure_Land_Select", 1, &"adventure_land_in_motion", &"Action_Ground_Select", 0, &"Action_Locomotion_Select", &"Action_Ground_Select", 1, &"Action_Jump_Select", &"Action_Air_Select", 0, &"action_airborne", &"Action_Air_Select", 1, &"Action_Land_Select", &"Action_Locomotion_Select", 0, &"Action_Walk", &"Action_Locomotion_Select", 1, &"Action_Run", &"Action_Jump_Select", 0, &"action_jump_in_place", &"Action_Jump_Select", 1, &"action_jump_in_motion", &"Action_Land_Select", 0, &"action_land_in_place", &"Action_Land_Select", 1, &"action_land_moving", &"Aim_Blend", 0, &"Mode_Select", &"Aim_Blend", 1, &"aiming", &"Draw_Shot", 1, &"draw", &"Sheath_Shot", 1, &"sheath"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gx6sm"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_sfd6j"]
+input_0/name = "Airborne"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Land"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_jgxcf"]
+input_0/name = "Locomotion"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Jump"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_36gg7"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_chv51"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_231wb"]
+input_0/name = "Walk"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wb3uv"]
+animation = &"Unarmed/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gkepj"]
+animation = &"Unarmed/run_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y6fyq"]
+animation = &"Unarmed/run_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yiotw"]
+animation = &"Unarmed/run_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k1bod"]
+animation = &"Rifle/run_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tjj02"]
+animation = &"Rifle/run_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lotey"]
+animation = &"Rifle/run_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h5b5e"]
+animation = &"Unarmed/run_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xr2f2"]
+animation = &"Unarmed/run_forward"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_183un"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_wb3uv")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_gkepj")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_y6fyq")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_yiotw")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_k1bod")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_tjj02")
+blend_point_5/pos = Vector2(1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_lotey")
+blend_point_6/pos = Vector2(-1, -1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_h5b5e")
+blend_point_7/pos = Vector2(-1, 1)
+blend_point_8/node = SubResource("AnimationNodeAnimation_xr2f2")
+blend_point_8/pos = Vector2(1, 1)
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_66qwf"]
+input_0/name = "Ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Air"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8axkk"]
+animation = &"Unarmed/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_63kp5"]
+animation = &"Unarmed/walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v0ct8"]
+animation = &"Unarmed/walk_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rqkjl"]
+animation = &"Unarmed/walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g1rnc"]
+animation = &"Rifle/walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_873ps"]
+animation = &"Rifle/walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jpcut"]
+animation = &"Rifle/walk_backward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wkjbv"]
+animation = &"Unarmed/walk_forward"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8dbvk"]
+animation = &"Unarmed/walk_forward"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_v8juj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_8axkk")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_63kp5")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_v0ct8")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_rqkjl")
+blend_point_3/pos = Vector2(-1, 0)
+blend_point_4/node = SubResource("AnimationNodeAnimation_g1rnc")
+blend_point_4/pos = Vector2(0, -1)
+blend_point_5/node = SubResource("AnimationNodeAnimation_873ps")
+blend_point_5/pos = Vector2(1, -1)
+blend_point_6/node = SubResource("AnimationNodeAnimation_jpcut")
+blend_point_6/pos = Vector2(-1, -1)
+blend_point_7/node = SubResource("AnimationNodeAnimation_wkjbv")
+blend_point_7/pos = Vector2(-1, 1)
+blend_point_8/node = SubResource("AnimationNodeAnimation_8dbvk")
+blend_point_8/pos = Vector2(1, 1)
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_8cn5l"]
+input_0/name = "Airborne"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Land"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ns1m0"]
+input_0/name = "Locomotion"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Jump"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ew3y5"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_iod35"]
+input_0/name = "InPlace"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "InMotion"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_bpw1b"]
+input_0/name = "Walk"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Run"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iod35"]
+animation = &"Unarmed/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sfd6j"]
+animation = &"Unarmed/run_forward"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_jgxcf"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_iod35")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_sfd6j")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_qe7f2"]
+input_0/name = "Ground"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Air"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_36gg7"]
+animation = &"Unarmed/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_chv51"]
+animation = &"Unarmed/walk_forward"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_231wb"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_36gg7")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_chv51")
+blend_point_1/pos = 1.0
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_gkepj"]
+input_0/name = "Adventure"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = true
+input_1/name = "Action"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h2y0n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6pw3o"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h8wl2"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhb4n"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vcm0m"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4wa00"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_anodm"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sg25l"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bwm6r"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pajht"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_yqrof"]
+graph_offset = Vector2(-1665.2654, 1862.9841)
+nodes/output/position = Vector2(580, 920)
+nodes/Mode_Select/node = SubResource("AnimationNodeTransition_gkepj")
+nodes/Mode_Select/position = Vector2(240, 900)
+nodes/Adventure_Select/node = SubResource("AnimationNodeTransition_qe7f2")
+nodes/Adventure_Select/position = Vector2(-340, -120)
+nodes/Action_Select/node = SubResource("AnimationNodeTransition_66qwf")
+nodes/Action_Select/position = Vector2(-240, 2040)
+nodes/Adventure_Ground_Select/node = SubResource("AnimationNodeTransition_ns1m0")
+nodes/Adventure_Ground_Select/position = Vector2(-700, -580)
+nodes/Adventure_Locomotion_Select/node = SubResource("AnimationNodeTransition_bpw1b")
+nodes/Adventure_Locomotion_Select/position = Vector2(-1160, -920)
+nodes/Adventure_Walk/node = SubResource("AnimationNodeBlendSpace1D_231wb")
+nodes/Adventure_Walk/position = Vector2(-1440, -1000)
+nodes/Adventure_Run/node = SubResource("AnimationNodeBlendSpace1D_jgxcf")
+nodes/Adventure_Run/position = Vector2(-1440, -760)
+nodes/Adventure_Jump_Select/node = SubResource("AnimationNodeTransition_ew3y5")
+nodes/Adventure_Jump_Select/position = Vector2(-1120, -300)
+nodes/Adventure_Air_Select/node = SubResource("AnimationNodeTransition_8cn5l")
+nodes/Adventure_Air_Select/position = Vector2(-700, 300)
+nodes/Adventure_Land_Select/node = SubResource("AnimationNodeTransition_iod35")
+nodes/Adventure_Land_Select/position = Vector2(-1080, 540)
+nodes/adventure_jump_in_place/node = SubResource("AnimationNodeAnimation_sg25l")
+nodes/adventure_jump_in_place/position = Vector2(-1500, -420)
+nodes/adventure_jump_in_motion/node = SubResource("AnimationNodeAnimation_anodm")
+nodes/adventure_jump_in_motion/position = Vector2(-1500, -120)
+nodes/adventure_airborne/node = SubResource("AnimationNodeAnimation_4wa00")
+nodes/adventure_airborne/position = Vector2(-1074.9231, 159.45882)
+nodes/adventure_land_in_place/node = SubResource("AnimationNodeAnimation_pajht")
+nodes/adventure_land_in_place/position = Vector2(-1440, 460)
+nodes/adventure_land_in_motion/node = SubResource("AnimationNodeAnimation_bwm6r")
+nodes/adventure_land_in_motion/position = Vector2(-1440, 740)
+nodes/Action_Ground_Select/node = SubResource("AnimationNodeTransition_jgxcf")
+nodes/Action_Ground_Select/position = Vector2(-640, 1560)
+nodes/Action_Air_Select/node = SubResource("AnimationNodeTransition_sfd6j")
+nodes/Action_Air_Select/position = Vector2(-640, 2400)
+nodes/Action_Jump_Select/node = SubResource("AnimationNodeTransition_36gg7")
+nodes/Action_Jump_Select/position = Vector2(-1020, 1860)
+nodes/Action_Locomotion_Select/node = SubResource("AnimationNodeTransition_231wb")
+nodes/Action_Locomotion_Select/position = Vector2(-1060, 1220)
+nodes/Action_Walk/node = SubResource("AnimationNodeBlendSpace2D_v8juj")
+nodes/Action_Walk/position = Vector2(-1400, 1100)
+nodes/Action_Run/node = SubResource("AnimationNodeBlendSpace2D_183un")
+nodes/Action_Run/position = Vector2(-1420, 1420)
+nodes/action_jump_in_place/node = SubResource("AnimationNodeAnimation_h8wl2")
+nodes/action_jump_in_place/position = Vector2(-1360, 1760)
+nodes/action_jump_in_motion/node = SubResource("AnimationNodeAnimation_6pw3o")
+nodes/action_jump_in_motion/position = Vector2(-1360, 2040)
+nodes/action_airborne/node = SubResource("AnimationNodeAnimation_h2y0n")
+nodes/action_airborne/position = Vector2(-980, 2280)
+nodes/Action_Land_Select/node = SubResource("AnimationNodeTransition_chv51")
+nodes/Action_Land_Select/position = Vector2(-1000, 2620)
+nodes/action_land_in_place/node = SubResource("AnimationNodeAnimation_vcm0m")
+nodes/action_land_in_place/position = Vector2(-1400, 2520)
+nodes/action_land_in_motion/node = SubResource("AnimationNodeAnimation_fhb4n")
+nodes/action_land_in_motion/position = Vector2(-1400, 2780)
+node_connections = [&"output", 0, &"Mode_Select", &"Mode_Select", 0, &"Adventure_Select", &"Mode_Select", 1, &"Action_Select", &"Adventure_Select", 0, &"Adventure_Ground_Select", &"Adventure_Select", 1, &"Adventure_Air_Select", &"Action_Select", 0, &"Action_Ground_Select", &"Action_Select", 1, &"Action_Air_Select", &"Adventure_Ground_Select", 0, &"Adventure_Locomotion_Select", &"Adventure_Ground_Select", 1, &"Adventure_Jump_Select", &"Adventure_Locomotion_Select", 0, &"Adventure_Walk", &"Adventure_Locomotion_Select", 1, &"Adventure_Run", &"Adventure_Jump_Select", 0, &"adventure_jump_in_place", &"Adventure_Jump_Select", 1, &"adventure_jump_in_motion", &"Adventure_Air_Select", 0, &"adventure_airborne", &"Adventure_Air_Select", 1, &"Adventure_Land_Select", &"Adventure_Land_Select", 0, &"adventure_land_in_place", &"Adventure_Land_Select", 1, &"adventure_land_in_motion", &"Action_Ground_Select", 0, &"Action_Locomotion_Select", &"Action_Ground_Select", 1, &"Action_Jump_Select", &"Action_Air_Select", 0, &"action_airborne", &"Action_Air_Select", 1, &"Action_Land_Select", &"Action_Jump_Select", 0, &"action_jump_in_place", &"Action_Jump_Select", 1, &"action_jump_in_motion", &"Action_Locomotion_Select", 0, &"Action_Walk", &"Action_Locomotion_Select", 1, &"Action_Run", &"Action_Land_Select", 0, &"action_land_in_place", &"Action_Land_Select", 1, &"action_land_in_motion"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bpw1b"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8cn5l"]
+advance_mode = 2
+advance_condition = &"is_rifle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ew3y5"]
+advance_mode = 2
+advance_condition = &"is_unarmed"
+
+[resource]
+states/End/position = Vector2(1075, 102)
+states/Interactions/node = SubResource("AnimationNodeBlendTree_3wlsy")
+states/Interactions/position = Vector2(739, -89)
+states/Pistol/node = SubResource("AnimationNodeBlendTree_j3ovn")
+states/Pistol/position = Vector2(916, -130)
+states/Rifle/node = SubResource("AnimationNodeBlendTree_afbqv")
+states/Rifle/position = Vector2(538, -155)
+states/Start/position = Vector2(-25, 17)
+states/Sword/node = SubResource("AnimationNodeBlendTree_gx6sm")
+states/Sword/position = Vector2(547, 192)
+states/Unarmed/node = SubResource("AnimationNodeBlendTree_yqrof")
+states/Unarmed/position = Vector2(426, 27)
+transitions = ["Start", "Unarmed", SubResource("AnimationNodeStateMachineTransition_bpw1b"), "Unarmed", "Rifle", SubResource("AnimationNodeStateMachineTransition_8cn5l"), "Rifle", "Unarmed", SubResource("AnimationNodeStateMachineTransition_ew3y5")]
+graph_offset = Vector2(-381, -343)

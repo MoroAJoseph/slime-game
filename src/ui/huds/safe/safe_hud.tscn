@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cg4q0rfyv1nom"]
+
+[ext_resource type="PackedScene" uid="uid://b7ir6we800q8x" path="res://ui/huds/common/gaze_indicator/gaze_indicator.tscn" id="1_ydtr6"]
+
+[node name="SafeHUD" type="Control" unique_id=1463836660]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SafeArea" type="MarginContainer" parent="." unique_id=13388746]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="Content" type="Control" parent="SafeArea" unique_id=201290306]
+layout_mode = 2
+
+[node name="LookIndicator" parent="SafeArea/Content" unique_id=1007463334 instance=ExtResource("1_ydtr6")]
+layout_mode = 1
+default_color = null
+default_size = null
+interact_size = null

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cx6x2sl5p1egd"]
+
+[ext_resource type="Script" uid="uid://dgndups03njqh" path="res://common/components/identifiers/gaze/gaze_identifier.gd" id="1_muc30"]
+
+[node name="LookInteractionIdentifier" type="Area3D" unique_id=1425140001]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_muc30")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=992077382]

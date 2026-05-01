@@ -1,78 +1,9 @@
 [gd_scene format=3 uid="uid://bwj5ha1ibcmak"]
 
-[ext_resource type="Script" uid="uid://cklk8w3u6n3yi" path="res://ui/huds/expedition/expedition_hud.gd" id="1_nfff1"]
-[ext_resource type="PackedScene" uid="uid://jqyom1ulbeie" path="res://ui/huds/common/minimap/minimap.tscn" id="2_nx60q"]
-[ext_resource type="PackedScene" uid="uid://bckrhbnti7udm" path="res://ui/huds/common/gaze_indicator/gaze_indicator.tscn" id="3_hvosw"]
-[ext_resource type="PackedScene" uid="uid://d13j4kyr7jnam" path="res://ui/huds/common/ammo/ammo.tscn" id="4_tk6j5"]
-[ext_resource type="PackedScene" uid="uid://de1xq5tsnhnf" path="res://ui/huds/common/reticle/reticle.tscn" id="5_hvosw"]
-[ext_resource type="PackedScene" uid="uid://cemcl8j0psv6x" path="res://ui/huds/common/reload_indicator/reload_indicator.tscn" id="6_tk6j5"]
-[ext_resource type="PackedScene" uid="uid://dsyidso7j5b47" path="res://ui/huds/common/player_health_bar/player_health_bar.tscn" id="7_on0du"]
-
-[node name="ExpeditionHUD" type="Control" unique_id=1477110089]
+[node name="ExpeditionHUD" type="Control" unique_id=416513937]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_nfff1")
-
-[node name="SafeArea" type="MarginContainer" parent="." unique_id=1329765901]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 48
-theme_override_constants/margin_top = 48
-theme_override_constants/margin_right = 48
-theme_override_constants/margin_bottom = 48
-
-[node name="Content" type="Control" parent="SafeArea" unique_id=881787446]
-layout_mode = 2
-
-[node name="Minimap" parent="SafeArea/Content" unique_id=1358840063 instance=ExtResource("2_nx60q")]
-layout_mode = 1
-
-[node name="InteractionCircle" parent="SafeArea/Content" unique_id=1459703804 instance=ExtResource("3_hvosw")]
-layout_mode = 1
-
-[node name="Ammo" parent="SafeArea/Content" unique_id=839559408 instance=ExtResource("4_tk6j5")]
-layout_mode = 1
-
-[node name="Reticle" parent="SafeArea/Content" unique_id=869070153 instance=ExtResource("5_hvosw")]
-layout_mode = 1
-_style = 2
-_dot_radius = 1.5
-_color = Color(1, 1, 1, 1)
-_lerp_speed = 12.0
-_base_spread = 20.0
-_zoomed_spread = 8.0
-_max_spread = 60.0
-_max_spin_angle = 90.0
-
-[node name="ReloadIndicator" parent="SafeArea/Content" unique_id=22764293 instance=ExtResource("6_tk6j5")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PlayerHealthBar" parent="SafeArea/Content" unique_id=1593096704 instance=ExtResource("7_on0du")]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -212.0
-offset_top = -134.0
-offset_right = 148.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 0
-rotation = -1.5707964
